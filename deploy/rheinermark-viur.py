@@ -17,10 +17,10 @@
 #   I N F O R M A T I O N    S Y S T E M
 # ------------------------------------------------------------------------------
 #
-# Project:      {{app_id}}
-# Initiated:    {{timestamp}}
-# Copyright:    {{whoami}} @ Mausbrand Informationssysteme GmbH
-# Author:       {{whoami}}
+# Project:      rheinermark-viur
+# Initiated:    2019-11-14 17:16:31
+# Copyright:    Max @ Mausbrand Informationssysteme GmbH
+# Author:       Max
 #
 # ------------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ from server import conf, securityheaders
 # ViUR admin tool specific configurations
 #
 
-conf["admin.vi.name"] = "{{app_id}}"
+conf["admin.vi.name"] = "rheinermark-viur"
 
 # ------------------------------------------------------------------------------
 # Content Security Policy

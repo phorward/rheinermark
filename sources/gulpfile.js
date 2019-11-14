@@ -1,4 +1,4 @@
-/* {{app_id}} GULP SCRIPT */
+/* rheinermark-viur GULP SCRIPT */
 
 // Project data
 var srcpaths = {

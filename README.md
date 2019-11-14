@@ -1,84 +1,69 @@
-# ViUR base
+# rheinermark-viur
 
-**base** provides a basic ViUR project structure.
+Created by Max.
 
-This is the best place to start a new ViUR project from!
+https://rheinermark-viur.appspot.com
 
----
+## Description
 
-## Usage
+This is rheinermark-viur.
 
-Clone the base repository including its submodules into a new directory of your choice.
+## Build the Vi
 
-```bash
-git clone https://github.com/viur-framework/base.git your-project
-cd your-project
-```
-
-Then, to make sure that the placeholders in `app.yaml` and `viur_server.py` are properly replaced and that you won't accidentally override the viur-base repo, use the included `clean-base.py` script.
-
-You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the `dev_appserver.py` locally. These interactively prompted values can also be provided as command-line parameters.
-
-The script will also initialize and update the submodules and disconnect the repo from the viur-base repository origin.
+To build the Vi, run
 
 ```bash
-python clean-base.py
+$ cd vi
+$ make deploy
 ```
 
-When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted - if not, make `rm -rf .git` to drop the entire history and start over setting up a clean project with `git init`.
+## Change Git origin URL
 
----
-
-### Switch sub-modules to SSH
-
-Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
+Please set another Git repository origin. The default viur-base origin has been automatically deleted by ``clean-base.py``, for security reasons.
 
 ```bash
-# change server
-pushd deploy/server
-git remote set-url origin git@github.com:viur-framework/server.git
-popd
-
-# change vi
-pushd vi
-git remote set-url origin git@github.com:viur-framework/vi.git
-cd html5
-git remote set-url origin git@github.com:viur-framework/html5.git
-cd ../public/icons
-git remote set-url origin git@github.com:viur-framework/icons.git
-popd
-
-# change ignite
-pushd sources/less/ignite
-git remote set-url origin git@github.com:viur-framework/ignite.git
-popd
+$ git remote add git@github.com:Max/rheinermark-viur.git
 ```
 
----
+## Install prerequisites
 
-## Contributing
+To install prerequisites, once do
 
-We take a great interest in your opinion about ViUR. We appreciate your feedback and are looking forward to hear about your ideas. Share your visions or questions with us and participate in ongoing discussions.
+```bash
+$ pip2 install -t deploy/lib -r requirements.txt --upgrade
+```
 
-- [ViUR website](https://www.viur.is)
-- [#ViUR on freenode IRC](https://webchat.freenode.net/?channels=viur)
-- [ViUR on GitHub](https://github.com/viur-framework)
-- [ViUR on Twitter](https://twitter.com/weloveViUR)
+or on any prerequisite change/update.
 
----
+## Run local development version
 
-## Credits
+To locally run, do
 
-ViUR is developed and maintained by [Mausbrand Informationssysteme GmbH](https://www.mausbrand.de/en), from Dortmund in Germany. We are a software company consisting of young, enthusiastic software developers, designers and social media experts, working on exciting projects for different kinds of customers. All of our newer projects are implemented with ViUR, from tiny web-pages to huge company intranets with hundreds of users.
+```bash
+$ ./local_run.sh
+```
 
-Help of any kind to extend and improve or enhance this project in any kind or way is always appreciated.
+or manually, do
 
----
+```bash
+$ cd deploy
+$ dev_appserver.py -A rheinermark-viur --log_level=debug .
+```
 
-## License
+## Deploy to GAE
 
-Copyright (C) 2012-2019 by Mausbrand Informationssysteme GmbH.
+Deployment is performed using the gcloud SDK:
 
-Mausbrand and ViUR are registered trademarks of Mausbrand Informationssysteme GmbH.
+```bash
+$ cd deploy
 
-You may use, modify and distribute this software under the terms and conditions of the GNU Lesser General Public License (LGPL). See the file LICENSE provided within this package for more information.
+# Deploy to dev
+$ gcloud app deploy --no-promote -q --project=rheinermark-viur --version=$USER-dev
+
+# Deploy to live (beware!)
+$ gcloud app deploy -q --project=rheinermark-viur --version=`date +"%Y-%m-%d"-$USER`
+```
+
+## Contact
+
+Contact @Max for help and support.
