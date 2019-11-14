@@ -1,67 +1,243 @@
-{% extends "viur_base.html" %}
+{%- from "macros/utils.html" import getImageSrc -%}
+{%- set appconf = getEntry("appconf") -%}
 
-{% block content %}
-	<section class="section">
-		<h1 class="headline">Welcome to {{ title }}!</h1>
-		<h2 class="subline">A ViUR project</h2>
-	</section>
+{%- if not skel -%}
+	{%- set skel = appconf -%}
+{%- endif -%}
 
-	<section class="section">
-		<h3 class="headline">Features</h3>
+{%- if not title -%}
+    {%- set title = appconf["title"] + " - " + appconf["slogan"] -%}
+{%- else -%}
+    {%- set title = title + " - " + appconf["title"] -%}
+{%- endif -%}
 
-		<div class="feature-wrap">
-			<div class="feature-container">
-				<ul class="feature-list is-list">
-					<li>Cloud based! Built for the <a href="https://cloud.google.com/appengine/" target="_blank"
-						rel="noopener noreferrer">Google App Engine™</a>.</li>
-					<li>Written in the <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-						Python™ Programming Language</a>.
-					</li>
-					<li>Provides a flexible and consistent API and SDK.</li>
-					<li>Uses well understood concepts, like MVC.</li>
-					<li>Provides lots of customizable modules.</li>
-					<li>Build-in multi-language support.</li>
-					<li>Auto-generated user interfaces and data management facilities.</li>
-				</ul>
-			</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
 
-			<div class="feature-container">
-				<ul class="feature-list is-list">
-					<li>Fast - Rapid prototyping and agile support.</li>
-					<li>Scalable - Build complex solutions with a small set of components.</li>
-					<li>Flexible - Prepared for different output formats (HTML5, XML, JSON, PDF, etc.)</li>
-					<li>Secure - ViUR protects private data by design!</li>
-					<li>Easy to use - User centric and user friendly interface (PostCMS).</li>
-					<li>Content centric - Adapt to your needs, not the other way around.</li>
-					<li>Open - ViUR is entirely released to the <a href="https://www.viur.is/community">
-						Open Source Community</a>.</li>
-				</ul>
+	<!-- meta -->
+	<meta charset="UTF-8">
+	<meta name="author" content="">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="page-topic" content="">
+	<meta name="robots" content="index, follow">
+
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<meta name="theme-color" content="#fff">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="static/compiled/img/favicon.ico">
+	<link rel="icon" type="image/png" href="static/compiled/img/favicon.png">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="static/css/style.min.css">
+
+	<!-- Image-Array for fv-->
+	<script>
+		var bgImageArray = [
+			"static/compiled/img/IMG_3545.jpg",
+			"static/compiled/img/IMG_20180701_182222.jpg",
+			"static/compiled/img/IMG_7527.jpg",
+			"static/compiled/img/photo_2019-09-28_12-09-01.jpg"];
+	</script>
+
+	<!-- JS -->
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/app.js"></script>
+
+</head>
+<body id="top">
+
+
+<div class="menu-wrapper top">
+	<div class="menu-bar">
+		<a class="menu-button" href="#1" onclick="document.getElementById('top').scrollIntoView({behavior: 'smooth'});">Start</a>
+		<a class="menu-button" href="#2"
+		   onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">Über Uns</a>
+		<a class="menu-button" href="#3"
+		   onclick="document.getElementById('kontakt').scrollIntoView({behavior: 'smooth'});">Kontakt</a>
+	</div>
+	<div class="logo"></div>
+</div>
+
+<!-- Startseite -->
+<section id="fv" class="fv">
+	<div class="grey-transparency">
+		<div class="content-title wo-border">
+			<h1 class="content-headline">Willkommen auf dem Flugplatz Rheinermark!</h1>
+			<h3 class="content-subline">Heb ab mit uns und lass Dich von der Faszination des Fliegens packen.</h3>
+			<a class="rd-button" href="#2"
+			   onclick="document.getElementById('kontakt').scrollIntoView({behavior: 'smooth'});">
+				<div class="btn-icn mitfliegen"></div>
+				Ich will auch!</a>
+		</div>
+		<div class="arrow bounce"></div>
+	</div>
+
+</section>
+
+<!-- Kategorie -->
+<section id="about" class="sv">
+
+	<div class="sv-content-wrapper">
+		<div class="content-title-line">Wer wir sind</div>
+
+		<!-- /Content-Box-Left-Image -->
+		<div class="content-box">
+			<div class="content-box-img" style="background-image: url(static/compiled/img/DSC_0605.jpg);"></div>
+			<div class="content-box-text">
+				<h4 class="content-box-headline">Segelfliegen lernen</h4>
+				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+					<!--<a class="read-more" href="#"> Mehr dazu</a>--></p>
 			</div>
 		</div>
-	</section>
+		<!-- /Content-Box-Left-Image -->
 
-	<section class="section">
-		<h3 class="headline">Contribute</h3>
-		<p>
-			ViUR is an open-source project.<br>
-            That means: we are looking forward to hear from you.<br>
-            Contributions and input are highly welcome.<br><br>
-			If you are interested you may:<br><br>
 
-			Fork ViUR on <a target="_blank" href="https://github.org/viur-framework/">GitHub</a>
-				and submit pull-request with your modifications.<br>
-			Follow ViUR on <a target="_blank" href="https://twitter.com/weloveViUR">Twitter</a>,
-				<a target="_blank" href="https://www.facebook.com/weloveViUR/">Facebook</a> or
-				<a target="_blank" href="https://plus.google.com/+ViurIs">Google+</a> and ask any question.<br>
-			Or you can send us a <a target="_blank" href="https://www.mausbrand.de/en/site/impressum">Postcard</a>.
-				We love postcards.
+	</div>
+</section>
+<!-- /Kategorie -->
+
+
+<div class="sv-image" style="background-image: url(static/compiled/img/IMG_7465.jpg);"></div>
+
+<!-- Kategorie -->
+<section id="kontakt" class="sv">
+
+	<div class="sv-content-wrapper">
+		<div class="content-title-line">Kontakt</div>
+
+		<!-- /Content-Box-Left-Image -->
+		<div class="content-box">
+			<div class="content-box-img"
+			     style="background-image: url(static/compiled/img/2014-Sommerlehrgang-16-366x244.jpg);"></div>
+			<div class="content-box-text">
+				<h4 class="content-box-headline">Wir freuen uns, dich kennenzulernen!</h4>
+				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+					<br><br>
+					<a class="read-more" href="mailto:m.mustermann@domain.de">hallo@test.de</a>
+					<br><br>
+					<a class="read-more" href="tel:555-555-5555">01578/1234567</a>
+				</p>
+			</div>
+		</div>
+		<!-- /Content-Box-Left-Image -->
+
+		<!-- /Content-Box-Right-Image -->
+		<div class="content-box">
+			<div class="content-box-text">
+				<h4 class="content-box-headline">Ultraleicht zum Flugschein</h4>
+				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+					<!--<a class="read-more" href="#"> Mehr dazu</a>--></p>
+			</div>
+			<div class="content-box-img"
+			     style="background-image: url(static/compiled/img/photo_2019-09-28_12-08-39.jpg);"></div>
+		</div>
+		<!-- /Content-Box-Right-Image -->
+	</div>
+</section>
+<!-- /Kategorie-->
+
+<div class="sv-image" style="background-image: url(static/compiled/img/IMG_7465.jpg);"></div>
+
+<!-- Kategorie -->
+<section id="kontakt" class="sv">
+
+	<div class="sv-content-wrapper">
+		<div class="content-title-line">Kontakt</div>
+
+		<!-- /Content-Box-Left-Image -->
+		<div class="content-box">
+			<div class="content-box-img"
+			     style="background-image: url(static/compiled/img/2014-Sommerlehrgang-16-366x244.jpg);"></div>
+			<div class="content-box-text">
+				<h4 class="content-box-headline">Wir freuen uns, dich kennenzulernen!</h4>
+				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+					<br><br>
+					<a class="read-more" href="mailto:m.mustermann@domain.de">hallo@test.de</a>
+					<br><br>
+					<a class="read-more" href="tel:555-555-5555">01578/1234567</a>
+				</p>
+			</div>
+		</div>
+		<!-- /Content-Box-Left-Image -->
+	</div>
+</section>
+<!-- /Kategorie-->
+
+<div class="footer">
+	<div class="menu-button law no-link" href="#1">
+		&copy;
+		<script>
+			var CurrentYear = new Date().getFullYear()
+			document.write(CurrentYear)
+		</script>
+		LSV Ruhr-Lenne Iserlohn e.V.
+	</div>
+	<a class="menu-button law trigger_popup_fricc" href="#2">Impressum</a>
+</div>
+
+
+<!-- Impressum Popup -->
+<div class="hover_bkgr_fricc">
+	<span class="helper"></span>
+	<div>
+		<div class="popupCloseButton">X</div>
+		<!-- Inhalt -->
+		<h1>Impressum</h1>
+		<p>Angaben gemäß § 5 TMG</p>
+		<p>Max Muster <br>
+			Musterweg<br>
+			12345 Musterstadt <br>
 		</p>
+		<p><strong>Vertreten durch: </strong><br>
+			Max Muster<br>
+		</p>
+		<p><strong>Kontakt:</strong> <br>
+			Telefon: 01234-789456<br>
+			Fax: 1234-56789<br>
+			E-Mail: <a href='mailto:max@muster.de'>max@muster.de</a></br></p>
+		<p><strong>Umsatzsteuer-ID: </strong> <br>
+			Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz: Musterustid.<br><br>
+			<strong>Wirtschafts-ID: </strong><br>
+			Musterwirtschaftsid<br>
+		</p>
+		<p><strong>Aufsichtsbehörde:</strong><br>
+			Musteraufsicht Musterstadt<br></p><br>
+		<!-- /Inhalt -->
+	</div>
+</div>
+<!-- /Impressum Popup -->
 
-		<a href="https://www.viur.is/community" target="_blank">
-			<button class="btn has-icon" type="button">
-				{{ embedSvg("icon-heart") }} Join community
-			</button>
-		</a>
-	</section>
 
-{% endblock content %}
+</body>
+</html>

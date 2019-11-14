@@ -1,116 +1,96 @@
-/* rheinermark-viur GULP SCRIPT */
+//Projektordner-Struktur
+var scssSrc = "sass/style.scss";
+var scssDest = "../deploy/static/css";
 
-// Project data
-var srcpaths = {
-	less: './less/**/*.less',
-	images: './images/**/*',
-	embedsvg: './embedsvg/**/*',
-};
+//var jsSrc = "../static/js/app.js";
+//var jsDest = "../static/compiled/js";
 
-var destpaths = {
-	css: '../deploy/static/css',
-	images: '../deploy/static/images',
-	embedsvg: '../deploy/html/embedsvg'
-};
+//var imgSrc = "../static/img/*.*";
+//var imgDest = "../static/compiled/img";
 
-// Variables and requirements
-const gulp = require('gulp');
-
-const path = require('path');
-const del = require('del');
-const rename = require('gulp-rename');
-
-const less = require('gulp-less');
-const autoprefixer = require('autoprefixer');
-const postcss = require('gulp-postcss');
-const zindex = require('postcss-zindex');
-const focus = require('postcss-focus');
-const nocomments = require('postcss-discard-comments');
-const nano = require('gulp-cssnano');
-const jmq = require('gulp-join-media-queries');
-const stylefmt = require('gulp-stylefmt');
-
-const imagemin = require('gulp-imagemin');
-const cheerio = require('gulp-cheerio');
+//var iconsSrc = "icons/*.*";
+//var iconsDest = "../deploy/static/icons";
 
 
-// compilation and postproduction of LESS to CSS
-gulp.task('css', () => {
-	del([destpaths.css + '/**/*'], {force: true});
+//Gulp Module
+var gulp = require('gulp'),                         //GULP  -- Gulp selbst
+    rename = require('gulp-rename'),                //GULP  -- Benennt Dateien
+    util = require('gulp-util'),                    //GULP  -- Generiert CLI-Log
+    plumber = require('gulp-plumber'),              //GULP  -- Verhindert Pipe-Stop welche von Plugins verursacht werden
+    color = require('gulp-color'),                  //GULP   -- CLI-Log Farben
+    autoprefixer = require('gulp-autoprefixer'),   //CSS   -- Autoprefixer um alle Vendor Prefixes zu überprüfen
+    minifyCSS = require('gulp-minify-css'),       //CSS   -- Minifizierung
+    cleanCSS = require('gulp-clean-css'),           //CSS   -- Säubern mit clean-css
+    sass = require('gulp-sass'),                    //CSS   -- Konvertierung der Sass-Datei in eine CSS-Datei
+    concat = require('gulp-concat'),               //JS    -- Zusammenfassen
+    uglify = require('gulp-uglify'),               //JS    -- Minifizierung
+    imagemin = require('gulp-imagemin');          //IMG   -- Verlustlose Kompression aller Bilder und Vektoren
 
-	return gulp.src('./less/style.less')
-		.pipe(less({
-			paths: [path.join(__dirname, 'less', 'includes')]
-		}))
-		.pipe(postcss([
-			autoprefixer({ // add vendor prefixes
-				browsers: ['last 2 versions'],
-				cascade: false
-			}),
-			nocomments, // discard comments
-			focus, // add focus to hover-states
-			zindex, // reduce z-index values
-		])) // clean up css
-		.pipe(jmq())
-		.pipe(stylefmt()) // syntax formatting
-		.pipe(gulp.dest(destpaths.css)) // save cleaned version
-		.pipe(nano()) // minify css
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest(destpaths.css)); // save minified version
+
+//Uhrzeit
+date = new Date();
+hour = date.getHours();
+minute = date.getMinutes();
+second = date.getSeconds();
+currentTime = hour + ':' + minute + ':' + second;
+
+
+//Gulp Tasks
+gulp.task('sass', function(done) {
+    util.log(color('Generate CSS File at ' + currentTime, 'YELLOW'));
+    return gulp.src(scssSrc)
+        .pipe(plumber())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(cleanCSS())
+        .pipe(minifyCSS())
+        .pipe(gulp.dest(scssDest));
+        done();
+});
+
+/*
+gulp.task('js', function(done) {
+    util.log(color('Generate JS File at ' + currentTime, 'YELLOW'));
+    return gulp.src(jsSrc)
+                .pipe(concat('app.min.js'))
+				.pipe(uglify().on('error', util.log))
+				//.pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(jsDest))
+        done();
+ });
+*/
+
+/*
+gulp.task('imagemin', function(done) {
+    util.log(color('Generate IMG Files at ' + currentTime, 'YELLOW'));
+        return gulp.src(imgSrc)
+        .pipe(imagemin({ progressive: true }))
+        //.pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(imgDest));
+        done();
+});
+*/
+
+/*
+gulp.task('iconmin', function(done) {
+    util.log(color('Generate IMG Files at ' + currentTime, 'YELLOW'));
+        return gulp.src(iconsSrc)
+        .pipe(imagemin({ progressive: true }))
+        //.pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(iconsDest));
+        done();
+});
+*/
+
+gulp.task('watch', function(done) {
+    util.log(color('Watching SCSS/JS/IMG files for modifications', 'YELLOW'));
+    gulp.watch(scssSrc, gulp.series('sass')).on('error', util.log);
+    //gulp.watch(jsSrc, gulp.series('js')).on('error', util.log);
+    //gulp.watch(iconsSrc, gulp.series('iconmin')).on('error', util.log);
+    //gulp.watch(imgSrc, gulp.series('imagemin')).on('error', util.log);
+    done();
 });
 
 
-// reduce images for web
-gulp.task('images', () => {
-	del([destpaths.images + '/**/*'], {force: true});
-
-	return gulp.src(srcpaths.images)
-		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
-			imagemin.optipng({optimizationLevel: 5}),
-			imagemin.svgo({
-				plugins: [
-					{removeViewBox: false},
-					{removeDimensions: true}
-				]
-			})
-		]))
-		.pipe(gulp.dest(destpaths.images));
-});
-
-// reduce embedsvg icons for web
-gulp.task('embedsvg', () => {
-	del([destpaths.embedsvg + '/**/*'], {force: true});
-
-	return gulp.src(srcpaths.embedsvg)
-		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
-			imagemin.optipng({optimizationLevel: 5}),
-			imagemin.svgo({
-				plugins: [
-					{removeViewBox: false},
-					{removeDimensions: true}
-				]
-			})
-		]))
-		.pipe(cheerio({
-			run: function ($, file) {
-				$('style').remove()
-				$('[id]').removeAttr('id')
-				$('[fill]').removeAttr('fill')
-				$('svg').addClass('icon')
-			},
-			parserOptions: {xmlMode: true}
-		}))
-		.pipe(rename({prefix: 'icon-'}))
-		.pipe(gulp.dest(destpaths.embedsvg));
-});
-
-
-gulp.task('watch', () => {
-	gulp.watch(srcpaths.less, gulp.series('css'));
-	gulp.watch(srcpaths.embedsvg, gulp.series('embedsvg'));
-	gulp.watch(srcpaths.images, gulp.series('images'));
-});
-
-gulp.task('default', gulp.series(['css', 'images', 'embedsvg']));
+gulp.task('default', gulp.series('watch'));

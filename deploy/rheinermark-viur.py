@@ -44,14 +44,13 @@ from server import conf, securityheaders
 #
 
 conf["admin.vi.name"] = "rheinermark-viur"
+conf["admin.moduleGroups"] = [
+	{"prefix":u"Start: ", "name": u"Starterfassung", "icon": "icons/modules/tickets.svg"},
+]
 
 # ------------------------------------------------------------------------------
 # Content Security Policy
 #
-
-#GitHub Buttons
-securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
-securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 
 # ------------------------------------------------------------------------------
 # Server startup
@@ -59,7 +58,7 @@ securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 
 import server, modules, render
 
-#server.setDefaultLanguage("en") #set default language!
+server.setDefaultLanguage("de") #set default language!
 application = server.setup(modules, render)
 
 if __name__ == "__main__":
