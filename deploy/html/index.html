@@ -37,15 +37,6 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="static/css/style.min.css">
 
-	<!-- Image-Array for fv-->
-	<script>
-		var bgImageArray = [
-			"static/compiled/img/IMG_3545.jpg",
-			"static/compiled/img/IMG_20180701_182222.jpg",
-			"static/compiled/img/IMG_7527.jpg",
-			"static/compiled/img/photo_2019-09-28_12-09-01.jpg"];
-	</script>
-
 	<!-- JS -->
 	<script src="/static/js/jquery.min.js"></script>
 	<script src="/static/js/app.js"></script>
@@ -53,20 +44,21 @@
 </head>
 <body id="top">
 
-
 <div class="menu-wrapper top">
 	<div class="menu-bar">
-		<a class="menu-button" href="#1" onclick="document.getElementById('top').scrollIntoView({behavior: 'smooth'});">Start</a>
-		<a class="menu-button" href="#2"
-		   onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">Über Uns</a>
-		<a class="menu-button" href="#3"
-		   onclick="document.getElementById('kontakt').scrollIntoView({behavior: 'smooth'});">Kontakt</a>
+		<a class="menu-button js-scroll" href="#top">Start</a>
+		<a class="menu-button js-scroll" href="#about">Über Uns</a>
+		<a class="menu-button js-scroll" href="#contact">Kontakt</a>
 	</div>
 	<div class="logo"></div>
 </div>
 
 <!-- Startseite -->
 <section id="fv" class="fv">
+	{% for bg in appconf["start_teaser"] %}
+		<div class="fv-bg js-fv-bg" style="background-image: url('{{ getImageSrc(bg, 1200) }}'); {{ "display: none" if not loop.first }}"></div>
+	{% endfor %}
+
 	<div class="grey-transparency">
 		<div class="content-title wo-border">
 			<h1 class="content-headline">Willkommen auf dem Flugplatz Rheinermark!</h1>
@@ -78,12 +70,11 @@
 		</div>
 		<div class="arrow bounce"></div>
 	</div>
-
 </section>
 
 <!-- Kategorie -->
-<section id="about" class="sv">
-
+<a id="about" name="about"></a>
+<section class="sv">
 	<div class="sv-content-wrapper">
 		<div class="content-title-line">Wer wir sind</div>
 
@@ -109,12 +100,11 @@
 </section>
 <!-- /Kategorie -->
 
-
 <div class="sv-image" style="background-image: url(static/compiled/img/IMG_7465.jpg);"></div>
 
 <!-- Kategorie -->
-<section id="kontakt" class="sv">
-
+<a id="contact" name="contact"></a>
+<section class="sv">
 	<div class="sv-content-wrapper">
 		<div class="content-title-line">Kontakt</div>
 
@@ -164,8 +154,7 @@
 <div class="sv-image" style="background-image: url(static/compiled/img/IMG_7465.jpg);"></div>
 
 <!-- Kategorie -->
-<section id="kontakt" class="sv">
-
+<section class="sv">
 	<div class="sv-content-wrapper">
 		<div class="content-title-line">Kontakt</div>
 
@@ -197,10 +186,6 @@
 <div class="footer">
 	<div class="menu-button law no-link" href="#1">
 		&copy;
-		<script>
-			var CurrentYear = new Date().getFullYear()
-			document.write(CurrentYear)
-		</script>
 		LSV Ruhr-Lenne Iserlohn e.V.
 	</div>
 	<a class="menu-button law trigger_popup_fricc" href="#2">Impressum</a>

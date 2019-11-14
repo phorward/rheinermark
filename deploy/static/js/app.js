@@ -1,3 +1,31 @@
+//menubar background color when scroll
+$(window).scroll(function() {
+    var height = $(window).scrollTop();
+    if (height > 600) {
+        $(".menu-wrapper.top").addClass("bg");
+        $(".logo").addClass("small");
+        $(".menu-button").addClass("color");
+        $(".menu-bar").addClass("color");
+    } else {
+        $(".menu-wrapper.top").removeClass("bg");
+        $(".logo").removeClass("small");
+        $(".menu-button").removeClass("color");
+        $(".menu-bar").removeClass("color");
+    }
+});
+
+//Slider Animate Multiple Background Images
+setInterval(() => {
+	var current = $(".js-fv-bg:visible");
+	var next = $(".js-fv-bg").eq($(".js-fv-bg").index($(current)) + 1);
+	if( !next.length )
+		next = $(".js-fv-bg").first();
+
+	current.fadeOut();
+	next.fadeIn();
+
+}, 3000);
+
 //impressum popup
 $(window).on('load', function() {
     $(".trigger_popup_fricc").click(function(){
@@ -9,44 +37,12 @@ $(window).on('load', function() {
     $('.popupCloseButton').click(function(){
         $('.hover_bkgr_fricc').hide();
     });
+
+    // Scroll to entry
+	$("a.js-scroll").click((event) => {
+		var a = $(event.target);
+		document.getElementById(a.attr("href").substr(1)).scrollIntoView({behavior: 'smooth'});
+		return false;
+	});
 });
 
-//menubar background color when scroll
-$(window).scroll(function() {
-    var height = $(window).scrollTop();
-    if (height > 600) {
-        $(".menu-wrapper.top").addClass("bg");
-        $(".logo").addClass("small");
-        $(".menu-button").addClass("color");
-        $(".menu-bar").addClass("color"); 
-    } else {
-        $(".menu-wrapper.top").removeClass("bg");
-        $(".logo").removeClass("small");
-        $(".menu-button").removeClass("color");
-        $(".menu-bar").removeClass("color");
-    }
-});
-
-//Slider Animate Multiple Background Images
-if (typeof bgImageArray !== 'undefined'){
-
-    secs = 5;
-    bgImageArray.forEach(function(img){
-        new Image().src = img; // caches images, avoiding white flash between background replacements
-    });
-    
-    function backgroundSequence() {
-        window.clearTimeout();
-        var k = 0;
-        for (i = 0; i < bgImageArray.length; i++) {
-            setTimeout(function(){ 
-            document.getElementById('fv').style.background = "url(" + bgImageArray[k] + ") no-repeat center center";
-            document.getElementById('fv').style.backgroundSize ="cover";
-            if ((k + 1) === bgImageArray.length) { 
-                setTimeout(function() { backgroundSequence() }, (secs * 3000))} else { k++; }            
-            }, (secs * 1000) * i)   
-        }
-    }
-    
-    backgroundSequence();
-    }

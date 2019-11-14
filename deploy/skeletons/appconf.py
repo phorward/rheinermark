@@ -15,6 +15,13 @@ class appconfSkel(Skeleton):
 		defaultValue=u"Komm, fliegen!"
 	)
 
+	# Start
+	start_teaser = fileBone(
+		descr=u"Teaser-Bilder",
+		required=True,
+		multiple=True
+	)
+
 	# Kontaktdaten
 	club = stringBone(descr=u"Club", params={"category": "Kontaktdaten"})
 	club_short = stringBone(descr=u"Club (Kurzbezeichnung)", params={"category": "Kontaktdaten"})
@@ -35,8 +42,3 @@ class appconfSkel(Skeleton):
 	seo_description = stringBone(descr=u"SEO Description", params={"category": u"SEO"})
 	seo_keywords = stringBone(descr=u"SEO Keywords", params={"category": u"SEO"})
 	seo_image = fileBone(descr=u"SEO Vorschaubild", params={"category": u"SEO"})
-
-	# Social Media Links
-	social_facebook = stringBone(descr=u"Facebook", params={"category": u"Social"})
-	social_twitter = stringBone(descr=u"Twitter", params={"category": u"Social"})
-	social_instagram = stringBone(descr=u"Instagram", params={"category": u"Social"})
