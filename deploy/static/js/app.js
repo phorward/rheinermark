@@ -6,11 +6,13 @@ $(window).scroll(function() {
         $(".logo").addClass("small");
         $(".menu-button").addClass("color");
         $(".menu-bar").addClass("color");
+        $(".hamburger-inner").addClass("accent");
     } else {
         $(".menu-wrapper.top").removeClass("bg");
         $(".logo").removeClass("small");
         $(".menu-button").removeClass("color");
         $(".menu-bar").removeClass("color");
+        $(".hamburger-inner").removeClass("accent");
     }
 });
 
@@ -28,6 +30,13 @@ setInterval(() => {
 
 //impressum popup
 $(window).on('load', function() {
+	//Hamburge
+   	$(".hamburger").on("click", function(e) {
+        $(".hamburger").toggleClass("is-active");
+        $(".mobilemenu-wrapper").toggleClass("is-active");
+    });
+
+	// Popup
     $(".trigger_popup_fricc").click(function(){
        $('.hover_bkgr_fricc').show();
     });
@@ -42,6 +51,7 @@ $(window).on('load', function() {
 	$("a.js-scroll").click((event) => {
 		var a = $(event.target);
 		document.getElementById(a.attr("href").substr(1)).scrollIntoView({behavior: 'smooth'});
+		a.blur();
 		return false;
 	});
 });

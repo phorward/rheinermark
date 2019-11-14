@@ -1,9 +1,18 @@
 @import "normalize";
+@import "hamburgers";
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
 
 
 $accent-color: #005e8a;
 
+*{
+    outline: 0;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+}
+
+button:focus {
+    outline:0 !important;
+}
 
 html {
     font-family: 'Roboto', sans-serif;
@@ -31,6 +40,56 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-weight: bold;
     color: $accent-color;
+}
+
+hr {
+    width: 90%;
+    border: 1px solid lightgrey;
+    opacity: 0.5;
+}
+
+
+// MOBILE MENU //
+
+.mobilemenu-wrapper {
+    height: fit-content;
+    width: 100vw;
+    background-color: white;
+    position: fixed;
+    z-index: 100;
+    top: 100px;
+    left: 0;
+    display: none;
+    border-top: 3px solid $accent-color;
+    border-bottom: 3px solid $accent-color;
+    &.is-active {
+        display: unset;
+        transition-timing-function: ease;
+        transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+}
+
+.mobilemenu {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hamburger {
+    display: none;
+    outline: none;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    background-color:white !important;
+}
+
+.hamburger-inner.accent, .hamburger-inner.accent::before, .hamburger-inner.accent::after {
+    background-color: $accent-color !important;
 }
 
 // MENU //
@@ -154,7 +213,8 @@ header {
     padding: 5px 10px;
     border-radius: 100px;
     font-weight: 500;
-    &.color {
+
+    &.color, &.accent {
         color: $accent-color;
     }
     &:hover {
@@ -174,6 +234,8 @@ header {
             color: black;
         }
     }
+
+
 }
 .btn-icn {
 
@@ -248,7 +310,18 @@ header {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    transition: background-image 1s ease-in-out;
+}
+
+.fv-bg {
+    width: 100%;
+    height: 100vh;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .grey-transparency {
@@ -620,12 +693,22 @@ header {
         margin-right: 0;
     }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
     .logo {
         transform: scale(0.5) translateX(75px) translateY(-11px);
     }
     .logo.small {
         transform: scale(0.5) translateX(75px) translateY(10px);
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .menu-bar {
+        display: none;
+    }
+    .hamburger {
+        display: unset;
     }
 
     .tv, .sv {margin-bottom: 50px;}

@@ -47,10 +47,34 @@
 <div class="menu-wrapper top">
 	<div class="menu-bar">
 		<a class="menu-button js-scroll" href="#top">Start</a>
-		<a class="menu-button js-scroll" href="#about">Über Uns</a>
+		{% set sections = getList("section") %}
+		{% for section in sections %}
+			<a class="menu-button js-scroll" href="#{{section.alias}}">{{section.name}}</a>
+		{% endfor %}
 		<a class="menu-button js-scroll" href="#contact">Kontakt</a>
 	</div>
+
+	<button class="hamburger hamburger--spin" type="button">
+		<span class="hamburger-box">
+			<span class="hamburger-inner"></span>
+		</span>
+	</button>
+
 	<div class="logo"></div>
+</div>
+
+
+<div class="mobilemenu-wrapper">
+	<div class="mobilemenu">
+		<a class="menu-button accent js-scroll" href="#top">Start</a>
+		<hr>
+		{% for section in sections %}
+			<a class="menu-button accent js-scroll" href="#{{section.alias}}">{{section.name}}</a>
+			<hr>
+		{% endfor %}
+		<a class="menu-button accent js-scroll" href="#contact">Kontakt</a>
+		<hr>
+	</div>
 </div>
 
 <!-- Startseite -->
@@ -72,86 +96,47 @@
 	</div>
 </section>
 
-<!-- Kategorie -->
-<a id="about" name="about"></a>
-<section class="sv">
-	<div class="sv-content-wrapper">
-		<div class="content-title-line">Wer wir sind</div>
+{% for section in sections %}
 
-		<!-- /Content-Box-Left-Image -->
-		<div class="content-box">
-			<div class="content-box-img" style="background-image: url(static/compiled/img/DSC_0605.jpg);"></div>
-			<div class="content-box-text">
-				<h4 class="content-box-headline">Segelfliegen lernen</h4>
-				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-					<!--<a class="read-more" href="#"> Mehr dazu</a>--></p>
+	{% if not loop.first %}
+		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1200) }});"></div>
+	{% endif %}
+
+	<!-- Kategorie -->
+	<a id="{{ section.alias }}" name="{{ section.alias }}"></a>
+	<section class="sv">
+		<div class="sv-content-wrapper">
+			<div class="content-title-line">{{ section.name }}</div>
+				{% for content in section.content %}
+					<!-- /Content-Box- -->
+					<div class="content-box">
+						{% if loop.index0 % 2 == 1 %}
+							<div class="content-box-img" style="background-image: url({{ getImageSrc(content.images[0], 600) }});">
+							</div>
+						{% endif %}
+
+						<div class="content-box-text">
+							<h4 class="content-box-headline">{{content.title}}</h4>
+
+							{{ content.content }}
+						</div>
+
+						{% if loop.index0 % 2 == 0 %}
+							<div class="content-box-img" style="background-image: url({{ getImageSrc(content.images[0], 600) }});">
+							</div>
+						{% endif %}
+					</div>
+					<!-- /Content-Box -->
+				{% endfor %}
 			</div>
 		</div>
-		<!-- /Content-Box-Left-Image -->
+	</section>
+	<!-- /Kategorie-->
+{% endfor %}
 
-
-	</div>
-</section>
-<!-- /Kategorie -->
-
-<div class="sv-image" style="background-image: url(static/compiled/img/IMG_7465.jpg);"></div>
-
-<!-- Kategorie -->
-<a id="contact" name="contact"></a>
-<section class="sv">
-	<div class="sv-content-wrapper">
-		<div class="content-title-line">Kontakt</div>
-
-		<!-- /Content-Box-Left-Image -->
-		<div class="content-box">
-			<div class="content-box-img"
-			     style="background-image: url(static/compiled/img/2014-Sommerlehrgang-16-366x244.jpg);"></div>
-			<div class="content-box-text">
-				<h4 class="content-box-headline">Wir freuen uns, dich kennenzulernen!</h4>
-				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-					<br><br>
-					<a class="read-more" href="mailto:m.mustermann@domain.de">hallo@test.de</a>
-					<br><br>
-					<a class="read-more" href="tel:555-555-5555">01578/1234567</a>
-				</p>
-			</div>
-		</div>
-		<!-- /Content-Box-Left-Image -->
-
-		<!-- /Content-Box-Right-Image -->
-		<div class="content-box">
-			<div class="content-box-text">
-				<h4 class="content-box-headline">Ultraleicht zum Flugschein</h4>
-				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-					<!--<a class="read-more" href="#"> Mehr dazu</a>--></p>
-			</div>
-			<div class="content-box-img"
-			     style="background-image: url(static/compiled/img/photo_2019-09-28_12-08-39.jpg);"></div>
-		</div>
-		<!-- /Content-Box-Right-Image -->
-	</div>
-</section>
-<!-- /Kategorie-->
-
-<div class="sv-image" style="background-image: url(static/compiled/img/IMG_7465.jpg);"></div>
+<div class="sv-image">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2490.536712501633!2d7.523262365837544!3d51.374813128209574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b9394c5047ce01%3A0xafdc43d401c9d2d2!2sDr%C3%B6gekamp+GmbH!5e0!3m2!1sen!2sde!4v1553523551291" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen></iframe>
+</div>
 
 <!-- Kategorie -->
 <section class="sv">

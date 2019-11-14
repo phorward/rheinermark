@@ -5,7 +5,7 @@ from server import conf, skeleton
 from time import time
 
 
-class pageContentSkel(skeleton.RefSkel):
+class sectionContentSkel(skeleton.RefSkel):
 	title = stringBone(
 		descr=u"Titel"
 	)
@@ -19,7 +19,7 @@ class pageContentSkel(skeleton.RefSkel):
 		multiple=True
 	)
 
-class pageSkel(skeleton.Skeleton):
+class sectionSkel(skeleton.Skeleton):
 
 	# Seite
 	alias = stringBone(
@@ -53,43 +53,13 @@ class pageSkel(skeleton.Skeleton):
 		max=sys.maxint
 	)
 
-	appearance = selectBone(
-		descr=u"Anzeige",
-		indexed=True,
-		multiple=True,
-		required=True,
-		values={
-			"main": u"Hauptmenü",
-			"footer": u"Footer (Allgemein)",
-			"footer-icons": u"Footer-Icons"
-		},
-		defaultValue=["main"]
+	parallax = fileBone(
+		descr=u"Parallaxbild"
 	)
 
-	icon = fileBone(
-		descr=u"Icon",
-		params={
-			"logic.visibleIf": "'footer-icons' in appearance"
-		}
-	)
-
-	teaser_headline = stringBone(
-		descr=u"Überschrift",
-		indexed=True
-	)
-
-	teaser_subline = stringBone(
-		descr=u"Teaser Untertitel",
-		indexed=True
-	)
-
-	teaser_image = fileBone(
-		descr=u"Teaserbild"
-	)
-
-	bodies = recordBone(
+	content = recordBone(
 		descr=u"Inhalte",
-		using=pageContentSkel,
+		using=sectionContentSkel,
 		format="$(title)"
 	)
 
@@ -104,4 +74,4 @@ class pageSkel(skeleton.Skeleton):
 		if not self["sortindex"]:
 			self["sortindex"] = time()
 
-		return super(pageSkel, self).toDB(*args, **kwargs)
+		return super(sectionSkel, self).toDB(*args, **kwargs)
