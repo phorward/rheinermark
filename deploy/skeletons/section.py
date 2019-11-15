@@ -21,6 +21,21 @@ class sectionContentSkel(skeleton.RefSkel):
 
 class sectionSkel(skeleton.Skeleton):
 
+	sortindex = numericBone(
+		descr="SortIndex",
+		indexed=True,
+		visible=False,
+		readOnly=True,
+		mode="float",
+		max=sys.maxint
+	)
+
+	online = booleanBone(
+		descr=u"Online",
+		defaultValue=True,
+		indexed=True
+	)
+
 	# Seite
 	alias = stringBone(
 		descr=u"Alias",
@@ -32,25 +47,10 @@ class sectionSkel(skeleton.Skeleton):
 		}
 	)
 
-	online = booleanBone(
-		descr=u"Online",
-		defaultValue=True,
-		indexed=True
-	)
-
 	name = stringBone(
 		descr=u"Name im Menü",
 		indexed=True,
 		required=True
-	)
-
-	sortindex = numericBone(
-		descr="SortIndex",
-		indexed=True,
-		visible=False,
-		readOnly=True,
-		mode="float",
-		max=sys.maxint
 	)
 
 	parallax = fileBone(
@@ -62,13 +62,6 @@ class sectionSkel(skeleton.Skeleton):
 		using=sectionContentSkel,
 		format="$(title)"
 	)
-
-	# SEO
-	seo_title = stringBone(descr=u"SEO Title", params={"category": u"SEO"})
-	seo_description = stringBone(descr=u"SEO Description", params={"category": u"SEO"})
-	seo_keywords = stringBone(descr=u"SEO Keywords", params={"category": u"SEO"})
-	seo_author = stringBone(descr=u"SEO Author", params={"category": u"SEO"})
-	seo_image = fileBone(descr=u"SEO Vorschaubild", params={"category": u"SEO"})
 
 	def toDB(self, *args, **kwargs):
 		if not self["sortindex"]:

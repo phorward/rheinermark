@@ -16,7 +16,7 @@ class section(List):
 	}
 
 	def listFilter(self, query):
-		query = super(section, self).listFilter(query)
+		#query = super(section, self).listFilter(query)
 		if query:
 			if not query.getOrders():
 				query.order("sortindex")

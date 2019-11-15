@@ -31,11 +31,11 @@
 	<meta name="theme-color" content="#fff">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="static/compiled/img/favicon.ico">
-	<link rel="icon" type="image/png" href="static/compiled/img/favicon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico">
+	<link rel="icon" type="image/png" href="/static/img/favicon.png">
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="static/css/style.min.css">
+	<link rel="stylesheet" href="/static/css/style.min.css">
 
 	<!-- JS -->
 	<script src="/static/js/jquery.min.js"></script>
@@ -80,7 +80,7 @@
 <!-- Startseite -->
 <section id="fv" class="fv">
 	{% for bg in appconf["start_teaser"] %}
-		<div class="fv-bg js-fv-bg" style="background-image: url('{{ getImageSrc(bg, 1200) }}'); {{ "display: none" if not loop.first }}"></div>
+		<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1280) }}'); {{ "display: none" if not loop.first }}"></div>
 	{% endfor %}
 
 	<div class="grey-transparency">
@@ -99,7 +99,7 @@
 {% for section in sections %}
 
 	{% if not loop.first %}
-		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1200) }});"></div>
+		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1280) }});"></div>
 	{% endif %}
 
 	<!-- Kategorie -->
@@ -108,21 +108,32 @@
 		<div class="sv-content-wrapper">
 			<div class="content-title-line">{{ section.name }}</div>
 				{% for content in section.content %}
+					{% set group = section.key|shortKey|string + "_" + loop.index0|string %}
 					<!-- /Content-Box- -->
 					<div class="content-box">
 						{% if loop.index0 % 2 == 1 %}
-							<div class="content-box-img" style="background-image: url({{ getImageSrc(content.images[0], 600) }});">
+							<div class="content-box-img">
+								{% for image in content.images %}
+									<div class="content-box-img-bg js-diashow" data-group="{{ group }}"
+									     style="background-image: url({{ getImageSrc(image, 800) }}); {{ "display: none;" if not loop.first }}"></div>
+								{% endfor %}
 							</div>
 						{% endif %}
 
 						<div class="content-box-text">
 							<h4 class="content-box-headline">{{content.title}}</h4>
 
-							{{ content.content }}
+							<div class="content-box-content">
+								{{ content.content }}
+							</div>
 						</div>
 
 						{% if loop.index0 % 2 == 0 %}
-							<div class="content-box-img" style="background-image: url({{ getImageSrc(content.images[0], 600) }});">
+							<div class="content-box-img">
+								{% for image in content.images %}
+									<div class="content-box-img-bg js-diashow" data-group="{{ group }}"
+									     style="background-image: url({{ getImageSrc(image, 800) }}); {{ "display: none;" if not loop.first }}"></div>
+								{% endfor %}
 							</div>
 						{% endif %}
 					</div>
@@ -133,6 +144,8 @@
 	</section>
 	<!-- /Kategorie-->
 {% endfor %}
+
+<a id="contact" name="contact"></a>
 
 <div class="sv-image">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2490.536712501633!2d7.523262365837544!3d51.374813128209574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b9394c5047ce01%3A0xafdc43d401c9d2d2!2sDr%C3%B6gekamp+GmbH!5e0!3m2!1sen!2sde!4v1553523551291" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen></iframe>

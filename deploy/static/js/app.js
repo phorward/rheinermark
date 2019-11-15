@@ -18,15 +18,33 @@ $(window).scroll(function() {
 
 //Slider Animate Multiple Background Images
 setInterval(() => {
-	var current = $(".js-fv-bg:visible");
-	var next = $(".js-fv-bg").eq($(".js-fv-bg").index($(current)) + 1);
-	if( !next.length )
-		next = $(".js-fv-bg").first();
+	var visible = $(".js-diashow:visible");
 
-	current.fadeOut();
-	next.fadeIn();
+	visible.each(
+		(idx) => {
+			var current = $(visible[idx]);
+			var group = current.data("group");
 
-}, 3000);
+			if( !group )
+			{
+				console.error("js-diashow element has no group set!");
+				return;
+			}
+
+			var images = $(".js-diashow[data-group=" + group + "]");
+			if( images.length < 2 )
+				return;
+
+			var next = images.eq(images.index($(current)) + 1);
+
+			if( !next.length )
+				next = images.first();
+
+			current.fadeOut("slow");
+			next.fadeIn("slow");
+		});
+
+}, 10000);
 
 //impressum popup
 $(window).on('load', function() {

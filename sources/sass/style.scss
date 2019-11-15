@@ -18,6 +18,10 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+	background-color: #fcfcff;
+}
+
 a {
     text-decoration: none;
 }
@@ -109,6 +113,8 @@ header {
     justify-content: space-between;
     box-sizing: border-box;
     position: fixed;
+	z-index: 200;
+
     &.top {
         top: 0px;
         padding-top: 20px;
@@ -138,7 +144,6 @@ header {
 
 
 .menu-bar {
-    width: 150px;
     height: 40px;
     border-left: 3px solid white;
     display: flex;
@@ -210,8 +215,7 @@ header {
     align-items: center;
     min-width: fit-content;
     color: white;
-    padding: 5px 10px;
-    border-radius: 100px;
+    padding: 5px 15px;
     font-weight: 500;
 
     &.color, &.accent {
@@ -307,9 +311,6 @@ header {
 .fv {
     width: 100%;
     height: 100vh;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
 }
 
 .fv-bg {
@@ -431,6 +432,8 @@ header {
     margin-bottom: 40px;
     display: flex;
     flex-direction: row;
+	background-color: #fff;
+
     &:last-child{
         margin-bottom:0;
     }
@@ -441,7 +444,20 @@ header {
     height: auto;
     background-size: cover;
     background-repeat: no-repeat;
+	position: relative;
 }
+
+.content-box-img-bg {
+    width: 100%;
+    height: 350px;
+    position:absolute;
+    top:0;
+    left:0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .content-box-text {
     width: 55%;
     height: auto;
@@ -451,9 +467,13 @@ header {
 .content-box-headline {
     margin: 0;
 }
-.content-box-subline {
+.content-box-content {
     margin-top: 10px;
     padding-right: 20px;
+}
+
+.content-box-content p {
+	margin-top: 1em;
 }
 
 
