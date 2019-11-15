@@ -1,0 +1,21 @@
+Subject:Kontaktanfrage
+<html>
+<head><TITLE>Kontaktanfrage</TITLE></head>
+<body>
+Das Kontaktformular wurde ausgefüllt.<br/>
+<br/>
+Name: <strong>{{ skel.name }}</strong><br/>
+{% if skel.email %}
+    E-Mail: <strong>{{ skel.email }}</strong><br/>
+{% endif %}
+{% if skel.phone %}
+    Telefon: <strong>{{ skel.phone }}</strong><br/>
+{% endif %}
+
+<br/>
+<strong>Nachricht</strong><br/>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br/>
+<pre>{{ skel.message }}</pre>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</body>
+</html>

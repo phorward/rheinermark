@@ -48,7 +48,7 @@ setInterval(() => {
 
 //impressum popup
 $(window).on('load', function() {
-	//Hamburge
+	//Hamburger
    	$(".hamburger").on("click", function(e) {
         $(".hamburger").toggleClass("is-active");
         $(".mobilemenu-wrapper").toggleClass("is-active");
@@ -70,6 +70,52 @@ $(window).on('load', function() {
 		var a = $(event.target);
 		document.getElementById(a.attr("href").substr(1)).scrollIntoView({behavior: 'smooth'});
 		a.blur();
+		return false;
+	});
+
+	// Forms
+	$("form.js-form").submit((event) => {
+		var form = $(event.target);
+		form.find(".js-form-form").fadeOut();
+		form.find(".js-form-loading").fadeIn();
+
+		var formData = new FormData(event.target);
+
+		$.ajax({
+			url: "/json/skey",
+			dataType: "json"}).done(
+				function( skey )
+				{
+					formData.set("skey", skey);
+
+					$.ajax({
+						url: "/json/contact/add",
+						type: "POST",
+						data: formData,
+						cache: false,
+						dataType: "json",
+						processData: false,
+						contentType: false,
+						success: function (data, textStatus, jqXHR) {
+							form.find(".js-form-loading").fadeOut();
+
+							if (typeof data.error === 'undefined')
+							{
+								if( data.action == "addSuccess" )
+								{
+									form.find(".js-form-success").fadeIn();
+								}
+								else
+								{
+									alert("Es trat ein Fehler auf.");
+								}
+							}
+							else
+								console.log('ERRORS: ' + data.error);
+						}
+					});
+				});
+
 		return false;
 	});
 });

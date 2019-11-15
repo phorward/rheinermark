@@ -32,7 +32,7 @@
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico">
-	<link rel="icon" type="image/png" href="/static/img/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.png">
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="/static/css/style.min.css">
@@ -80,7 +80,7 @@
 <!-- Startseite -->
 <section id="fv" class="fv">
 	{% for bg in appconf["start_teaser"] %}
-		<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1280) }}'); {{ "display: none" if not loop.first }}"></div>
+		<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1600) }}'); {{ "display: none" if not loop.first }}"></div>
 	{% endfor %}
 
 	<div class="grey-transparency">
@@ -96,10 +96,19 @@
 	</div>
 </section>
 
+{% macro imagebox(images, group=None) %}
+	<div class="content-box-img">
+		{% for image in images %}
+			<div class="content-box-img-bg js-diashow" data-group="{{ group or "" }}"
+				 style="background-image: url({{ getImageSrc(image, 1024) }}); {{ "display: none;" if not loop.first }}"></div>
+		{% endfor %}
+	</div>
+{% endmacro %}
+
 {% for section in sections %}
 
 	{% if not loop.first %}
-		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1280) }});"></div>
+		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1600) }});"></div>
 	{% endif %}
 
 	<!-- Kategorie -->
@@ -111,13 +120,8 @@
 					{% set group = section.key|shortKey|string + "_" + loop.index0|string %}
 					<!-- /Content-Box- -->
 					<div class="content-box">
-						{% if loop.index0 % 2 == 1 %}
-							<div class="content-box-img">
-								{% for image in content.images %}
-									<div class="content-box-img-bg js-diashow" data-group="{{ group }}"
-									     style="background-image: url({{ getImageSrc(image, 800) }}); {{ "display: none;" if not loop.first }}"></div>
-								{% endfor %}
-							</div>
+						{% if content.images and loop.index0 % 2 == 1 %}
+							{{ imagebox(content.images, group) }}
 						{% endif %}
 
 						<div class="content-box-text">
@@ -128,13 +132,8 @@
 							</div>
 						</div>
 
-						{% if loop.index0 % 2 == 0 %}
-							<div class="content-box-img">
-								{% for image in content.images %}
-									<div class="content-box-img-bg js-diashow" data-group="{{ group }}"
-									     style="background-image: url({{ getImageSrc(image, 800) }}); {{ "display: none;" if not loop.first }}"></div>
-								{% endfor %}
-							</div>
+						{% if content.images and loop.index0 % 2 == 0 %}
+							{{ imagebox(content.images, group) }}
 						{% endif %}
 					</div>
 					<!-- /Content-Box -->
@@ -148,7 +147,7 @@
 <a id="contact" name="contact"></a>
 
 <div class="sv-image">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2490.536712501633!2d7.523262365837544!3d51.374813128209574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b9394c5047ce01%3A0xafdc43d401c9d2d2!2sDr%C3%B6gekamp+GmbH!5e0!3m2!1sen!2sde!4v1553523551291" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen></iframe>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4183.531275042748!2d7.639928952913273!3d51.42982878202839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93fe3748c9391%3A0x78d346720835b383!2sFlugplatz%20Rheinermark!5e0!3m2!1sde!2sde!4v1573836286552!5m2!1sde!2sde" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen=""></iframe>
 </div>
 
 <!-- Kategorie -->
@@ -156,42 +155,111 @@
 	<div class="sv-content-wrapper">
 		<div class="content-title-line">Kontakt</div>
 
-		<!-- /Content-Box-Left-Image -->
+		<!-- /Content-Box -->
 		<div class="content-box">
-			<div class="content-box-img"
-			     style="background-image: url(static/compiled/img/2014-Sommerlehrgang-16-366x244.jpg);"></div>
-			<div class="content-box-text">
-				<h4 class="content-box-headline">Wir freuen uns, dich kennenzulernen!</h4>
-				<p class="content-box-subline">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-					eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-					accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-					Lorem ipsum dolor sit amet. <br><br> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-					diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-					voluptua.<br><br> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-					<br><br>
-					<a class="read-more" href="mailto:m.mustermann@domain.de">hallo@test.de</a>
-					<br><br>
-					<a class="read-more" href="tel:555-555-5555">01578/1234567</a>
-				</p>
+			<div class="content-box-text full">
+				<h4 class="content-box-headline">Haben wir dein Interesse geweckt?</h4>
+				<div class="content-box-content">
+					<p>
+						Falls ja, würden wir uns natürlich sehr freuen, wenn du uns kontaktierst, oder vielleicht auch direkt vorbeikommst?
+					</p>
+
+					<div class="content-box-info bold">
+						Nordhauser Str. 14<br>
+						58640 Iserlohn
+					</div>
+
+					<p>
+						Der Flugbetrieb findet meistens am Wochenende statt,
+						manchmal in den Sommermonaten auch Nachmittags unter
+						der Woche.<br>
+
+						Ruf doch einfach an und frag nach, ob wir da sind:
+					</p>
+
+					<div class="content-box-info content-box-bold">
+						<a href="tel:+4923045663">+49 (0) 2304 / 5663</a>
+					</div>
+
+					<form class="js-form" method="post" action="/contact/add" class="content-box-info">
+						<div class="js-form-form">
+							<p>
+								Oder du schickst uns hier direkt eine Nachricht:
+							</p>
+
+							<label>
+								Dein Name
+								<input type="text" name="name" required="required">
+							</label>
+							<label>
+								Deine E-Mail Adresse
+								<input type="email" name="email" required="required">
+							</label>
+							<label>
+								Deine Nachricht
+								<textarea name="message" required="required"></textarea>
+							</label>
+							<label>
+								<input type="checkbox" name="privacy_confirm" required="required">
+								Ich bin damit einverstanden, dass meine angegebenen Daten zum Zwecke der
+								Bearbeitung meiner Anfrage gespeichert und weiterverarbeitet werden dürfen.
+								Eine Übermittlung meiner Daten an Dritte findet nicht statt.
+							</label>
+
+							<input type="submit" value="Absenden">
+						</div>
+						<div class="form-status form-loading js-form-loading">
+							Bitte warten...
+						</div>
+						<div class="form-status form-success js-form-success">
+							Vielen Dank, wir haben deine Anfrage erhalten!
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-		<!-- /Content-Box-Left-Image -->
+		<!-- /Content-Box -->
+
+		<!-- /Content-Box -->
+		<div class="content-box">
+			<div class="content-box-text full">
+				<h4 class="content-box-headline">Infos für Piloten</h4>
+				<div class="content-box-content">
+					<p>
+						Iserlohn-Rheinermark<br>
+						Segelfluggelände<br><br>
+
+						PPR UL/TMG<br>
+						INFO 124.465 Mhz<br><br>
+
+						ELEV 190m, 620ft<br>
+						RWY 07/25, 800m Gras<br>
+						Südplatzrunde<br><br>
+
+						Sonn- und Feiertags Mittagsruhe von 13:00 – 15:00 Uhr local - keine Motorstarts, Landung jederzeit möglich.<br>
+						Mogas verfügbar.
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- /Content-Box -->
 	</div>
 </section>
 <!-- /Kategorie-->
 
 <div class="footer">
-	<div class="menu-button law no-link" href="#1">
-		&copy;
-		LSV Ruhr-Lenne Iserlohn e.V.
+	<div class="menu-button law no-link">
+		&copy; {{ dateTime().now().strftime("%Y") }}
+		Luftsportverein Ruhr-Lenne Iserlohn e.V.
 	</div>
-	<a class="menu-button law trigger_popup_fricc" href="#2">Impressum</a>
+
+	<a class="menu-button law js-popup" href="#imprint">Impressum</a>
+	<a class="menu-button law js-popup" href="#privacy">Datenschutz</a>
 </div>
 
 
 <!-- Impressum Popup -->
-<div class="hover_bkgr_fricc">
+<div id="imprint" class="hover_bkgr_fricc">
 	<span class="helper"></span>
 	<div>
 		<div class="popupCloseButton">X</div>

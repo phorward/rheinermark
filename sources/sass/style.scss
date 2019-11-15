@@ -215,7 +215,7 @@ header {
     align-items: center;
     min-width: fit-content;
     color: white;
-    padding: 5px 15px;
+    padding: 5px 10px;
     font-weight: 500;
 
     &.color, &.accent {
@@ -462,6 +462,10 @@ header {
     width: 55%;
     height: auto;
     padding: 20px;
+
+	&.full {
+		width: 100%;
+	}
 }
 
 .content-box-headline {
@@ -474,6 +478,14 @@ header {
 
 .content-box-content p {
 	margin-top: 1em;
+}
+
+.content-box-info {
+	margin: 1em;
+
+	&.bold {
+		font-weight: bold;
+	}
 }
 
 
@@ -531,7 +543,7 @@ header {
     justify-content: center;
 }
 
-.read-more {
+a {
     color: $accent-color;
     font-weight: bold;
     margin-top: 15px;
@@ -600,7 +612,49 @@ header {
     width: calc(100% - 20px);
 }
 
+/* Formular */
+form label {
+	display: block;
+	margin-top: 5px;
+	padding-left: 15px;
+}
 
+form label input {
+	width: 100%;
+}
+
+form label textarea {
+	width: 100%;
+	min-height: 200px;
+}
+
+form label input[type=checkbox] {
+	width: unset;
+}
+
+form input[type=submit] {
+	width: 100%;
+	padding: 12px;
+	color: #fff;
+	background-color: $accent-color;
+	border-radius: 5px;
+	border: unset;
+	margin: 10px;
+}
+
+.form-status {
+	border-radius: 5px;
+	padding: 10px;
+	display: none;
+}
+
+.form-loading {
+}
+
+.form-success {
+	background-color: #affcae;
+	font-weight: bold;
+}
 
 
 /* Popup box BEGIN */

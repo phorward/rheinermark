@@ -50,7 +50,9 @@ conf["admin.moduleGroups"] = [
 
 # ------------------------------------------------------------------------------
 # Content Security Policy
-#
+
+securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
+securityheaders.addCspRule("font-src", "fonts.gstatic.com", "enforce")
 
 # ------------------------------------------------------------------------------
 # Server startup
