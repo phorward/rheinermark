@@ -1,11 +1,11 @@
 {% extends "apart.html" %}
 {%- set req = requestParams() -%}
 
-
 {% block content %}
 	<div class="intern">
 		<div class="logo-big"></div>
-		<h1 class="headline">Hallo, {{ cuser["firstname"] }}!</h1>
+
+		<h1 class="headline">Hallo, {{ skel["firstname"] }}!</h1>
 		<div class="content-box-text">
 			Willkommen im internen Bereich!
 		</div>

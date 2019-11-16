@@ -53,7 +53,7 @@
 		{% for section in sections %}
 			<a class="menu-button {{ mode }} js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
 		{% endfor %}
-		<a class="menu-button {{ mode }} js-scroll" href="#kontakt">Kontakt</a>
+		<a class="menu-button {{ mode }} js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
 		{% if cuser %}
 			<a class="menu-button intern {{ mode }}" href="/user/view/self">Intern</a>
 		{% endif %}
