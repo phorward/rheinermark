@@ -22,19 +22,13 @@ class appconfSkel(Skeleton):
 		multiple=True
 	)
 
-	# Kontaktdaten
-	club = stringBone(descr=u"Club", params={"category": "Kontaktdaten"})
-	club_short = stringBone(descr=u"Club (Kurzbezeichnung)", params={"category": "Kontaktdaten"})
-	address = stringBone(descr=u"Adresse", params={"category": "Kontaktdaten"})
-	zip = stringBone(descr=u"PLZ", params={"category": "Kontaktdaten"})
-	city = stringBone(descr=u"Stadt", params={"category": "Kontaktdaten"})
-
-	contact_phone = stringBone(descr=u"Telefon", params={"category": "Kontaktdaten"})
-	contact_fax = stringBone(descr=u"Telefax", params={"category": "Kontaktdaten"})
-	contact_email = emailBone(descr=u"E-Mail", params={"category": "Kontaktdaten"})
-
 	# Formmailer
 	contact_rcpts = emailBone(descr=u"Empfänger für Kontaktanfrage", params={"category": "Formmailer"}, required=True)
+
+	contact_pilots_images = fileBone(
+		descr=u"Kontakt - Piloten",
+		multiple=True
+	)
 
 	#website = stringBone(descr=u"Website URL")
 	# SEO

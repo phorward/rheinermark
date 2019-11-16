@@ -51,7 +51,7 @@
 		{% for section in sections %}
 			<a class="menu-button {{ mode }} js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
 		{% endfor %}
-		<a class="menu-button js-scroll" href="#kontakt">Kontakt</a>
+		<a class="menu-button {{ mode }} js-scroll" href="#kontakt">Kontakt</a>
 	</div>
 
 	<button class="hamburger hamburger--spin" type="button">
@@ -120,8 +120,8 @@
 			<div class="content-title-line">{{ section.name }}</div>
 				{% for content in section.content %}
 					{% set group = section.key|shortKey|string + "_" + loop.index0|string %}
-					<!-- /Content-Box- -->
-					<div class="content-box">
+					<!-- Content-Box- -->
+					<div class="content-box {{ "full" if not content.images }}">
 						{% if content.images and loop.index0 % 2 == 1 %}
 							{{ imagebox(content.images, group) }}
 						{% endif %}
@@ -224,7 +224,9 @@
 
 		<!-- /Content-Box -->
 		<div class="content-box">
-			<div class="content-box-text full">
+			{{ imagebox(appconf.contact_pilots_images, "for-pilots") }}
+
+			<div class="content-box-text">
 				<h4 class="content-box-headline">Infos für Piloten</h4>
 				<div class="content-box-content">
 					<p>
