@@ -1,21 +1,3 @@
-//menubar background color when scroll
-$(window).scroll(function() {
-    var height = $(window).scrollTop();
-    if (height > 600) {
-        $(".menu-wrapper.top").addClass("bg");
-        $(".logo").addClass("small");
-        $(".menu-button").addClass("color");
-        $(".menu-bar").addClass("color");
-        $(".hamburger-inner").addClass("accent");
-    } else {
-        $(".menu-wrapper.top").removeClass("bg");
-        $(".logo").removeClass("small");
-        $(".menu-button").removeClass("color");
-        $(".menu-bar").removeClass("color");
-        $(".hamburger-inner").removeClass("accent");
-    }
-});
-
 //Slider Animate Multiple Background Images
 setInterval(() => {
 	var visible = $(".js-diashow:visible");
@@ -48,6 +30,30 @@ setInterval(() => {
 
 //impressum popup
 $(window).on('load', function() {
+	//menubar background color when scroll
+	if( $("#fv").length )
+	{
+		function checkScrollState() {
+			var height = $(window).scrollTop();
+			if (height > 600) {
+				$(".logo").addClass("accent");
+				$(".menu-wrapper.top").addClass("accent");
+				$(".menu-button").addClass("accent");
+				$(".menu-bar").addClass("accent");
+				$(".hamburger-inner").addClass("accent");
+			} else {
+				$(".logo").removeClass("accent");
+				$(".menu-wrapper.top").removeClass("accent");
+				$(".menu-button").removeClass("accent");
+				$(".menu-bar").removeClass("accent");
+				$(".hamburger-inner").removeClass("accent");
+			}
+		}
+
+		$(window).scroll(checkScrollState);
+		checkScrollState();
+	}
+
 	//Hamburger
    	$(".hamburger").on("click", function(e) {
         $(".hamburger").toggleClass("is-active");
@@ -55,9 +61,6 @@ $(window).on('load', function() {
     });
 
 	// Popup
-    $(".trigger_popup_fricc").click(function(){
-       $('.hover_bkgr_fricc').show();
-    });
     $('.hover_bkgr_fricc').click(function(){
         $('.hover_bkgr_fricc').hide();
     });
@@ -70,6 +73,22 @@ $(window).on('load', function() {
 		var a = $(event.target);
 		document.getElementById(a.attr("href").substr(1)).scrollIntoView({behavior: 'smooth'});
 		a.blur();
+		return false;
+	});
+
+	$("a.mobilemenu-button").click(() => {
+        $(".hamburger").toggleClass("is-active");
+        $(".mobilemenu-wrapper").toggleClass("is-active");
+	});
+
+    // View a popup
+	$("a.js-popup").click((event) => {
+		var a = $(event.target);
+		var popup = a.attr("href");
+
+		a.blur();
+		$(popup).show();
+
 		return false;
 	});
 

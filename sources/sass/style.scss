@@ -123,7 +123,7 @@ header {
         background-image: linear-gradient(  rgba(0, 0, 0, 0.5) 1%, hsla(215,20%,80%,0) 100%);
         padding-bottom: 20px;
         transition: 0.2s;
-        &.bg {
+        &.accent {
             background-color: #FFFFFF;
             border-bottom: 3px solid $accent-color;
            // background-image: linear-gradient(  rgba(127, 150, 187, 1) 50%, hsla(215,30%,70%,0) 100%);
@@ -150,7 +150,7 @@ header {
     flex-direction: row;
     align-items: center;
     padding-left: 15px;
-    &.color {
+    &.accent {
         border-left: 3px solid $accent-color;
     }
 }
@@ -160,7 +160,7 @@ header {
     background-image: url(/static/img/logo-white.svg); //NOT COMPILED
     background-repeat: no-repeat;
     transition: 0.5s;
-    &.small {
+    &.accent {
         background-image: url(/static/img/logo.svg); //NOT COMPILED
         transform: scale(0.75);
         margin-top: -20px;
@@ -208,7 +208,7 @@ header {
         opacity: 0.8;
     }
 }
-.menu-button {
+.menu-button, .mobilemenu-button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -218,7 +218,7 @@ header {
     padding: 5px 10px;
     font-weight: 500;
 
-    &.color, &.accent {
+    &.accent {
         color: $accent-color;
     }
     &:hover {
@@ -612,6 +612,13 @@ a {
     width: calc(100% - 20px);
 }
 
+/* Apart */
+.apart-body {
+	margin-top: 130px;
+	padding: 0 10%;
+}
+
+
 /* Formular */
 form label {
 	display: block;
@@ -721,8 +728,6 @@ form input[type=submit] {
 
 
 
-
-
 // Responsive //
 @media only screen and (max-width: 1350px) {
     .sv-content-wrapper.bp {
@@ -771,7 +776,7 @@ form input[type=submit] {
     .logo {
         transform: scale(0.5) translateX(75px) translateY(-11px);
     }
-    .logo.small {
+    .logo.accent {
         transform: scale(0.5) translateX(75px) translateY(10px);
     }
 
