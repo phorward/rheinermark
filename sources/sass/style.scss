@@ -172,6 +172,7 @@ header {
     background-repeat: no-repeat;
 	background-position: center center;
 	min-height: 250px;
+	margin-bottom: 75px;
 }
 
 
@@ -499,6 +500,7 @@ header {
 
 .content-box-info {
 	margin: 1em;
+	font-size: 1.2em;
 
 	&.bold {
 		font-weight: bold;
@@ -690,7 +692,7 @@ form input[type=submit] {
 .intern {
 
 	& h1 {
-		font-size: 32pt;
+		font-size: 28pt;
 	}
 
 	& ul {

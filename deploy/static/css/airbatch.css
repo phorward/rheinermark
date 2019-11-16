@@ -1,0 +1,193 @@
+html, body {
+  font-family: sans-serif;
+  font-size: 14pt;
+}
+
+textarea {
+    font-family: consolas, courier;
+    font-size: 15pt;
+    font-weight: bold;
+    color: #111144;
+
+    width: 100%;
+    min-height: 300px;
+}
+
+button#btn-parse {
+    width: 100%;
+}
+
+select.info {
+    float: left;
+    width: 33.3%;
+    height: 120px;
+}
+
+table {
+    width: 100%;
+}
+
+table thead {
+    font-weight: bold;
+}
+
+table tbody {
+    color: #111144;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #ededed;
+}
+
+table tbody tr.error
+{
+    background-color: indianred;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+tbody#final
+{
+    border-bottom: 1px dashed black;
+    background-color: #aaaadd;
+}
+
+tbody#final tr:nth-child(even) {
+  background-color: #D0D0EC;
+}
+
+tbody#construction
+{
+    background-color: #b3ffb3;
+    opacity: 0.55;
+}
+
+tbody#construction tr:nth-child(even) {
+  background-color: #ccffcc;
+}
+
+tr#construction-row
+{
+    background-color: #ffffb3;
+}
+
+tr#construction-row td
+{
+    padding: 10px;
+    margin: 0;
+}
+
+ul#editor-row > li
+{
+    float: left;
+    margin: 0px 10px;
+    background-color: snow;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+li#editor-col
+{
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+ul#editor-proposal
+{
+    display: none;
+
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+ul#editor-proposal li
+{
+    cursor: pointer;
+    padding: 10px;
+}
+
+ul#editor-proposal li:nth-child(even) {
+    background-color: #ededed;
+}
+
+input
+{
+    border-radius: 3px;
+    border: 1px solid blue;
+    padding: 10px;
+}
+
+input.unknown
+{
+    border: 1px solid red;
+}
+
+span.token
+{
+    font-style:italic;
+    color: gray;
+    margin-right: 10px;
+}
+
+span.close, span.commit
+{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: red;
+    border-radius: 3px;
+    background-color: lightgray;
+
+    margin: 0px 2px;
+
+    cursor: pointer;
+}
+
+/* Tabs */
+
+ul.tabcontrol-pages li.tabcontrol-page {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  min-width: 200px;
+  padding: 25px 10px;
+  color: #757575;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #ddd;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  margin-bottom: -1px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 6;
+  box-sizing: border-box;
+}
+
+ul.tabcontrol-pages li.tabcontrol-page.is-active {
+  background: #fff;
+  z-index: 10;
+  position: relative;
+
+}
+
+ul.tabcontrol-bodies {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  clear: both;
+  padding: 30px 20px 20px 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+  overflow: auto;
+
+}
