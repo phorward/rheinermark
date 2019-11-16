@@ -1,37 +1,47 @@
-{% extends "viur_base.html" %}
+{% extends "apart.html" %}
 {%- set req = requestParams() -%}
 
 
 {% block content %}
-	<h1 class="headline">Login</h1>
+	<div class="intern">
+		<div class="logo-big"></div>
 
-	{% if loginFailed %}
-		<div class="msg msg--error is-active">
-			{{ embedSvg("icon-cross") }}
-			<div class="msg-content">
-				<h3 class="msg-headline">Login failed!</h3>
-				<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
+		<h1 class="headline">Login</h1>
+
+		{% if loginFailed %}
+			<div class="msg msg--error is-active">
+				{{ embedSvg("icon-cross") }}
+				<div class="msg-content">
+					<h3 class="msg-headline">Login failed!</h3>
+					<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
+				</div>
 			</div>
-		</div>
-	{% endif %}
+		{% endif %}
 
-	<form method="POST" action="/user/auth_userpassword/login">
-		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+		<form method="POST" action="/user/auth_userpassword/login">
+			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
-		<div class="input-group">
-			<label class="label js-focus" for="name">E-Mail</label>
-			<input class="input" id="name" name="name" type="text" placeholder="E-Mail">
-		</div>
+			<div class="input-group">
+				<label class="label js-focus">
+					E-Mail / Benutzername
+					<input class="input" name="name" type="text" placeholder="E-Mail">
+				</label>
+			</div>
 
-		<div class="input-group">
-			<label class="label" for="password">Password</label>
-			<input class="input" id="password" name="password" type="password" placeholder="Passwort">
-		</div>
+			<div class="input-group">
+				<label class="label">
+					Passwort
+					<input class="input" name="password" type="password" placeholder="Passwort">
+				</label>
+			</div>
 
-		<input class="btn btn--primary" name="submit" type="submit" value="Login">
-	</form>
+			<input class="btn btn--primary" name="submit" type="submit" value="Login">
+		</form>
 
-	{% if not req.get("disableGoogle") %}
-		<a class="btn btn--google" href="/user/auth_googleaccount/login">Or Login with Google…</a>
-	{% endif %}
+		{% if not req.get("disableGoogle") %}
+			<div style="text-align: center">
+				<a class="btn btn--google" href="/user/auth_googleaccount/login">Or Login with Google…</a>
+			</div>
+		{% endif %}
+	</div>
 {% endblock %}

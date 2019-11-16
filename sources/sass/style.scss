@@ -4,6 +4,7 @@
 
 
 $accent-color: #005e8a;
+$bgcolor: #fcfcff;
 
 *{
     outline: 0;
@@ -19,7 +20,7 @@ html {
 }
 
 body {
-	background-color: #fcfcff;
+	background-color: $bgcolor;
 }
 
 a {
@@ -225,6 +226,7 @@ header {
     color: white;
     padding: 5px 10px;
     font-weight: 500;
+	border-radius: 5px;
 
     &.accent {
         color: $accent-color;
@@ -246,8 +248,15 @@ header {
             color: black;
         }
     }
+	&.intern {
+		background-color: white;
+		color: #333;
+	}
 
-
+	&.intern.accent {
+		background-color: $bgcolor;
+		color: red;
+	}
 }
 .btn-icn {
 
@@ -623,7 +632,7 @@ a {
 /* Apart */
 .apart-body {
 	margin-top: 130px;
-	padding: 0 10%;
+	padding: 0 25%;
 }
 
 
@@ -635,12 +644,18 @@ form label {
 }
 
 form label input {
-	width: 100%;
+	width: 99%;
+	margin: 5px;
+	padding: 10px;
+	font-size: 1.2em;
 }
 
 form label textarea {
 	width: 100%;
 	min-height: 200px;
+	margin: 5px;
+	padding: 10px;
+	font-size: 1.2em;
 }
 
 form label input[type=checkbox] {
@@ -673,8 +688,33 @@ form input[type=submit] {
 
 // Intern
 .intern {
+
 	& h1 {
-		font-size: 20pt;
+		font-size: 32pt;
+	}
+
+	& ul {
+		font-size: 28pt;
+		list-style-type: none;
+
+		& li {
+			transition: 1s;
+			padding: 10px;
+			margin: 5px;
+			border: 1px solid $accent-color;
+			border-radius: 5px;
+		}
+
+		& li:hover {
+			border-color: black;
+			background-color: $accent-color;
+			padding: 15px;
+
+			& a {
+				color: #fff;
+			}
+
+		}
 	}
 }
 

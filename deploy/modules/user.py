@@ -2,4 +2,4 @@
 from server.modules.user import User
 
 class user(User):
-	pass
+	viewTemplate = "user_view"

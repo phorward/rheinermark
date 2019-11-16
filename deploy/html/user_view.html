@@ -1,0 +1,24 @@
+{% extends "apart.html" %}
+{%- set req = requestParams() -%}
+
+
+{% block content %}
+	<div class="intern">
+		<div class="logo-big"></div>
+		<h1 class="headline">Hallo, {{ cuser["firstname"] }}!</h1>
+		<div class="content-box-text">
+			Willkommen im internen Bereich!
+		</div>
+
+		<ul>
+			<li><a href="#">Termine</a></li>
+			<li><a href="/file/list">Downloads</a></li>
+			<li><a href="#">Windendienst</a></li>
+			<li><a href="#">Fluglehrerdienst</a></li>
+			<li><a href="#">Kantinendienst</a></li>
+			<li><a href="#">Starterfassung</a></li>
+			<li><a href="/user/logout?skey={{ getSecurityKey() }}">Logout</a></li>
+		</ul>
+
+	</div>
+{% endblock %}

@@ -11,6 +11,8 @@
     {%- set title = title + " - " + appconf["title"] -%}
 {%- endif -%}
 
+{% set cuser = getCurrentUser() %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,6 +54,9 @@
 			<a class="menu-button {{ mode }} js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
 		{% endfor %}
 		<a class="menu-button {{ mode }} js-scroll" href="#kontakt">Kontakt</a>
+		{% if cuser %}
+			<a class="menu-button intern {{ mode }}" href="/user/view/self">Intern</a>
+		{% endif %}
 	</div>
 
 	<button class="hamburger hamburger--spin" type="button">
@@ -66,14 +71,18 @@
 
 <div class="mobilemenu-wrapper">
 	<div class="mobilemenu">
-		<a class="mobilemenu-button accent js-scroll" href="#top">Start</a>
+		<a class="mobilemenu-button accent js-scroll" href="{{ prefix }}#top">Start</a>
 		<hr>
 		{% for section in sections %}
 			<a class="mobilemenu-button accent js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
 			<hr>
 		{% endfor %}
-		<a class="mobilemenu-button accent js-scroll" href="#kontakt">Kontakt</a>
+		<a class="mobilemenu-button accent js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
 		<hr>
+		{% if cuser %}
+			<a class="mobilemenu-button intern accent" href="/user/view/self">Intern</a>
+			<hr>
+		{% endif %}
 	</div>
 </div>
 
