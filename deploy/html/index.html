@@ -29,7 +29,7 @@
 	<meta http-equiv="x-ua-compatible" content="IE=edge">
 
 	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,shrink-to-fit=no">
 	<meta name="theme-color" content="#fff">
 
 	<!-- Favicon -->
@@ -65,7 +65,7 @@
 		</span>
 	</button>
 
-	<div class="logo {{ mode }}"></div>
+	<a href="{{ "/" if not cuser else "/user/view/self" }}" class="logo {{ mode }}"></a>
 </div>
 
 
@@ -175,27 +175,26 @@
 						Falls ja, würden wir uns natürlich sehr freuen, wenn Du uns kontaktierst, oder vielleicht auch direkt vorbeikommst?
 					</p>
 
-					<div class="content-box-info bold">
+					<p class="content-box-info bold">
 						Nordhauser Str. 14<br>
 						58640 Iserlohn
-					</div>
-
-					<p>
-						Der Flugbetrieb findet meistens am Wochenende statt,
-						manchmal in den Sommermonaten auch Nachmittags unter
-						der Woche.<br>
-
-						Ruf doch einfach an und frag nach, ob wir da sind:
 					</p>
 
-					<div class="content-box-info content-box-bold">
-						<a href="tel:+4923045663">+49 (0) 2304 / 5663</a>
-					</div>
+					<p>
+						Wenn es nicht gerade in strömen regnet, stürmt oder schlechte Sicht ist,
+						findet der Flugbetrieb bei uns größtenteils an Wochenenden und Feiertagen statt.<br>
+						Ruf doch einfach an und frag nach, ob wir da sind und was wir so machen:
+					</p>
+
+					<p class="content-box-info bold">
+						<a href="tel:+4923045663">+49 (0)2304 5663</a>
+					</p>
 
 					<form class="js-form" method="post" action="/contact/add" class="content-box-info">
 						<div class="js-form-form">
 							<p>
-								Oder Du schickst uns hier direkt eine Nachricht:
+								Oder Du schickst uns hier direkt eine Nachricht.
+								Wir melden uns so schnell wie möglich bei dir.
 							</p>
 
 							<label>
@@ -238,19 +237,20 @@
 			<div class="content-box-text">
 				<h4 class="content-box-headline">Infos für Piloten</h4>
 				<div class="content-box-content">
-					<p>
-						Iserlohn-Rheinermark<br>
-						Segelfluggelände<br><br>
+					<p class="content-box-info">
+						Segelfluggelände<br>
+						Iserlohn-Rheinermark<br><br>
 
 						PPR UL/TMG<br>
 						INFO 124.465 Mhz<br><br>
 
 						ELEV 190m, 620ft<br>
 						RWY 07/25, 800m Gras<br>
-						Südplatzrunde<br><br>
-
-						Sonn- und Feiertags Mittagsruhe von 13:00 – 15:00 Uhr local - keine Motorstarts, Landung jederzeit möglich.<br>
-						Mogas verfügbar.
+						Südplatzrunde
+					</p>
+					<p>
+						Sonn- und Feiertags besteht Mittagsruhe, d.h. keine Motorstarts von 13:00 - 15:00 Uhr (local).<br>
+						Winde und F-Schlepp nach Absprache möglich. Mogas verfügbar.
 					</p>
 				</div>
 			</div>
@@ -265,7 +265,7 @@
 <div class="footer">
 	<div class="menu-button law no-link">
 		&copy; {{ dateTime().now().strftime("%Y") }}
-		Luftsportverein Ruhr-Lenne Iserlohn e.V.
+		Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.
 	</div>
 
 	<a class="menu-button law js-popup" href="#imprint">Impressum</a>
@@ -284,35 +284,35 @@
 
 		<p>Angaben gemäß § 5 TMG</p>
 
-		<div class="content-box-info bold">
+		<div class="content-box-info">
 			LSV Ruhr-Lenne Iserlohn e.V.<br>
 			Nordhauser Str. 14<br>
 			58640 Iserlohn<br>
 		</div>
 
-		<p>Vertreten durch:<p>
-		<div class="content-box-info bold">
+		<p>Vertreten durch<p>
+		<div class="content-box-info">
 			Thomas Mohn (1. Vorsitzender)<br>
 			Birgit Hunold (Geschäftsführerin)
 		</div>
 
 		<p>Kontakt</p>
 
-		<div class="content-box-info bold">
-			Telefon: 02304 5663<br>
-			E-Mail: info@segelfliegen.com
+		<div class="content-box-info">
+			+49 (0) 2304 5663<br>
+			&#x69;&#x6E;&#x66;&#x6F;&#x40;&#x73;&#x65;&#x67;&#x65;&#x6C;&#x66;&#x6C;&#x69;&#x65;&#x67;&#x65;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;
 		</div>
 
 		<p>Registereintrag</p>
 
-		<div class="content-box-info bold">
-			Eintragung im Vereinsregister beim Amtsgericht Iserlohn<br>
-			Registernummer: VR490
+		<div class="content-box-info">
+			Vereinsregister Amtsgericht Iserlohn<br>
+			Registernummer VR490
 		</div>
 
 		<p>Umsatzsteuer-ID</p>
 
-		<div class="content-box-info bold">
+		<div class="content-box-info">
 			DE125585606
 		</div>
 		<!-- /Inhalt -->
