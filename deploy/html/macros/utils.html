@@ -3,8 +3,10 @@
 	{%- if info -%}
 		{%- if info.servingurl and info.mimetype != "image/svg+xml" -%}
 			{{ info.servingurl + ("=s%d" % width) + ("-c" if crop else "") }}
-		{%- else -%}
+		{%- elif info.dlkey -%}
 			{{ "/file/download/%s" % info.dlkey }}
+		{%- else -%}
+			{{ info }}
 		{%- endif -%}
 	{%- endif -%}
 {%- endmacro -%}

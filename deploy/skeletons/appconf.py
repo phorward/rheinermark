@@ -5,12 +5,12 @@ from server.skeleton import Skeleton
 class appconfSkel(Skeleton):
 
 	# Startseite
-	title = stringBone(
+	site_title = stringBone(
 		descr=u"Seitentitel",
 		defaultValue=u"LSV Ruhr-Lenne Iserlohn e.V."
 	)
 
-	slogan = stringBone(
+	site_slogan = stringBone(
 		descr=u"Seiten-Slogan",
 		defaultValue=u"Komm, fliegen!"
 	)

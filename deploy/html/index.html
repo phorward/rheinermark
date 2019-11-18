@@ -6,12 +6,12 @@
 {%- endif -%}
 
 {%- if not title -%}
-    {%- set title = appconf["title"] + " - " + appconf["slogan"] -%}
+    {%- set title = appconf["site_title"] + " - " + appconf["site_slogan"] -%}
 {%- else -%}
-    {%- set title = title + " - " + appconf["title"] -%}
+    {%- set title = title + " - " + appconf["site_title"] -%}
 {%- endif -%}
 
-{% set cuser = getCurrentUser() %}
+{%- set cuser = getCurrentUser() -%}
 
 <!DOCTYPE html>
 <html>
@@ -20,11 +20,21 @@
 
 	<!-- meta -->
 	<meta charset="UTF-8">
-	<meta name="author" content="">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="page-topic" content="">
+
+	<meta name="author" content="Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.">
+	<meta name="generator" content="www.viur.is">
+	<meta name="description" content="{{ skel["seo_description"] or appconf["seo_description"] }}"/>
+	<meta name="keywords" content="{{ skel["seo_keywords"] or appconf["seo_keywords"] }}"/>
+	<meta name="page-topic" content="{{ skel["title"] or skel["name"] or title }}">
 	<meta name="robots" content="index, follow">
+	<meta name="language" content="de-DE">
+
+	<meta property="og:title" content="{{ skel["seo_title"] or appconf["seo_title"] or skel["title"] or skel["name"] or title }}" />
+	<meta property="og:description" content="{{ skel["seo_description"] or appconf["seo_description"] }}" />
+    <meta property="og:image" content="{{ getImageSrc(skel["seo_image"] or appconf["seo_image"] or (getHostUrl() + "/static/img/logo.svg")) }}" />
+	<meta property="og:url" content="{{ getHostUrl() }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="de_DE" />
 
 	<meta http-equiv="x-ua-compatible" content="IE=edge">
 
