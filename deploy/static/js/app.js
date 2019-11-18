@@ -36,17 +36,9 @@ $(window).on('load', function() {
 		function checkScrollState() {
 			var height = $(window).scrollTop();
 			if (height > 600) {
-				$(".logo").addClass("accent");
-				$(".menu-wrapper.top").addClass("accent");
-				$(".menu-button").addClass("accent");
-				$(".menu-bar").addClass("accent");
-				$(".hamburger-inner").addClass("accent");
+				$(".menu-wrapper").addClass("steady");
 			} else {
-				$(".logo").removeClass("accent");
-				$(".menu-wrapper.top").removeClass("accent");
-				$(".menu-button").removeClass("accent");
-				$(".menu-bar").removeClass("accent");
-				$(".hamburger-inner").removeClass("accent");
+				$(".menu-wrapper").removeClass("steady");
 			}
 		}
 
@@ -76,7 +68,7 @@ $(window).on('load', function() {
 		return false;
 	});
 
-	$("a.mobilemenu-button").click(() => {
+	$(".mobilemenu .js-scroll").click(() => {
         $(".hamburger").toggleClass("is-active");
         $(".mobilemenu-wrapper").toggleClass("is-active");
 	});

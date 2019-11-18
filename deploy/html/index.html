@@ -59,43 +59,36 @@
 </head>
 <body id="top" {{ ONLOAD }}>
 
-<div class="menu-wrapper top {{ mode }}">
-	<div class="menu-bar {{ mode }}">
-		<a class="menu-button {{ mode }} js-scroll" href="{{ prefix }}#top">Start</a>
+<div class="menu-wrapper {{ mode }}">
+	<div class="menu-bar">
+		<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
 		{% set sections = getList("section") %}
 		{% for section in sections %}
-			<a class="menu-button {{ mode }} js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
+			<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
 		{% endfor %}
-		<a class="menu-button {{ mode }} js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
-		{% if cuser %}
-			<a class="menu-button intern {{ mode }}" href="/user/view/self">Intern</a>
-		{% endif %}
+		<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
+
 	</div>
 
 	<button class="hamburger hamburger--spin" type="button">
 		<span class="hamburger-box">
-			<span class="hamburger-inner {{ mode }}"></span>
+			<span class="hamburger-inner"></span>
 		</span>
 	</button>
 
-	<a href="{{ "/" if not cuser else "/user/view/self" }}" class="logo {{ mode }}"></a>
+	<a href="{{ "/" if not cuser else "/user/view/self" }}" class="logo"></a>
 </div>
 
 
-<div class="mobilemenu-wrapper">
+<div class="mobilemenu-wrapper {{mode}}">
 	<div class="mobilemenu">
-		<a class="mobilemenu-button accent js-scroll" href="{{ prefix }}#top">Start</a>
+		<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
 		<hr>
 		{% for section in sections %}
-			<a class="mobilemenu-button accent js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
+			<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
 			<hr>
 		{% endfor %}
-		<a class="mobilemenu-button accent js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
-		<hr>
-		{% if cuser %}
-			<a class="mobilemenu-button intern accent" href="/user/view/self">Intern</a>
-			<hr>
-		{% endif %}
+		<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
 	</div>
 </div>
 
