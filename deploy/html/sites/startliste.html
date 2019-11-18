@@ -1,24 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Air Batch - Assistant DEMO</title>
+{% extends "functional.html" %}
+
+{% set title = "Starterfassung" %}
+{% set ONLOAD="onload=\"brython({pythonpath: ['.', '/static/py/']});\"" %}
+
+{% block additionalHeader %}
+    <link rel="stylesheet" type="text/css" href="/static/css/airbatch.css">
 
 	<script src="/static/py/Brython-3.7.1/brython.js"></script>
 	<script src="/static/py/Brython-3.7.1/brython_stdlib.js"></script>
+{% endblock %}
 
-    <link rel="stylesheet" type="text/css" href="/static/css/airbatch.css">
-</head>
-<body onload="brython({pythonpath: ['.', '/static/py/']})">
+{% block content %}
 	<label>
 		<input id="batch-switch" type="checkbox" checked />
 		Interaktiver Modus
 	</label>
+	<label>
+		UTC
+		<button id="btn-time">00:00</button>
+	</label>
 
-	<button id="btn-time">00:00</button>
-	<select id="select-preset-location"></select>
+	<label>
+		Flugplatz
+		<select id="select-preset-location"></select>
+	</label>
+
+	<!--
 	<button id="btn-reset">Zurücksetzen</button>
 	<button id="btn-download">Download</button>
+	-->
 
 	<div id="batch" style="display: none;">
 		<select size="5" id="batch-aircraft" class="info aircraft"></select>
@@ -50,7 +60,7 @@
 				<td colspan="9">
 					<ul id="editor-row">
 						<li id="editor-col">
-							<input id="editor" type="text" />
+							<input id="editor" type="text" placeholder="Flugzeug, Pilot, Uhrzeit ..."/>
 							<ul id="editor-proposal"></ul>
 						</li>
 					</ul>
@@ -61,5 +71,4 @@
 
 	<script type="text/python" src="/static/py/airbatch-assistant.py"></script>
 
-</body>
-</html>
+{% endblock %}

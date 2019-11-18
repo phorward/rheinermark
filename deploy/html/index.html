@@ -43,8 +43,11 @@
 	<script src="/static/js/jquery.min.js"></script>
 	<script src="/static/js/app.js"></script>
 
+	{% block additionalHeader %}
+	{% endblock %}
+
 </head>
-<body id="top">
+<body id="top" {{ ONLOAD }}>
 
 <div class="menu-wrapper top {{ mode }}">
 	<div class="menu-bar {{ mode }}">

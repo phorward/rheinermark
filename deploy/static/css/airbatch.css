@@ -1,9 +1,4 @@
-html, body {
-  font-family: sans-serif;
-  font-size: 14pt;
-}
-
-textarea {
+#batch-editor {
     font-family: consolas, courier;
     font-size: 15pt;
     font-weight: bold;
@@ -23,23 +18,23 @@ select.info {
     height: 120px;
 }
 
-table {
+#result {
     width: 100%;
 }
 
-table thead {
+#result thead {
     font-weight: bold;
 }
 
-table tbody {
+#result tbody {
     color: #111144;
 }
 
-table tbody tr:nth-child(even) {
+#result tbody tr:nth-child(even) {
     background-color: #ededed;
 }
 
-table tbody tr.error
+#result tbody tr.error
 {
     background-color: indianred;
 }
@@ -49,38 +44,38 @@ ul {
     padding: 0;
 }
 
-tbody#final
+#final
 {
     border-bottom: 1px dashed black;
     background-color: #aaaadd;
 }
 
-tbody#final tr:nth-child(even) {
+#final tr:nth-child(even) {
   background-color: #D0D0EC;
 }
 
-tbody#construction
+#construction
 {
     background-color: #b3ffb3;
     opacity: 0.55;
 }
 
-tbody#construction tr:nth-child(even) {
+#construction tr:nth-child(even) {
   background-color: #ccffcc;
 }
 
-tr#construction-row
+#construction-row
 {
     background-color: #ffffb3;
 }
 
-tr#construction-row td
+#construction-row td
 {
     padding: 10px;
     margin: 0;
 }
 
-ul#editor-row > li
+#editor-row > li
 {
     float: left;
     margin: 0px 10px;
@@ -89,14 +84,14 @@ ul#editor-row > li
     padding: 10px;
 }
 
-li#editor-col
+#editor-col
 {
     background-color: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
 }
 
-ul#editor-proposal
+#editor-proposal
 {
     display: none;
 
@@ -105,36 +100,36 @@ ul#editor-proposal
     border-radius: 3px;
 }
 
-ul#editor-proposal li
+#editor-proposal li
 {
     cursor: pointer;
     padding: 10px;
 }
 
-ul#editor-proposal li:nth-child(even) {
+#editor-proposal li:nth-child(even) {
     background-color: #ededed;
 }
 
-input
+#editor
 {
     border-radius: 3px;
     border: 1px solid blue;
     padding: 10px;
 }
 
-input.unknown
+#editor.unknown
 {
     border: 1px solid red;
 }
 
-span.token
+.token
 {
     font-style:italic;
     color: gray;
     margin-right: 10px;
 }
 
-span.close, span.commit
+.close, .commit
 {
     display: inline-block;
     width: 20px;
@@ -151,7 +146,7 @@ span.close, span.commit
 
 /* Tabs */
 
-ul.tabcontrol-pages li.tabcontrol-page {
+.tabcontrol-pages li.tabcontrol-page {
   font-weight: 700;
   font-size: 18px;
   display: block;
@@ -173,14 +168,14 @@ ul.tabcontrol-pages li.tabcontrol-page {
   box-sizing: border-box;
 }
 
-ul.tabcontrol-pages li.tabcontrol-page.is-active {
+.tabcontrol-pages li.tabcontrol-page.is-active {
   background: #fff;
   z-index: 10;
   position: relative;
 
 }
 
-ul.tabcontrol-bodies {
+.tabcontrol-bodies {
   position: relative;
   width: 100%;
   border: 1px solid #ccc;
