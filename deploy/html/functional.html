@@ -1,10 +1,10 @@
-{% set mode = "accent" %}
+{% set mode = "steady" %}
 {% set prefix = "/" %}
 
 {% extends "index.html" %}
 
 {% block body %}
-	<div class="functional">
+	<div class="functional {{functional_classes}}">
 	{% block content %}
 
 	{% endblock %}

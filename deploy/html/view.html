@@ -7,11 +7,11 @@
 	- add a line `viewTemplate = "<Your-Module>_view"` inside your module class
 #}
 
-{% extends "viur_base.html" %}
+{% extends "intern.html" %}
 {% from "macros/skelview.html" import SkelView %}
 
 {% block content %}
-	<h1 class="headline">View {{ moduleName() }}</h1>
+	<h1>{{ skel.name }}</h1>
 
 	{{ SkelView(skel) }}
 

@@ -1,24 +1,24 @@
-{% extends "functional.html" %}
-{%- set req = requestParams() -%}
+{% extends "intern.html" %}
 
 {% block content %}
-	<div class="intern">
-		<div class="logo-big"></div>
+	<h1>Hallo {{ skel["firstname"] or "" -}}!</h1>
 
-		<h1 class="headline">Hallo, {{ skel["firstname"] }}!</h1>
-		<div class="content-box-text">
-			Willkommen im internen Bereich!
-		</div>
+	<p>
+		Hier findest du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den
+		Flugbetrieb und das Vereinsleben besser organisieren zu können. Wenn du eine Frage hast, zögere nicht,
+		und schicke uns <a href="mailto:">direkt eine E-Mail</a>!
+	</p>
 
-		<ul>
-			<li><a href="#">Termine</a></li>
-			<li><a href="/file/list">Downloads</a></li>
-			<li><a href="#">Windendienst</a></li>
-			<li><a href="#">Fluglehrerdienst</a></li>
-			<li><a href="#">Kantinendienst</a></li>
-			<li><a href="#">Starterfassung</a></li>
-			<li><a href="/user/logout?skey={{ getSecurityKey() }}">Logout</a></li>
-		</ul>
-
-	</div>
+	<ul class="menu">
+		<!-- <li><a href="#">Termine</a></li> -->
+		<li><a href="/aircraft/list">Flugzeuge</a></li>
+		<li><a href="/file/list">Dokumente</a></li>
+		<!--
+		<li><a href="#">Windendienst</a></li>
+		<li><a href="#">Fluglehrerdienst</a></li>
+		<li><a href="#">Kantinendienst</a></li>
+		<li><a href="#">Starterfassung</a></li>
+		-->
+		<li><a href="/user/logout?skey={{ getSecurityKey() }}">Logout</a></li>
+	</ul>
 {% endblock %}

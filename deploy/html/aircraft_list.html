@@ -1,0 +1,22 @@
+{% extends "intern.html" %}
+{% set title = "Flugzeuge" %}
+
+{% block content %}
+	<h1>Flugzeuge</h1>
+
+	<ul class="menu">
+		{% for skel in skellist %}
+			<li>
+				<a href="/aircraft/view/{{skel.key | shortKey}}">
+					{% if skel.photo %}
+						<img src="{{ getImageSrc(skel.photo, 200) }}">
+					{% endif %}
+					<span>
+						{{skel.name}} - {{skel.reg}}
+						{{ ("(" + skel.compreg + ")") if skel.compreg else "" }}
+					</span>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "intern.html" %}
+{% set name = skel.name + (" (" + skel.compreg + ")" if skel.compreg else "") + " - " + skel.reg  %}
+{% set title = name %}
+
+{% from "macros/skelview.html" import SkelView %}
+
+{% block content %}
+	<h1>{{ name }}</h1>
+
+	<p>
+		{{"Einsitziges" if skel.seats==1 else "Doppelsitziges" if skel.seats==2 else (skel.seats + "-sitziges")}} {{skel.aircraftkind.descr }}
+		{{ ", Schleppflugzeug" if skel.is_launcher }}
+	</p>
+
+	{% if skel.photo %}
+		<div class="image" style="background-image: url({{getImageSrc(skel.photo, 1200)}}"></div>
+	{% endif %}
+
+	{{skel.description or ""}}
+
+	{% if skel.documents %}
+		<ul class="menu">
+			{% for document in skel.documents %}
+				<li>
+					<a href="/file/download/{{document.dlkey}}?fileName={{document.name}}">{{document.name}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	 {% endif %}
+
+{% endblock %}

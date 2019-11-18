@@ -23,8 +23,19 @@ indexes:
 
 - kind: equipment
   properties:
+  - name: is_clubowned
+  - name: kind
+  - name: sortindex
+
+- kind: equipment
+  properties:
   - name: kind
   - name: reg
+
+- kind: equipment
+  properties:
+  - name: kind
+  - name: sortindex
 
 - kind: section
   properties:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from server.bones import *
 from server.skeleton import Skeleton
-
+import sys, time
 
 class equipmentSkel(Skeleton):
 
@@ -11,17 +11,29 @@ class equipmentSkel(Skeleton):
 			"reg",
 			"name",
 			"photo",
-			"is_launcher"
+			"is_launcher",
+			"is_clubowned",
+			"description",
+			"documents"
 		],
 		"aircraft": [
 			"compreg",
 			"aircraftkind",
 			"seats",
-			"is_selfstarter",
+			"is_selfstarter"
 		],
 		"winch": [
 		]
 	}
+
+	sortindex = numericBone(
+		descr="SortIndex",
+		indexed=True,
+		visible=False,
+		readOnly=True,
+		mode="float",
+		max=sys.maxint
+	)
 
 	kind = selectBone(
 		descr=u"Art",
@@ -29,9 +41,9 @@ class equipmentSkel(Skeleton):
 			"aircraft": u"Flugzeug",
 			"winch": u"Winde"
 		},
-	 	defaultValue="plane",
-	 	required=True,
-	 	indexed=True
+		defaultValue="plane",
+		required=True,
+		indexed=True
 	)
 
 	reg = stringBone(
@@ -61,9 +73,10 @@ class equipmentSkel(Skeleton):
 			"glider": u"Segelflugzeug",
 			"microlight": u"Ultraleichtflugzeug",
 			"motorglider": u"Motorsegler",
-			"aircraft": u"Motorflugzeug"},
-	    indexed=True,
-	    required=True
+			"aircraft": u"Motorflugzeug"
+		},
+		indexed=True,
+		required=True
 	)
 
 	photo = fileBone(
@@ -89,3 +102,23 @@ class equipmentSkel(Skeleton):
 		defaultValue=False
 	)
 
+	is_clubowned = booleanBone(
+		descr=u"Vereinseigentum",
+		indexed=True,
+		defaultValue=False
+	)
+
+	description = textBone(
+		descr=u"Bescheibung, Technische Daten"
+	)
+
+	documents = fileBone(
+		descr=u"Dokumente",
+		multiple=True
+	)
+
+	def toDB(self, *args, **kwargs):
+		if not self["sortindex"]:
+			self["sortindex"] = time.time()
+
+		return super(equipmentSkel, self).toDB(*args, **kwargs)

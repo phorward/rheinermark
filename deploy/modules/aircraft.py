@@ -2,8 +2,11 @@
 from server.prototypes.list import List
 from skeletons.equipment import equipmentSkel
 from server import request
+from server.render.html import default as htmlRender
 
 class Aircraft(List):
+	listTemplate = "aircraft_list"
+	viewTemplate = "aircraft_view"
 
 	adminInfo = {
 		"name": u"Start: Flugzeug",
@@ -16,6 +19,13 @@ class Aircraft(List):
 		query.filter("kind", "aircraft")
 
 		if request.current.get().kwargs.get("secret") == "bea6846f04709ed":
+			return query
+
+		if not query.getOrders():
+			query.order("sortindex")
+
+		if isinstance(self.render, htmlRender):
+			query.filter("is_clubowned", True)
 			return query
 
 		return super(Aircraft, self).listFilter(query)

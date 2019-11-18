@@ -3,45 +3,43 @@
 
 
 {% block content %}
-	<div class="intern">
-		<div class="logo-big"></div>
+	<div class="logo-big"></div>
 
-		<h1 class="headline">Login</h1>
+	<h1>Login</h1>
 
-		{% if loginFailed %}
-			<div class="msg msg--error is-active">
-				{{ embedSvg("icon-cross") }}
-				<div class="msg-content">
-					<h3 class="msg-headline">Login failed!</h3>
-					<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
-				</div>
+	{% if loginFailed %}
+		<div class="msg msg--error is-active">
+			{{ embedSvg("icon-cross") }}
+			<div class="msg-content">
+				<h3 class="msg-headline">Login failed!</h3>
+				<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
 			</div>
-		{% endif %}
+		</div>
+	{% endif %}
 
-		<form method="POST" action="/user/auth_userpassword/login">
-			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+	<form method="POST" action="/user/auth_userpassword/login">
+		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
-			<div class="input-group">
-				<label class="label js-focus">
-					E-Mail / Benutzername
-					<input class="input" name="name" type="text" placeholder="E-Mail">
-				</label>
-			</div>
+		<div class="input-group">
+			<label class="label js-focus">
+				E-Mail / Benutzername
+				<input class="input" name="name" type="text" placeholder="E-Mail">
+			</label>
+		</div>
 
-			<div class="input-group">
-				<label class="label">
-					Passwort
-					<input class="input" name="password" type="password" placeholder="Passwort">
-				</label>
-			</div>
+		<div class="input-group">
+			<label class="label">
+				Passwort
+				<input class="input" name="password" type="password" placeholder="Passwort">
+			</label>
+		</div>
 
-			<input class="btn btn--primary" name="submit" type="submit" value="Login">
-		</form>
+		<input class="btn btn--primary" name="submit" type="submit" value="Login">
+	</form>
 
-		{% if not req.get("disableGoogle") %}
-			<div style="text-align: center">
-				<a class="btn btn--google" href="/user/auth_googleaccount/login">Or Login with Google…</a>
-			</div>
-		{% endif %}
-	</div>
+	{% if not req.get("disableGoogle") %}
+		<div style="text-align: center">
+			<a class="btn btn--google" href="/user/auth_googleaccount/login">Oder mit Google einloggen…</a>
+		</div>
+	{% endif %}
 {% endblock %}

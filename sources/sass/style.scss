@@ -257,10 +257,6 @@ header {
             color: black;
         }
     }
-	&.intern {
-		background-color: white;
-		color: #333;
-	}
 }
 
 .btn-icn {
@@ -533,7 +529,7 @@ a {
 /* Functional */
 .functional {
 	margin-top: 130px;
-	padding: 0 10%;
+	padding: 0 20%;
 }
 
 /* Formular */
@@ -589,31 +585,49 @@ form input[type=submit] {
 // Intern
 .intern {
 
-	& h1 {
-		font-size: 28pt;
+	& .image {
+		height: 600px;
+		background-position: center;
+		background-size: cover;
 	}
 
-	& ul {
-		font-size: 28pt;
+	& p {
+		font-size: 1.3em;
+	}
+
+	& h1 {
+		font-size: 1.6em;
+		border-bottom: 1px solid $fgcolor;
+		padding: 5px 0;
+		margin: 5px 0;
+	}
+
+	& ul.menu {
+		padding: 0;
+		maring: 5px;
+		font-size: 2em;
 		list-style-type: none;
 
 		& li {
-			transition: 1s;
-			padding: 10px;
-			margin: 5px;
-			border: 1px solid $accent-color;
-			border-radius: 5px;
-		}
-
-		& li:hover {
-			border-color: black;
-			background-color: $accent-color;
-			padding: 15px;
-
-			& a {
-				color: #fff;
+			& img {
+				vertical-align: middle;
 			}
 
+			& a {
+				display: block;
+				transition: 1s;
+				padding: 10px;
+				margin: 5px;
+				border: 1px solid $accent-color;
+				border-radius: 5px;
+			}
+
+			& a:hover {
+				border-color: black;
+				background-color: $accent-color;
+				color: white;
+				padding: 15px;
+			}
 		}
 	}
 }
@@ -681,13 +695,15 @@ form input[type=submit] {
 /* Popup box END */
 
 
-
-
 // Responsive //
 
 @media only screen and (max-width: 1350px) {
     .content-box-image {
 		width: calc(100% - 20px);
+	}
+
+	.functional {
+		padding: 0 10%;
 	}
 }
 
