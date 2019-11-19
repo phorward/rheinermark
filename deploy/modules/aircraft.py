@@ -10,7 +10,7 @@ class Aircraft(List):
 
 	adminInfo = {
 		"name": u"Start: Flugzeug",
-		"columns": ["aircraftkind", "reg", "name", "seats"],
+		"columns": ["sortindex", "aircraftkind", "reg", "name", "seats"],
 		"handler": "list.aircraft",
 		"icon": "icons/modules/list.svg",
 	}

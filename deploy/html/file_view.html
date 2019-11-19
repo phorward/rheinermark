@@ -1,0 +1,20 @@
+{% extends "intern.html" %}
+{% set title = skel.name %}
+
+{% block content %}
+	<h1>{{ skel.name }}</h1>
+
+	<ul class="menu">
+		{% for folder in getList("file", "viewNodeSkel", parentdir=skel.key, orderby="name") %}
+			<li>
+				<a href="/file/view/node/{{folder.key}}">{{folder.name}}</a>
+			</li>
+		{% endfor %}
+		{% for document in getList("file", "viewLeafSkel", parentdir=skel.key, orderby="name") %}
+			<li>
+				<a href="/file/download/{{document.dlkey}}?fileName={{document.name}}">{{document.name}}</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

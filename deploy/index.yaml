@@ -37,6 +37,16 @@ indexes:
   - name: kind
   - name: sortindex
 
+- kind: file
+  properties:
+  - name: parentdir
+  - name: name.idx
+
+- kind: file_rootNode
+  properties:
+  - name: parentdir
+  - name: name
+
 - kind: section
   properties:
   - name: online

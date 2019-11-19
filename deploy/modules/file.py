@@ -5,6 +5,7 @@ from server import utils
 from skeletons.file import fileSkel
 
 class file(File):
+	viewTemplate = "file_view"
 
 	viewLeafSkel = fileSkel
 	editLeafSkel = fileSkel

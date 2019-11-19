@@ -25,12 +25,18 @@ class appconfSkel(Skeleton):
 	# Formmailer
 	contact_rcpts = emailBone(descr=u"Empfänger für Kontaktanfrage", params={"category": "Formmailer"}, required=True)
 
+	# Mitgliederbereich
+	intern_document_folders = treeDirBone(
+		descr=u"Folder für Mitglieder",
+		kind="file",
+		multiple=True
+	)
+
 	contact_pilots_images = fileBone(
 		descr=u"Kontakt - Piloten",
 		multiple=True
 	)
 
-	#website = stringBone(descr=u"Website URL")
 	# SEO
 	seo_title = stringBone(descr=u"SEO Title", params={"category": u"SEO"})
 	seo_description = stringBone(descr=u"SEO Description", params={"category": u"SEO"})

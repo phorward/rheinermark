@@ -12,7 +12,10 @@
 	<ul class="menu">
 		<!-- <li><a href="#">Termine</a></li> -->
 		<li><a href="/aircraft/list">Flugzeuge</a></li>
-		<li><a href="/file/list">Dokumente</a></li>
+
+		{% for folder in (appconf["intern_document_folders"] or []) %}
+			<li><a href="/file/view/node/{{folder.key|shortKey}}">{{folder.name}}</a></li>
+		{% endfor %}
 		<!--
 		<li><a href="#">Windendienst</a></li>
 		<li><a href="#">Fluglehrerdienst</a></li>

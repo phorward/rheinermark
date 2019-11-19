@@ -7,6 +7,7 @@ class equipmentSkel(Skeleton):
 
 	subSkels = {
 		"*": [
+			"sortindex",
 			"kind",
 			"reg",
 			"name",
