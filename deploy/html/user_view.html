@@ -13,6 +13,10 @@
 		<!-- <li><a href="#">Termine</a></li> -->
 		<li><a href="/aircraft/list">Flugzeuge</a></li>
 
+		{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
+			<li><a href="/s/startliste">Starterfassung</a></li>
+		{% endif %}
+
 		{% for folder in (appconf["intern_document_folders"] or []) %}
 			<li><a href="/file/view/node/{{folder.key|shortKey}}">{{folder.name}}</a></li>
 		{% endfor %}
@@ -24,6 +28,14 @@
 		-->
 
 		<li><a href="/message/add">Mitteilung schicken</a></li>
+
+		{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}
+			<li><a href="/user/add">Mitglied anlegen</a></li>
+		{% endif %}
+		{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
+			<li><a href="/vi" target="_blank">System-Administration</a></li>
+		{% endif %}
+
 		<li><a href="/user/logout?skey={{ getSecurityKey() }}">Logout</a></li>
 	</ul>
 {% endblock %}

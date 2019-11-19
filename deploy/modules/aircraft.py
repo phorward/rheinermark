@@ -15,6 +15,10 @@ class Aircraft(List):
 		"icon": "icons/modules/list.svg",
 	}
 
+	roles = {
+		"*": ["view"]
+	}
+
 	def listFilter(self, query):
 		query.filter("kind", "aircraft")
 

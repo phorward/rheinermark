@@ -12,6 +12,10 @@ class Winch(List):
 		"icon": "icons/modules/list.svg",
 	}
 
+	roles = {
+		"*": ["view"]
+	}
+
 	def editSkel(self):
 		skel = equipmentSkel.subSkel("winch").ensureIsCloned()
 		skel.kind.readOnly = True

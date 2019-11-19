@@ -9,3 +9,7 @@ class Flight(List):
 		"icon": "icons/modules/tickets.svg",
 		"columns": ["name", "icao"],
 	}
+
+	roles = {
+		"*": ["view", "add"]
+	}

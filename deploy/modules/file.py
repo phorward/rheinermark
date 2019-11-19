@@ -11,6 +11,10 @@ class file(File):
 	editLeafSkel = fileSkel
 	addLeafSkel = fileSkel
 
+	roles = {
+		"*": ["view"]
+	}
+
 	def getAvailableRootNodes(self, *args, **kwargs):
 		if utils.getCurrentUser():
 			repo = self.ensureOwnModuleRootNode()

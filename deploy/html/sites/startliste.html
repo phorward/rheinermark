@@ -1,4 +1,4 @@
-{% extends "functional.html" %}
+{% extends "intern.html" %}
 
 {% set title = "Starterfassung" %}
 {% set ONLOAD="onload=\"brython({pythonpath: ['.', '/static/py/']});\"" %}
@@ -11,6 +11,9 @@
 {% endblock %}
 
 {% block content %}
+	<h1>Starterfassung / Airbatch</h1>
+	<h2 style="color: red;">Entwicklungssystem: Zur Zeit nur für Demo-Zwecke, Daten werden nicht gespeichert!</h2>
+
 	<label>
 		<input id="batch-switch" type="checkbox" checked />
 		Interaktiver Modus

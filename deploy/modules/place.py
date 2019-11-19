@@ -12,6 +12,10 @@ class Place(List):
 		"columns": ["name","icao"]
 	}
 
+	roles = {
+		"*": ["view"]
+	}
+
 	def listFilter(self, query):
 		if request.current.get().kwargs.get("secret") == "bea6846f04709ed":
 			return query

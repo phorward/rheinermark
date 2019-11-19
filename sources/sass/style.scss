@@ -535,37 +535,33 @@ a {
 /* Formular */
 form label {
 	display: block;
-	margin-top: 5px;
+	margin: 5px auto;
 	padding-left: 15px;
 }
 
-form label input {
-	width: 99%;
-	margin: 5px;
+form input, form select, form textarea  {
+	width: 95%;
+	margin: 5px auto;
 	padding: 10px;
 	font-size: 1.2em;
+	display: block;
 }
 
-form label textarea {
-	width: 100%;
+form textarea {
 	min-height: 200px;
-	margin: 5px;
-	padding: 10px;
-	font-size: 1.2em;
 }
 
-form label input[type=checkbox] {
+form input[type=checkbox] {
 	width: unset;
+	display: inline-block;
 }
 
 form input[type=submit] {
-	width: 100%;
 	padding: 12px;
 	color: #fff;
 	background-color: $accent-color;
 	border-radius: 5px;
 	border: unset;
-	margin: 10px;
 }
 
 .form-status {
@@ -591,7 +587,7 @@ form input[type=submit] {
 		background-size: cover;
 	}
 
-	& p {
+	& p, & label {
 		font-size: 1.3em;
 	}
 
