@@ -1,0 +1,13 @@
+Subject:Mitteilung von {{ skel.user.firstname }} {{ skel.user.lastname }}
+<html>
+<head><title>Mitteilung von {{ skel.user.firstname }} {{ skel.user.lastname }}</title></head>
+<body>
+
+{{ skel.user.firstname }} {{ skel.user.lastname }} teilt folgendes mit:
+
+<strong>Nachricht</strong><br/>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br/>
+<pre>{{ skel.message }}</pre>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</body>
+</html>

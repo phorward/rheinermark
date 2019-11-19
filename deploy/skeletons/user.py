@@ -27,6 +27,12 @@ class userSkel(skeleton.Skeleton):
 		descr=u"Foto"
 	)
 
+	viewname = stringBone(
+		descr=u"Anzeigename",
+		readOnly=True,
+		indexed=True
+	)
+
 	firstname = stringBone(
 		descr=u"Vorname",
 		required=True,

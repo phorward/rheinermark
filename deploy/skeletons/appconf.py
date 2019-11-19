@@ -23,7 +23,34 @@ class appconfSkel(Skeleton):
 	)
 
 	# Formmailer
-	contact_rcpts = emailBone(descr=u"Empfänger für Kontaktanfrage", params={"category": "Formmailer"}, required=True)
+	contact_rcpts = emailBone(
+		descr=u"Empfänger für Kontaktanfrage",
+		params={"category": "Formmailer"},
+		required=True
+	)
+
+	contact_executive = emailBone(
+		descr=u"Empfänger an Vorstand",
+		params={"category": "Formmailer"},
+		required=True
+	)
+
+	contact_training_glider = emailBone(
+		descr=u"Empfänger Schulung - Segelflug",
+		params={"category": "Formmailer"},
+		required=True
+	)
+	contact_training_microlight = emailBone(
+		descr=u"Empfänger Schulung - Ultraleicht",
+		params={"category": "Formmailer"},
+	    required=True
+	)
+
+	contact_website = emailBone(
+		descr=u"Empfänger an Webseite",
+		params={"category": "Formmailer"},
+		required=True
+	)
 
 	# Mitgliederbereich
 	intern_document_folders = treeDirBone(
