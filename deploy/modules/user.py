@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from server.modules.user import User
 from server.render.html import default as htmlRender
-
+from server import errors, exposed
 
 class user(User):
 	viewTemplate = "user_view"
@@ -33,3 +33,15 @@ class user(User):
 			skel.viewname.visible = False
 
 		return skel
+
+	@exposed
+	def view(self, key, *args, **kwargs):
+		try:
+			ret =  super(user, self).view(key, *args, **kwargs)
+		except errors.Unauthorized:
+			if isinstance(self.render, htmlRender):
+				raise errors.Redirect("/user/login")
+
+			raise
+
+		return ret

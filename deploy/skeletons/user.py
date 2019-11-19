@@ -81,7 +81,7 @@ class userSkel(skeleton.Skeleton):
 		descr=u"Rolle",
 		required=True,
 		indexed=True,
-		defaultValue="member",
+		defaultValue="user",
 		values=OrderedDict([
 			("member", u"Mitglied"),
 			("executive", u"Vorstand"),
@@ -101,7 +101,10 @@ class userSkel(skeleton.Skeleton):
 
 	def toDB(self, *args, **kwargs):
 		# viewname
-		self["viewname"] = ", ".join([self["lastname"], self["firstname"]])
+		try:
+			self["viewname"] = ", ".join([self["lastname"], self["firstname"]])
+		except TypeError:
+			pass
 
 		# airbatch
 		self["airbatch"] = bool(self["airbatch_daec"])

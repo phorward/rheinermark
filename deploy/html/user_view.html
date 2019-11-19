@@ -1,4 +1,5 @@
 {% extends "intern.html" %}
+{% set title = skel["viewname"] %}
 
 {% block content %}
 	<h1>Hallo {{ skel["firstname"] or "" -}}!</h1>
@@ -14,7 +15,7 @@
 		<li><a href="/aircraft/list">Flugzeuge</a></li>
 
 		{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
-			<li><a href="/s/startliste">Starterfassung</a></li>
+			<li><a href="/s/startliste">Starterfassung (DEMO)</a></li>
 		{% endif %}
 
 		{% for folder in (appconf["intern_document_folders"] or []) %}
