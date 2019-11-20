@@ -2,7 +2,11 @@
 {% set title = skel.name %}
 
 {% block content %}
-	<h1>{{ skel.name }}</h1>
+	<h1>
+		{% for part in getPathToKey(skel.key)[1:] %}
+			/ <a href="/file/view/node/{{ part.key }}">{{ part.name }}</a>
+		{% endfor %}
+	</h1>
 
 	<ul class="menu">
 		{% for folder in getList("file", "viewNodeSkel", parentdir=skel.key, orderby="name") %}

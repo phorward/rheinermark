@@ -4,12 +4,12 @@
 {% block content %}
 	<h1>Flugzeuge</h1>
 
-	<ul class="menu">
+	<ul class="menu left">
 		{% for skel in skellist %}
 			<li>
 				<a href="/aircraft/view/{{skel.key | shortKey}}">
 					{% if skel.photo %}
-						<img src="{{ getImageSrc(skel.photo, 200) }}">
+						<img src="{{ getImageSrc(skel.photo, 150, True) }}">
 					{% endif %}
 					<span>
 						{{skel.name}} - {{skel.reg}}

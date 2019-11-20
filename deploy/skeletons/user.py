@@ -96,7 +96,7 @@ class userSkel(skeleton.Skeleton):
 		required=True,
 		indexed=True,
 		multiple=True,
-		defaultValue=["newsletter"],
+		defaultValue=["newsletter", "website"],
 		sortBy="values",
 		values={
 			"microlight": u"Ultraleicht",
@@ -104,7 +104,8 @@ class userSkel(skeleton.Skeleton):
 			"motorglider": u"Motorsegelflug",
 			"newsletter": u"Newsletter",
 			"trainee": u"Flugschüler",
-			"youth": u"Jugendgruppe"
+			"youth": u"Jugendgruppe",
+			"website": u"Website-Aktualisierungen"
 		},
 		params={
 			"tooltip": u"Hier kannst du einstellen welche Informationen für dich relevant sind.\n"

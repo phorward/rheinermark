@@ -641,21 +641,22 @@ form .option-group {
 
 	& ul.menu {
 		width: 100%;
-		text-align: center;
 		padding: 0;
 		margin: 5px;
 		font-size: 2em;
 		list-style-type: none;
 
 		& li {
+
 			& img {
 				vertical-align: middle;
+				border-radius: 5px;
 			}
 
 			& a {
 				display: block;
 				transition: 1s;
-				padding: 10px;
+				padding: 10px 20px;
 				margin: 5px;
 				border: 1px solid $accent-color;
 				border-radius: 5px;
@@ -665,7 +666,7 @@ form .option-group {
 				border-color: black;
 				background-color: $accent-color;
 				color: white;
-				padding: 15px;
+				padding: 15px 20px;
 			}
 		}
 	}
