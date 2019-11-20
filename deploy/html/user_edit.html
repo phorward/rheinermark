@@ -1,0 +1,17 @@
+{% extends "intern.html" %}
+{% from "macros/skelview.html" import SkelView %}
+
+{% block content %}
+	<h1 class="headline">Einstellungen für {{ skel.values.viewname }}</h1>
+
+	<p>
+		In diesem Bereich kannst du deine persönlichen Einstellungen verwalten sowie deine persönlichen Daten einsehen.<br>
+		Einige der Felder können nur durch einen Administrator geändert werden.<br><br>
+		Schicke uns in diesem Fall <a href="/message/add">bitte eine kurze Mitteilung</a>.
+	</p>
+
+	<form action="/{{ moduleName() }}/edit" method="POST">
+		{{ renderEditForm(skel) }}
+		<input class="btn btn--primary" type="submit">
+	</form>
+{% endblock %}

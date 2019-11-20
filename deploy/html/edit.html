@@ -7,12 +7,12 @@
 	- add a line `editTemplate = "<Your-Module>_edit"` inside your module class
 #}
 
-{% extends "viur_base.html" %}
+{% extends "intern.html" %}
 
 {% block content %}
 	<h1 class="headline">Edit entry {{ skel.value.key }} of {{ moduleName() }}</h1>
 
-	<form action="{{ moduleName() }}/edit" method="POST">
+	<form action="/{{ moduleName() }}/edit" method="POST">
 		{{ renderEditForm(skel) }}
 		<input class="btn btn--primary" type="submit">
 	</form>

@@ -7,8 +7,15 @@
 	<p>
 		Hier findest du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den
 		Flugbetrieb und das Vereinsleben besser organisieren zu können. Wenn du eine Frage oder Mitteilung hast,
-		zögere nicht, und schicke uns <a href="/message/add">hier direkt eine Nachricht</a>.
+		zögere nicht, und <a href="/message/add">schicke uns hier direkt eine Nachricht</a>.
 	</p>
+
+	{#
+	<div class="wrapper">
+		<div>Calendar</div>
+		<div>Menu</div>
+	</div>
+	#}
 
 	<ul class="menu">
 		<!-- <li><a href="#">Termine</a></li> -->
@@ -28,6 +35,7 @@
 		<li><a href="#">Starterfassung</a></li>
 		-->
 
+		<li><a href="/user/edit">Einstellungen</a></li>
 		<li><a href="/message/add">Mitteilung schicken</a></li>
 
 		{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}

@@ -527,6 +527,21 @@ a {
 }
 
 /* Formular */
+form {
+	& .hint {
+		color: $accent-color;
+		background-color: #ffffcc;
+		border: 1px solid $accent-color;
+		border-radius: 5px;
+		margin: 5px auto;
+		padding: 15px;
+	}
+
+	& .error {
+		color: red;
+	}
+}
+
 form label {
 	display: block;
 	margin: 5px auto;
@@ -556,6 +571,14 @@ form input[type=submit] {
 	background-color: $accent-color;
 	border-radius: 5px;
 	border: unset;
+}
+
+form .option-group {
+	padding-left: 30px;
+
+	& label {
+		display: inline;
+	}
 }
 
 .form-status {
@@ -593,10 +616,13 @@ form input[type=submit] {
 		background-size: cover;
 	}
 
-	& .box {
-		display: inline-block;
-		min-width: 50%;
-		float: left;
+	& .wrapper {
+		display: flex;
+		flex-direction: row;
+	}
+
+	& .wrapper > * {
+		flex: 0 0 50%;
 		padding: 5px;
 	}
 
@@ -759,5 +785,9 @@ form input[type=submit] {
 
 	.functional.text {
 		padding: 0 2%;
+	}
+
+	.intern .wrapper {
+		flex-direction: column;
 	}
 }

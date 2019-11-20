@@ -1,0 +1,14 @@
+{% extends "intern.html" %}
+
+{% block content %}
+	<h1 class="headline">Mitglied anlegen</h1>
+	<p>
+		Neue Mitglieder können hier einfach und unkompliziert angelegt werden.<br>
+		Zum Löschen oder Ändern von Mitglieder bitte die <a href="/vi/s/main.html#user/list">Admin-Oberfläche benutzen.</a>
+	</p>
+
+	<form action="/{{ moduleName() }}/add" method="POST">
+		{{ renderEditForm(skel) }}
+		<input class="btn btn--primary" type="submit">
+	</form>
+{% endblock %}

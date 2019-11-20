@@ -1,3 +1,6 @@
 # -*- coding: utf-8 -*-
 
-de = {}
+de = {
+	"password": u"Passwort",
+	"re-enter": u"Nochmalige Eingabe von"
+}

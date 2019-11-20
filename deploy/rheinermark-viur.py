@@ -32,6 +32,9 @@ from server import conf, securityheaders
 
 #conf["viur.disableCache"] = True
 
+# Set cookie lifeTime to 4 months
+conf["viur.session.lifeTime"] = 4*24*60*60
+
 # ------------------------------------------------------------------------------
 # Language-specific configuration
 #

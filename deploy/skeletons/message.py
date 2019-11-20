@@ -16,12 +16,11 @@ class messageSkel(Skeleton):
 	division = selectBone(
 		descr=u"Empfänger",
 		values=OrderedDict([
-			("executive", "Vorstand"),
+			("website", "Website und Mitgliedersystem"),
 			("training_glider", "Ausbildung - Segelflug"),
 			("training_microlight", "Ausbildung - Ultraleicht"),
-			("website", "Website und Mitgliedersystem")
+			("executive", "Vorstand")
 		]),
-		defaultValue="website",
 		required=True
 	)
 

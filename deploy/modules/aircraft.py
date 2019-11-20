@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from server.prototypes.list import List
+from prototypes import SortedList
 from skeletons.equipment import equipmentSkel
 from server import request
 from server.render.html import default as htmlRender
 
-class Aircraft(List):
+class Aircraft(SortedList):
 	listTemplate = "aircraft_list"
 	viewTemplate = "aircraft_view"
 
@@ -20,19 +20,20 @@ class Aircraft(List):
 	}
 
 	def listFilter(self, query):
-		query.filter("kind", "aircraft")
-
 		if request.current.get().kwargs.get("secret") == "bea6846f04709ed":
 			return query
 
-		if not query.getOrders():
-			query.order("sortindex")
+		query = super(Aircraft, self).listFilter(query)
+		if not query:
+			return None
+
+		query.filter("kind", "aircraft")
 
 		if isinstance(self.render, htmlRender):
 			query.filter("is_clubowned", True)
 			return query
 
-		return super(Aircraft, self).listFilter(query)
+		return query
 
 	def editSkel(self):
 		skel = equipmentSkel.subSkel("aircraft").ensureIsCloned()

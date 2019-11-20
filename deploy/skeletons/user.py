@@ -12,21 +12,6 @@ class userSkel(skeleton.Skeleton):
 		"executive": ["view", "add", "edit", "delete"]
 	}
 
-	name = emailBone(
-		descr="E-Mail",
-		caseSensitive=False,
-		searchable=True,
-		indexed=True,
-		unique=True,
-		required=True
-	)
-
-	password = passwordBone(
-		descr="Password",
-		readOnly=True,
-		visible=False
-	)
-
 	uid = stringBone(descr="Google's UserID", indexed=True, readOnly=True, unique=True, visible=False)
 	gaeadmin = booleanBone(descr="Is GAE Admin", defaultValue=False, readOnly=True, visible=False)
 
@@ -66,7 +51,7 @@ class userSkel(skeleton.Skeleton):
 		descr=u"Vorname",
 		required=True,
 		indexed=True,
-		searchable=True
+		searchable=True,
 	)
 
 	lastname = stringBone(
@@ -74,6 +59,21 @@ class userSkel(skeleton.Skeleton):
 		required=True,
 		indexed=True,
 		searchable=True
+	)
+
+	name = emailBone(
+		descr="E-Mail",
+		caseSensitive=False,
+		searchable=True,
+		indexed=True,
+		unique=True,
+		required=True,
+	)
+
+	password = passwordBone(
+		descr="Password",
+		readOnly=True,
+		visible=False,
 	)
 
 	# Access
@@ -90,6 +90,28 @@ class userSkel(skeleton.Skeleton):
 		params={"category": u"Zugriffsrechte"}
 	)
 
+	# Interests
+	interests = selectBone(
+		descr=u"Interessen",
+		required=True,
+		indexed=True,
+		multiple=True,
+		defaultValue=["newsletter"],
+		sortBy="values",
+		values={
+			"microlight": u"Ultraleicht",
+			"soaring": u"Segelflug",
+			"motorglider": u"Motorsegelflug",
+			"newsletter": u"Newsletter",
+			"trainee": u"Flugschüler",
+			"youth": u"Jugendgruppe"
+		},
+		params={
+			"tooltip": u"Hier kannst du einstellen welche Informationen für dich relevant sind.\n"
+			           u"Um den Newsletter nicht zu erhalten, deaktiviere bitte den Haken dort."
+		}
+	)
+
 	access = selectAccessBone(
 		descr="Access rights",
 		values={"root": "Superuser"},
@@ -98,6 +120,16 @@ class userSkel(skeleton.Skeleton):
 		    "logic.readonlyIf": "role != 'user'",
 	        "category": u"Zugriffsrechte"}
 	)
+
+	def fromClient(self, data):
+		ret = super(userSkel, self).fromClient(data)
+
+		if ret and "password" in self and data.get("password") and not self.password.readOnly:
+			if data["password"] != self["password"]:
+				return False
+
+		return ret
+
 
 	def toDB(self, *args, **kwargs):
 		# viewname

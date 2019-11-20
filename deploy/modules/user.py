@@ -5,8 +5,13 @@ from server import errors, exposed
 
 class user(User):
 	viewTemplate = "user_view"
-	addTemplate = "add"
-	addSuccessTemplate = "add_success"
+	addTemplate = "user_add"
+	addSuccessTemplate = "user_add_success"
+	editTemplate = "user_edit"
+	editSuccessTemplate = "user_edit_success"
+
+	def canEdit(self, skel):
+		return super(user, self).canView(skel) #All users can edit themself!
 
 	def addSkel(self):
 		skel = super(user, self).addSkel()
@@ -17,20 +22,32 @@ class user(User):
 			skel["role"] = "member"
 			skel["status"] = 1
 
-			skel.role.visible = False
-			skel.role.readOnly = True
+			for name, bone in skel.items():
+				if name in ["name", "firstname", "lastname", "airbatch_daec", "interests"]:
+					bone.readOnly = False
+					bone.visible = True
+				else:
+					bone.visible = False
+					bone.readOnly = True
 
-			skel.access.visible = False
-			skel.access.readOnly = True
+		return skel
 
-			skel.status.visible = False
-			skel.status.readOnly = True
+	def editSkel(self):
+		skel = super(user, self).editSkel()
 
-			skel.password.visible = False
-			skel.password.readOnly = True
+		if isinstance(self.render, htmlRender):
+			skel = skel.ensureIsCloned()
 
-			skel.lastlogin = None
-			skel.viewname.visible = False
+			for name, bone in skel.items():
+				if name in ["name", "password", "interests"]:
+					bone.readOnly = False
+					bone.visible = True
+				elif name in ["firstname", "lastname"]:
+					bone.readOnly = True
+					bone.visible = True
+				else:
+					bone.readOnly = True
+					bone.visible = False
 
 		return skel
 

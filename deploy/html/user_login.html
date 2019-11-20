@@ -7,13 +7,7 @@
 	<h1>Login</h1>
 
 	{% if loginFailed %}
-		<div class="msg msg--error is-active">
-			{{ embedSvg("icon-cross") }}
-			<div class="msg-content">
-				<h3 class="msg-headline">Login failed!</h3>
-				<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
-			</div>
-		</div>
+		<p><strong>Login fehlgeschlagen!</strong></p>
 	{% endif %}
 
 	<form method="POST" action="/user/auth_userpassword/login">
