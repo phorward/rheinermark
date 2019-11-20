@@ -42,7 +42,7 @@ class user(User):
 				if name in ["name", "password", "interests"]:
 					bone.readOnly = False
 					bone.visible = True
-				elif name in ["firstname", "lastname"]:
+				elif name in []:
 					bone.readOnly = True
 					bone.visible = True
 				else:
