@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from server.modules.user import User
 from server.render.html import default as htmlRender
-from server import errors, exposed
+from server import utils, errors, exposed
+from server.tasks import callDeferred
+import logging
+
 
 class user(User):
 	viewTemplate = "user_view"
@@ -15,12 +18,13 @@ class user(User):
 
 	def addSkel(self):
 		skel = super(user, self).addSkel()
+		skel["password"] = utils.generateRandomString(10)
 
 		if isinstance(self.render, htmlRender):
 			skel = skel.ensureIsCloned()
 
 			skel["role"] = "member"
-			skel["status"] = 1
+			skel["status"] = 10
 
 			for name, bone in skel.items():
 				if name in ["name", "firstname", "lastname", "airbatch_daec", "interests"]:
@@ -50,6 +54,26 @@ class user(User):
 					bone.visible = False
 
 		return skel
+
+	def onItemAdded(self, skel):
+		if skel["password"]:
+			self.sendWelcomeMail(str(skel["key"]), skel["password"])
+
+		return super(user, self).onItemAdded(skel)
+
+	@callDeferred
+	def sendWelcomeMail(self, key, initial):
+		skel = self.viewSkel()
+		assert skel.fromDB(key)
+
+		skel["password"] = initial
+		logging.info("initial = %r", initial)
+
+		utils.sendEMail(
+			[skel["name"], "jmm@phorward.de"],
+			"user_welcome",
+			skel
+		)
 
 	@exposed
 	def view(self, key, *args, **kwargs):

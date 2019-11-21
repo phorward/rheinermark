@@ -1,13 +1,17 @@
 {% extends "intern.html" %}
-{% set title = skel["viewname"] %}
+{% set title = "Mitgliederbereich [" + skel["viewname"] + "]" %}
 
 {% block content %}
 	<h1>Hallo {{ skel["firstname"] or "" -}}!</h1>
 
 	<p>
-		Hier findest du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den
-		Flugbetrieb und das Vereinsleben besser organisieren zu können. Wenn du eine Frage oder Mitteilung hast,
+		In diesem Bereich findest Du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den
+		Flugbetrieb und das Vereinsleben besser organisieren zu können. Wenn Du eine Frage oder Mitteilung an uns hast,
 		zögere nicht, und <a href="/message/add">schicke uns hier direkt eine Nachricht</a>.
+	</p>
+
+	<p>
+		Tipp: Um schnell wieder zurück in dieses Menü zu gelangen, tippe einfach auf das Logo oben rechts.
 	</p>
 
 	{#

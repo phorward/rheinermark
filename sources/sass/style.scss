@@ -25,6 +25,12 @@ body {
 
 a {
     text-decoration: none;
+	color: $accent-color;
+    font-weight: bold;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 p, li, label {
@@ -515,15 +521,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-a {
-    color: $accent-color;
-    font-weight: bold;
-    margin-top: 15px;
-    &:hover {
-        opacity: 0.8;
-    }
 }
 
 /* Formular */

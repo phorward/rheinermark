@@ -1,8 +1,9 @@
 {% extends "intern.html" %}
 {% from "macros/skelview.html" import SkelView %}
+{% set title = "Einstellungen ändern" %}
 
 {% block content %}
-	<h1 class="headline">Einstellungen für {{ skel.values.viewname }}</h1>
+	<h1 class="headline">Einstellungen für {{ skel.value.viewname }}</h1>
 
 	<p>
 		In diesem Bereich kannst du deine persönlichen Einstellungen verwalten.<br>
@@ -12,6 +13,6 @@
 
 	<form action="/{{ moduleName() }}/edit" method="POST">
 		{{ renderEditForm(skel) }}
-		<input class="btn btn--primary" type="submit">
+		<input class="btn btn--primary" type="submit" value="Einstellungen speichern">
 	</form>
 {% endblock %}

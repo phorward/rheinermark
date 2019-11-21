@@ -1,6 +1,5 @@
 {%- set serverurl = getHostUrl() -%}
 {%- set lang = getLanguage() -%}
-
 <!DOCTYPE html>
 <html lang="{{ lang }}">
 <head>
@@ -24,6 +23,7 @@
             padding: 0;
             -ms-text-size-adjust: 100%;
             -webkit-text-size-adjust: 100%;
+			color: #333;
         }
 
         table {
@@ -52,17 +52,36 @@
             background-color: #ebebeb;
         }
 
-        a, a:link, a:visited, a:active {color:#d00f1c;}
-        a:hover {color:#cc0000;}
+		a, a:link, a:visited {
+			text-decoration: none;
+			color: #005e8a;
+			font-weight: bold;
+		}
+
+		a:hover {
+			opacity: 0.8;
+		}
 
         table {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
+            mso-table-lspace: 0;
+            mso-table-rspace: 0;
         }
 
         img {
             -ms-interpolation-mode: bicubic;
         }
+
+		p, label {
+			font-size: 1.3em;
+		}
+
+		h1 {
+			font-size: 1.6em;
+			border-bottom: 1px solid grey;
+			padding: 5px 0;
+			margin: 5px 0;
+			width: 100%;
+		}
 
         .yshortcuts a {
             border-bottom: none !important;
@@ -101,11 +120,11 @@
 
             <!-- 600px container (white background) -->
             <table border="0" width="600" cellpadding="0" cellspacing="0" class="container"
-                   style="width:600px;max-width:600px">
+                   style="width:60%;min-width:600px">
                 <tr>
-                    <td class="container-padding header" align="left"
+                    <td class="container-padding header" align="center"
                         style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:14px;font-weight:300;padding-bottom:12px;color:#d00f1c;padding-left:24px;padding-right:24px">
-                        ViMail
+                        <img src="{{ serverurl }}/static/img/logo.svg" style="width: 450px;">
                     </td>
                 </tr>
                 <tr>
@@ -121,21 +140,18 @@
                 <tr>
                     <td class="container-padding footer-text" align="left"
                         style="font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:12px;line-height:16px;color:#aaaaaa;padding-left:24px;padding-right:24px">
-                        <br><br>
-                        &hearts; 2019 ViUR Mailer Version 0.7<br>
-                        Mehr zum ViUR Informationssystem unter <a href="https://www.viur.is" style="color:#aaaaaa">www.viur.is</a>
-                        <br><br>
 
                         {% block unsubscribe %}
-                            You are receiving this email because you opted in on our website.
-                            Update your <a href="#">email preferences</a> or <a href="#">unsubscribe</a>.
-                            <br><br>
+							Du erhälst diese E-Mail weil du Mitglied im <strong>LSV Ruhr-Lenne Iserlohn e.V.</strong> bist.<br>
+							Um Dich abzumelden oder aus dem System zu löschen, sende uns bitte <a href="{{ login }}">eine Mittelung</a>.
+							<br><br>
                         {% endblock %}
 
-                        <strong>Mausbrand Informationssysteme GmbH</strong><br>
+                        <strong>Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.</strong><br>
 						<span class="ios-footer">
-							Speicherstraße 33<br>
-							44147 Dortmund<br>
+							Segelfluggelände Iserlohn-Rheinermark<br>
+							Nordhauser Str. 14<br>
+							58640 Iserlohn
 						</span>
                         <br><br>
 

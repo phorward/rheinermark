@@ -1,0 +1,43 @@
+Subject:Deine Zugangsdaten für segelfliegen.com
+{% extends "viur_mail_default.html" %}
+
+{% block title %}
+	Deine Zugangsdaten
+{% endblock %}
+
+{% block content %}
+	{% set login = serverurl|replace("http:", "https:") + "/user/login" %}
+
+	<h1>Hallo {{ skel.firstname }}!</h1>
+
+	<p>
+		Hiermit erhälst du Deine Zugangsdaten für den
+		<strong>Mitgliederbereich der Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.</strong>
+		auf <a href="https://www.segelfliegen.com">segelfliegen.com</a>.<br>
+
+		Dort findest Du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den Flugbetrieb
+		und das Vereinsleben besser organisieren zu können.<br><br>
+
+		Das neue System wird ständig weiterentwickelt und um neue Funktionen erweitert.<br>
+		Auch freuen wir uns natürlich über dein Feedback!
+	</p>
+
+	<p>
+		Für Deine Anmeldung im System, besuche bitte die URL <a href="{{ login }}">{{login}}</a> und verwende folgende
+		Anmeldedaten:
+	</p>
+	<p style="padding-left: 25px;">
+		Login: <strong>{{ skel["name"] }}</strong><br>
+		Passwort: <strong>{{ skel["password"] }}</strong>
+	</p>
+
+	<p>
+		Du wirst anschließend die Möglichkeit haben, Dein persönliches Passwort einzustellen, sowie Themen
+		zu definieren, die Dich interessieren.
+	</p>
+
+	<p>
+		Viele Spaß!
+	</p>
+{% endblock %}
+
