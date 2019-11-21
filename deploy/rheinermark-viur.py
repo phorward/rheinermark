@@ -24,7 +24,7 @@
 #
 # ------------------------------------------------------------------------------
 
-from server import conf, securityheaders
+from server import conf, securityheaders, request
 
 # ------------------------------------------------------------------------------
 # General configuration
@@ -50,6 +50,34 @@ conf["admin.vi.name"] = "rheinermark-viur"
 conf["admin.moduleGroups"] = [
 	{"prefix":u"Start: ", "name": u"Starterfassung", "icon": "icons/modules/tickets.svg"},
 ]
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Request preprocessor
+#
+
+def handleRequest(path):
+	"""
+	This simple request preprocessor can be used to canalize all requests coming
+	from several domains and 301 redirects them to a main URL.
+	"""
+	if "X-AppEngine-TaskName" in request.current.get().request.headers:
+		return path
+
+	mainUrl = "https://www.segelfliegen.com"
+	url = request.current.get().request.url.lower()
+
+	if not url.startswith(mainUrl):
+		for proto in ["http://", "https://"]:
+			if url.startswith(proto):
+				for other in ["segelfliegen.com"]:
+					#logging.debug("url = %r startswith = %r", url[len(proto):], other)
+
+					if url[len(proto):].startswith(other):
+						raise server.errors.Redirect(mainUrl + url[len(proto) + len(other):], status=301)
+
+	return path
+
+conf["viur.requestPreprocessor"] = handleRequest
 
 # ------------------------------------------------------------------------------
 # Content Security Policy

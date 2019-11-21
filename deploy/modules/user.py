@@ -68,10 +68,10 @@ class user(User):
 		assert skel.fromDB(key)
 
 		skel["password"] = initial
-		logging.info("initial = %r", initial)
+		#logging.info("initial = %r", initial)
 
 		utils.sendEMail(
-			[skel["name"], "jmm@phorward.de"],
+			skel["name"],
 			"user_welcome",
 			skel
 		)
