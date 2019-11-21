@@ -29,7 +29,7 @@ setInterval(() => {
 }, 10000);
 
 //impressum popup
-$(window).on('load', function() {
+$(window).ready(function() {
 	//menubar background color when scroll
 	if( $("#fv").length )
 	{
@@ -129,5 +129,19 @@ $(window).on('load', function() {
 
 		return false;
 	});
+
+  	// Cookie consent
+	if (document.cookie.indexOf("cookie-consent=confirmed") < 0 ) {
+		$("#cookieConsent").fadeIn(200);
+
+		$("#cookieConsentOK").click(function() {
+			var expires = new Date();
+			expires.setFullYear(expires.getFullYear() + 1);
+
+			document.cookie = "cookie-consent=confirmed; expires=" + expires.toUTCString() + "; path=/";
+
+			$("#cookieConsent").fadeOut(200);
+		});
+	}
 });
 
