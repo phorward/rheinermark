@@ -12,7 +12,10 @@
 	<ul class="menu left">
 		{% for folder in getList("file", "viewNodeSkel", parentdir=skel.key, orderby="name") %}
 			<li>
-				<a href="/file/view/node/{{folder.key}}">{{folder.name}}</a>
+				<a href="/file/view/node/{{folder.key}}">
+					<img class="icon" src="/static/icons/folder.svg">
+					{{folder.name}}
+				</a>
 			</li>
 		{% endfor %}
 		{% for document in getList("file", "viewLeafSkel", parentdir=skel.key, orderby="name") %}

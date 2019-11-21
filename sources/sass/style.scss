@@ -651,6 +651,12 @@ form .option-group {
 				border-radius: 5px;
 			}
 
+			& img.icon {
+				width: 2em;
+				height: 2em;
+				background-color: $accent-color;
+			}
+
 			& a {
 				display: block;
 				transition: 1s;
