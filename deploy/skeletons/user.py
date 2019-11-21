@@ -76,6 +76,10 @@ class userSkel(skeleton.Skeleton):
 		visible=False,
 	)
 
+	changepassword = booleanBone(
+		descr=u"Passwortänderung erzwingen"
+	)
+
 	# Access
 	role = selectBone(
 		descr=u"Rolle",
@@ -108,8 +112,7 @@ class userSkel(skeleton.Skeleton):
 			"website": u"Website-Aktualisierungen"
 		},
 		params={
-			"tooltip": u"Hier kannst du einstellen welche Informationen für dich relevant sind.\n"
-			           u"Um den Newsletter nicht zu erhalten, deaktiviere bitte den Haken dort."
+			"tooltip": u"Hier kannst Du angeben, welche Informationen für Dich relevant sind."
 		}
 	)
 
@@ -128,6 +131,8 @@ class userSkel(skeleton.Skeleton):
 		if ret and "password" in self and data.get("password") and not self.password.readOnly:
 			if data["password"] != self["password"]:
 				return False
+
+			self["changepassword"] = False
 
 		return ret
 

@@ -1,11 +1,11 @@
 {% extends "intern.html" %}
-{% from "macros/skelview.html" import SkelView %}
+{% set goto = "/user/view" %}
 
 {% block content %}
 	<h1>Einstellungen erfolgreich gespeichert!</h1>
 
 	<p>
-		Wir haben deine Einstellungen gespeichert!<br>
-		<a href="/user/view/self">Weiter ➤</a>
+		Deine Einstellungen wurden erfolgreich übernommen!<br>
+		<a href="{{ goto }}">Weiter ➤</a>
 	</p>
 {% endblock %}

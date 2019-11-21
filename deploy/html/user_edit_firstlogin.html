@@ -1,0 +1,17 @@
+{% extends "intern.html" %}
+{% set title = "Persönliches Passwort einstellen!" %}
+
+{% block content %}
+	<h1 class="headline">Hallo {{ skel.value.firstname }}!</h1>
+
+	<p>
+		Bitte gebe nun zuerst Dein persönliches Passwort ein.<br>
+		Dieses muss mindestens 8 Zeichen lang sein und aus Groß- und Kleinbuchstaben bestehen.
+	</p>
+
+	<form action="/{{ moduleName() }}/edit?style=firstlogin" method="POST">
+		<input type="hidden" name="name" value="{{ skel.value.name }}" />
+		{{ renderEditForm(skel, ignore=["name"]) }}
+		<input class="btn btn--primary" type="submit" value="Einstellungen speichern">
+	</form>
+{% endblock %}

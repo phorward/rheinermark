@@ -1,10 +1,10 @@
 {% extends "intern.html" %}
-{% from "macros/skelview.html" import SkelView %}
+{% set goto = "/user/view" %}
 
 {% block content %}
 	<h1>Mitglied erfolgreich angelegt!</h1>
 	<p>
 		Das Mitglied erhält nun automatische eine E-Mail mit den Login-Daten.<br>
-		<a href="/user/view/self">Weiter ➤</a>
+		<a href="{{ goto }}">Weiter ➤</a>
 	</p>
 {% endblock %}

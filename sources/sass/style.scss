@@ -611,7 +611,8 @@ form .option-group {
 	& .image {
 		height: 600px;
 		background-position: center;
-		background-size: cover;
+		background-size: contain;
+		background-repeat: no-repeat;
 	}
 
 	& .wrapper {

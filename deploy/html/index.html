@@ -29,6 +29,10 @@
 	<meta name="robots" content="index, follow">
 	<meta name="language" content="de-DE">
 
+	{% if goto %}
+		<meta http-equiv="refresh" content="3; URL={{goto}}">
+	{% endif %}
+
 	<meta property="og:title" content="{{ skel["seo_title"] or appconf["seo_title"] or skel["title"] or skel["name"] or title }}" />
 	<meta property="og:description" content="{{ skel["seo_description"] or appconf["seo_description"] }}" />
     <meta property="og:image" content="{{ getImageSrc(skel["seo_image"] or appconf["seo_image"] or (getHostUrl() + "/static/img/logo.svg")) }}" />
@@ -76,9 +80,8 @@
 		</span>
 	</button>
 
-	<a href="{{ "/" if not cuser else "/user/view/self" }}" class="logo"></a>
+	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo"></a>
 </div>
-
 
 <div class="mobilemenu-wrapper {{mode}}">
 	<div class="mobilemenu">

@@ -3,6 +3,7 @@ from server.modules.user import User
 from server.render.html import default as htmlRender
 from server import utils, errors, exposed
 from server.tasks import callDeferred
+from bones import passwordBone
 import logging
 
 
@@ -19,6 +20,7 @@ class user(User):
 	def addSkel(self):
 		skel = super(user, self).addSkel()
 		skel["password"] = utils.generateRandomString(10)
+		skel["changepassword"] = True
 
 		if isinstance(self.render, htmlRender):
 			skel = skel.ensureIsCloned()
@@ -38,10 +40,9 @@ class user(User):
 
 	def editSkel(self):
 		skel = super(user, self).editSkel()
+		skel.password = passwordBone(descr=u"Passwort", required=False) #scheiss ViUR...
 
 		if isinstance(self.render, htmlRender):
-			skel = skel.ensureIsCloned()
-
 			for name, bone in skel.items():
 				if name in ["name", "password", "interests"]:
 					bone.readOnly = False
@@ -76,7 +77,7 @@ class user(User):
 		)
 
 	@exposed
-	def view(self, key, *args, **kwargs):
+	def view(self, key="self", *args, **kwargs):
 		try:
 			ret =  super(user, self).view(key, *args, **kwargs)
 		except errors.Unauthorized:

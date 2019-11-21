@@ -1,7 +1,15 @@
 {% extends "intern.html" %}
-{% set title = "Mitgliederbereich [" + skel["viewname"] + "]" %}
+
+{% set title = "Mitgliederbereich" %}
+{% if skel["firstname"] and skel["lastnamename"] %}
+	set title = title + " von " + skel["firstname"] + " " + skel["lastnamename"]
+{% endif %}
 
 {% block content %}
+	{% if skel.changepassword %}
+		{{ redirect("/user/edit?style=firstlogin") }}
+	{% endif %}
+
 	<h1>Hallo {{ skel["firstname"] or "" -}}!</h1>
 
 	<p>
