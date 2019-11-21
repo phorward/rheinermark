@@ -3,6 +3,7 @@
 {% set title = name %}
 
 {% from "macros/skelview.html" import SkelView %}
+{% from "macros/utils.html" import renderFileEntry %}
 
 {% block content %}
 	<h1>{{ name }}</h1>
@@ -21,9 +22,7 @@
 	{% if skel.documents %}
 		<ul class="menu">
 			{% for document in skel.documents %}
-				<li>
-					<a href="/file/download/{{document.dlkey}}?fileName={{document.name}}">{{document.name}}</a>
-				</li>
+				{{ renderFileEntry(document) }}
 			{% endfor %}
 		</ul>
 	 {% endif %}
