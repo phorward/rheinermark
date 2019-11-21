@@ -9,7 +9,7 @@
 			<li>
 				<a href="/aircraft/view/{{skel.key | shortKey}}">
 					{% if skel.photo %}
-						<img src="{{ getImageSrc(skel.photo, 150, True) }}">
+						<img class="icon" src="{{ getImageSrc(skel.photo, 150, True) }}">
 					{% endif %}
 					<span>
 						{{skel.name}} - {{skel.reg}}

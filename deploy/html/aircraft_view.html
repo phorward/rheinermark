@@ -19,9 +19,17 @@
 
 	{{skel.description or ""}}
 
-	{% if skel.documents %}
+	{% if skel.documents or skel.wikipedia %}
 		<ul class="menu">
-			{% for document in skel.documents %}
+			{% if skel.wikipedia %}
+				<li>
+					<a href="{{ skel.wikipedia }}" target="_blank">
+						<img class="icon" src="/static/icons/wikipedia.svg">
+						{{ skel.name }} auf Wikipedia
+					</a>
+				</li>
+			{% endif %}
+			{% for document in (skel.documents or []) %}
 				{{ renderFileEntry(document) }}
 			{% endfor %}
 		</ul>

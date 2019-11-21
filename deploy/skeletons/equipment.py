@@ -15,7 +15,8 @@ class equipmentSkel(Skeleton):
 			"is_launcher",
 			"is_clubowned",
 			"description",
-			"documents"
+			"documents",
+			"wikipedia"
 		],
 		"aircraft": [
 			"compreg",
@@ -111,6 +112,10 @@ class equipmentSkel(Skeleton):
 
 	description = textBone(
 		descr=u"Bescheibung, Technische Daten"
+	)
+
+	wikipedia = stringBone(
+		descr=u"Wikipedia Link"
 	)
 
 	documents = fileBone(
