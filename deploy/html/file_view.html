@@ -2,12 +2,15 @@
 {% set title = skel.name %}
 {% from "macros/utils.html" import renderFileEntry %}
 
+{% block headline %}
+	{% for part in getPathToKey(skel.key)[1:-1] %}
+		<a href="/file/view/node/{{ part.key }}">{{ part.name }}</a> /
+	{% endfor %}
+
+	{{ skel.name }}
+{% endblock %}
+
 {% block content %}
-	<h1>
-		{% for part in getPathToKey(skel.key)[1:] %}
-			/ <a href="/file/view/node/{{ part.key }}">{{ part.name }}</a>
-		{% endfor %}
-	</h1>
 
 	<ul class="menu left">
 		{% for folder in getList("file", "viewNodeSkel", parentdir=skel.key, orderby="name") %}

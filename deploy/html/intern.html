@@ -1,7 +1,30 @@
-{% extends "functional.html" %}
+{% extends "index.html" %}
+{% set mode = "steady" %}
+{% set prefix = "/" %}
 
-{% set functional_style = "text intern" %}
+{% if not functional_classes %}
+	{% set functional_classes = "text intern" %}
+{% endif %}
 
-{% block content %}
+{% block body %}
+	<div class="functional {{functional_classes}}">
+		{% block title %}
+			<h1>
+				<a href="/user/view" title="Startseite des Mitgliederbereichs"><img src="/static/img/favicon.svg"></a>
 
+				{% block headline %}
+						{%- for part in (path or []) -%}
+							<a href="{{ part.url }}">{{ part.name }}</a> /
+	                    {%- endfor -%}
+						{% if title %}
+							{{ title -}}
+						{% endif %}
+				{% endblock %}
+			</h1>
+		{% endblock %}
+
+		{% block content %}
+
+		{% endblock %}
+	</div>
 {% endblock %}

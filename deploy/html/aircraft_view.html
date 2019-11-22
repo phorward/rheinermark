@@ -1,13 +1,11 @@
 {% extends "intern.html" %}
 {% set name = skel.name + (" (" + skel.compreg + ")" if skel.compreg else "") + " - " + skel.reg  %}
 {% set title = name %}
+{% set path = [{"name": "Flugzeuge", "url": "/aircraft/list"}] %}
 
-{% from "macros/skelview.html" import SkelView %}
 {% from "macros/utils.html" import renderFileEntry %}
 
 {% block content %}
-	<h1>{{ name }}</h1>
-
 	<p>
 		{{"Einsitziges" if skel.seats==1 else "Doppelsitziges" if skel.seats==2 else (skel.seats + "-sitziges")}} {{skel.aircraftkind.descr }}
 		{{ ", Schleppflugzeug" if skel.is_launcher }}

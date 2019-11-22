@@ -6,9 +6,9 @@
 {%- endif -%}
 
 {%- if not title -%}
-    {%- set title = appconf["site_title"] + " - " + appconf["site_slogan"] -%}
+    {%- set TITLE = appconf["site_title"] + " - " + appconf["site_slogan"] -%}
 {%- else -%}
-    {%- set title = title + " - " + appconf["site_title"] -%}
+    {%- set TITLE = title + " - " + appconf["site_title"] -%}
 {%- endif -%}
 
 {%- set cuser = getCurrentUser() -%}
@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ title }}</title>
+    <title>{{ TITLE }}</title>
 
 	<!-- meta -->
 	<meta charset="UTF-8">

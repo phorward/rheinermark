@@ -1,6 +1,7 @@
-{% extends "functional.html" %}
-
+{% extends "intern.html" %}
 {% set title = "Starterfassung" %}
+{% set functional_classes = "intern" %}
+
 {% set ONLOAD="onload=\"brython({pythonpath: ['.', '/static/py/']});\"" %}
 
 {% block additionalHeader %}
@@ -10,8 +11,8 @@
 	<script src="/static/py/Brython-3.7.1/brython_stdlib.js"></script>
 {% endblock %}
 
+
 {% block content %}
-	<h1>Starterfassung / Airbatch</h1>
 	<h2 style="color: red;">Entwicklungssystem: Zur Zeit nur für Demo-Zwecke, Daten werden nicht gespeichert!</h2>
 
 	<label>
@@ -73,5 +74,4 @@
 	</table>
 
 	<script type="text/python" src="/static/py/airbatch-assistant.py"></script>
-
 {% endblock %}

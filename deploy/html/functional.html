@@ -1,12 +1,11 @@
+{% extends "index.html" %}
 {% set mode = "steady" %}
 {% set prefix = "/" %}
 
-{% extends "index.html" %}
-
 {% block body %}
-	<div class="functional {{functional_style}}">
-	{% block content %}
+	<div class="functional {{ functional_classes }}">
+		{% block content %}
 
-	{% endblock %}
+		{% endblock %}
 	</div>
 {% endblock %}

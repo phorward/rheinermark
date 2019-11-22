@@ -635,6 +635,14 @@ form .option-group {
 		padding: 5px 0;
 		margin: 5px 0;
 		width: 100%;
+
+		& img {
+			width: 1.3em;
+			height: 1.3em;
+			padding: 0;
+			margin: 0 5px 0 0;
+			vertical-align: bottom;
+		}
 	}
 
 	& ul.menu {

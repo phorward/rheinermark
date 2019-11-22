@@ -2,24 +2,22 @@
 
 {% set title = "Mitgliederbereich" %}
 {% if skel["firstname"] and skel["lastnamename"] %}
-	set title = title + " von " + skel["firstname"] + " " + skel["lastnamename"]
+	{% set title = title + " von " + skel["firstname"] + " " + skel["lastnamename"] %}
 {% endif %}
+
+{% block headline %}
+	Hallo {{ skel["firstname"] or "" -}}!
+{% endblock %}
 
 {% block content %}
 	{% if skel.changepassword %}
 		{{ redirect("/user/edit?style=firstlogin") }}
 	{% endif %}
 
-	<h1>Hallo {{ skel["firstname"] or "" -}}!</h1>
-
 	<p>
 		In diesem Bereich findest Du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den
 		Flugbetrieb und das Vereinsleben besser organisieren zu können. Wenn Du eine Frage oder Mitteilung an uns hast,
 		zögere nicht, und <a href="/message/add">schicke uns hier direkt eine Nachricht</a>.
-	</p>
-
-	<p>
-		Tipp: Um schnell wieder zurück in dieses Menü zu gelangen, tippe einfach auf das Logo oben rechts.
 	</p>
 
 	{#
