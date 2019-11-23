@@ -1,0 +1,26 @@
+{% extends "functional.html" %}
+{% set title = skel.code|string + " - " + skel.name %}
+{% set functional_classes = "text intern" %}
+
+{% if skel.code in [401, 403] %}
+	{% set goto = "/user/login" %}
+{% endif %}
+
+{% block content %}
+	<h1>{{ skel.code }} - {{ skel.name }}</h1>
+
+	{% if skel.code in [401, 403] %}
+		<p>
+			Dieser Inhalt ist nur für Mitglieder einsehbar.<br>
+			Bitte logge Dich im internen Mitgliederbereich ein.<br><br>
+			Du wirst in wenigen Sekunden weitergeleitet...
+		</p>
+	{% else %}
+		<p>{{ skel.descr }}</p>
+	{% endif %}
+
+	{% if skel.traceback and error == 500 %}
+		<pre>{{ skel.traceback }}</pre>
+	{% endif %}
+
+{% endblock %}

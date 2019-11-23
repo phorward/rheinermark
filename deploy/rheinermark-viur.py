@@ -80,6 +80,39 @@ def handleRequest(path):
 conf["viur.requestPreprocessor"] = handleRequest
 
 # ------------------------------------------------------------------------------
+# Error Handler
+
+def errorHandler(e) :
+	from server import errors
+	from server.render.html import default as Render
+	import traceback
+	from StringIO import StringIO
+
+	render = Render()
+
+	if isinstance(e, errors.HTTPException) :
+		code = int(e.status)
+		name = e.name
+		descr = e.descr
+	else:
+		code = 500
+		name = "Internal Server Error"
+		descr = "An internal server error occured"
+
+	strIO = StringIO()
+	traceback.print_exc(file=strIO)
+	tbstr = strIO.getvalue().replace( "\n", "--br--" ).replace( " ", "&nbsp;" ).replace( "--br--", "<br />" )
+
+	return render.view({
+		"name": name,
+		"code": code,
+		"descr": descr,
+		"traceback" : tbstr
+	}, tpl="error")
+
+conf["viur.errorHandler"] = errorHandler
+
+# ------------------------------------------------------------------------------
 # Content Security Policy
 
 securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
