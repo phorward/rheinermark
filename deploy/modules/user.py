@@ -87,3 +87,10 @@ class user(User):
 			raise
 
 		return ret
+
+	@exposed
+	def login(self, *args, **kwargs):
+		if utils.getCurrentUser():
+			raise errors.Redirect("/user/view")
+
+		return super(user, self).login(*args, **kwargs)
