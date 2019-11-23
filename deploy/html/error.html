@@ -19,7 +19,7 @@
 		<p>{{ skel.descr }}</p>
 	{% endif %}
 
-	{% if skel.traceback and error == 500 %}
+	{% if skel.traceback and skel.code == 500 %}
 		<pre>{{ skel.traceback }}</pre>
 	{% endif %}
 

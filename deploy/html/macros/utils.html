@@ -20,7 +20,12 @@
 {%- macro renderFileEntry(document) %}
 	<li>
 		{% set target = "_self" %}
-		{% if document["mimetype"] == "application/pdf" %}
+
+		{% if document["url"] %}
+			{% set url = document["url"] %}
+			{% set icon = "link" %}
+			{% set target = "_blank" %}
+		{% elif document["mimetype"] == "application/pdf" %}
 			{% set url = "/file/download/" + document.dlkey|urlencode + "/" + document.name %}
 			{% set url = "/static/js/pdfjs/web/viewer.html?file=" + url %}
 			{% set icon = "pdf" %}
