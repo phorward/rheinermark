@@ -7,15 +7,22 @@
 
 {% block content %}
 	<p>
-		{{"Einsitziges" if skel.seats==1 else "Doppelsitziges" if skel.seats==2 else (skel.seats + "-sitziges")}} {{skel.aircraftkind.descr }}
-		{{ ", Schleppflugzeug" if skel.is_launcher }}
+		{{"Einsitzig" if skel.seats==1 else "Doppelsitzig" if skel.seats==2 else (skel.seats|string + "-sitzig")}},
+		{{skel.aircraftkind.descr }}
+		{{- ", Schleppflugzeug" if skel.is_launcher }}
 	</p>
 
 	{% if skel.photo %}
 		<div class="image" style="background-image: url({{getImageSrc(skel.photo, 1200)}}"></div>
 	{% endif %}
 
-	{{skel.description or ""}}
+	{% if skel.description and skel.description != "<p><br></p>" %}
+		{{skel.description}}
+	{% endif %}
+
+	{% if skel.photo3side %}
+		<div class="image" style="background-image: url({{getImageSrc(skel.photo3side, 1024)}}"></div>
+	{% endif %}
 
 	{% if skel.documents or skel.wikipedia %}
 		<ul class="menu">

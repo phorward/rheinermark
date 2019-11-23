@@ -19,6 +19,7 @@ class equipmentSkel(Skeleton):
 			"wikipedia"
 		],
 		"aircraft": [
+			"photo3side",
 			"compreg",
 			"aircraftkind",
 			"seats",
@@ -83,6 +84,10 @@ class equipmentSkel(Skeleton):
 
 	photo = fileBone(
 		descr=u"Foto"
+	)
+
+	photo3side = fileBone(
+		descr=u"3-Seiten-Ansicht"
 	)
 
 	seats = numericBone(
