@@ -28,7 +28,7 @@ setInterval(() => {
 
 }, 10000);
 
-//impressum popup
+
 $(window).ready(function() {
 	//menubar background color when scroll
 	if( $("#fv").length )
@@ -50,14 +50,6 @@ $(window).ready(function() {
    	$(".hamburger").on("click", function(e) {
         $(".hamburger").toggleClass("is-active");
         $(".mobilemenu-wrapper").toggleClass("is-active");
-    });
-
-	// Popup
-    $('.hover_bkgr_fricc').click(function(){
-        $('.hover_bkgr_fricc').hide();
-    });
-    $('.popupCloseButton').click(function(){
-        $('.hover_bkgr_fricc').hide();
     });
 
     // Scroll to entry
