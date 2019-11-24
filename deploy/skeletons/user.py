@@ -103,16 +103,17 @@ class userSkel(skeleton.Skeleton):
 		defaultValue=["newsletter", "website"],
 		sortBy="values",
 		values={
-			"microlight": u"Ultraleicht",
+			"microlight": u"Ultraleichtflug",
 			"soaring": u"Segelflug",
 			"motorglider": u"Motorsegelflug",
-			"newsletter": u"Newsletter",
+			"newsletter": u"Newsletter (WICHTIG!)",
 			"trainee": u"Flugschüler",
 			"youth": u"Jugendgruppe",
-			"website": u"Website-Aktualisierungen"
+			"website": u"Webseite - Information über Aktualisierungen erhalten",
+			"beta": u"Webseite - Neue Funktionen ausprobieren (Betatest)"
 		},
 		params={
-			"tooltip": u"Hier kannst Du angeben, welche Informationen für Dich relevant sind."
+			"tooltip": u"Hier kannst Du einstellen, welche Informationen und Funktionen für Dich relevant sind."
 		}
 	)
 

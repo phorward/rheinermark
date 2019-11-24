@@ -516,14 +516,22 @@ header {
 		font-weight: bold;
 	}
 
+	&.center {
+		text-align: center;
+	}
+
 	&.small {
 		font-size: 1em;
 	}
 
-	& .solution img {
-		margin: 0 15px 0 0;
-		width: 100px;
-		height: auto;
+	& .solution {
+		display: inline-block;
+		width: 175px;
+		height: 50px;
+
+		background-position: center bottom;
+		background-size: contain;
+		background-repeat: no-repeat;
 	}
 }
 
@@ -625,10 +633,14 @@ form .option-group {
 .intern {
 
 	& .image {
-		height: 600px;
+		height: 750px;
 		background-position: center;
-		background-size: contain;
 		background-repeat: no-repeat;
+		background-size: contain;
+
+		&.cover {
+			background-size: cover;
+		}
 	}
 
 	& .wrapper {
