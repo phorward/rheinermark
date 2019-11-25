@@ -14,6 +14,13 @@ class user(User):
 	editTemplate = "user_edit"
 	editSuccessTemplate = "user_edit_success"
 
+	adminInfo = {
+		"name": "User",
+		"handler": "list",
+		"icon": "icons/modules/users.svg",
+		"filter": {"orderby": "lastname"}
+	}
+
 	def canEdit(self, skel):
 		return super(user, self).canView(skel) #All users can edit themself!
 
@@ -21,6 +28,24 @@ class user(User):
 		skel = super(user, self).addSkel()
 		skel["password"] = utils.generateRandomString(10)
 		skel["changepassword"] = True
+
+		'''
+		if True:
+			skel = skel.ensureIsCloned()
+
+			skel["role"] = "member"
+			skel["status"] = 10
+
+			for name, bone in skel.items():
+				if name in ["name", "firstname", "lastname"]:
+					bone.readOnly = False
+					bone.visible = True
+				else:
+					bone.visible = False
+					bone.readOnly = True
+
+			return skel
+		'''
 
 		if isinstance(self.render, htmlRender):
 			skel = skel.ensureIsCloned()
