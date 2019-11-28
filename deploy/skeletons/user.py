@@ -8,6 +8,10 @@ from collections import OrderedDict
 
 
 class userSkel(skeleton.Skeleton):
+	subSkels = {
+		"restricted": ["firstname", "lastname", "nickname"]
+	}
+
 	roles = {
 		"executive": ["view", "add", "edit", "delete"]
 	}
@@ -36,6 +40,25 @@ class userSkel(skeleton.Skeleton):
 		indexed=True
 	)
 
+	name = emailBone(
+		descr="E-Mail",
+		caseSensitive=False,
+		searchable=True,
+		indexed=True,
+		unique=True,
+		required=True,
+	)
+
+	password = passwordBone(
+		descr="Password",
+		readOnly=True,
+		visible=False,
+	)
+
+	changepassword = booleanBone(
+		descr=u"Passwortänderung erzwingen"
+	)
+
 	airbatch_daec = stringBone(
 		descr=u"DAeC-Mitglieds-Nr.",
 		searchable=True
@@ -61,23 +84,10 @@ class userSkel(skeleton.Skeleton):
 		searchable=True
 	)
 
-	name = emailBone(
-		descr="E-Mail",
-		caseSensitive=False,
-		searchable=True,
+	nickname = stringBone(
+		descr=u"Spitzname",
 		indexed=True,
-		unique=True,
-		required=True,
-	)
-
-	password = passwordBone(
-		descr="Password",
-		readOnly=True,
-		visible=False,
-	)
-
-	changepassword = booleanBone(
-		descr=u"Passwortänderung erzwingen"
+		searchable=True
 	)
 
 	# Access

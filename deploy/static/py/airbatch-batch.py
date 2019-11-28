@@ -11,7 +11,7 @@ class BatchProcessor(airbatch.Processor):
 	def __init__(self):
 		super().__init__(
 			aircrafts="/json/aircraft/list",
-			pilots="/json/pilot/list",
+			pilots="/json/user/list",
 			locations="/json/place/list"
 		)
 

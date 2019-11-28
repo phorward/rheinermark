@@ -6,11 +6,13 @@ from skeletons.equipment import equipmentSkel
 class Winch(List):
 
 	adminInfo = {
-		"name": u"Start: Winde",
+		"name": u"Winde",
 		"columns": ["reg", "name"],
 		"handler": "list.aircraft",
 		"icon": "icons/modules/list.svg",
 	}
+
+	adminInfo = None
 
 	roles = {
 		"*": ["view"]

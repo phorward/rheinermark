@@ -227,7 +227,9 @@ class ItemRecognizer(Recognizer):
 		answ = json.loads(req.text)
 
 		for entry in answ["skellist"]:
-			self.items.append(self.itemFactory(entry))
+			item = self.itemFactory(entry)
+			if item:
+				self.items.append(item)
 
 		self.prepare()
 
@@ -340,7 +342,10 @@ class Pilot:
 
 	@staticmethod
 	def fromServer(cls, entry):
-		return Pilot(entry["key"], entry["lastname"], entry["firstname"], entry["nickname"])
+		if not (entry["key"] and entry["lastname"]):
+			return None
+
+		return Pilot(entry["key"], entry["lastname"], entry["firstname"] or "", entry["nickname"] or "")
 
 
 theEmptyPilot = Pilot(None, None, None)
@@ -880,7 +885,7 @@ class Processor():
 
 	def canTowLaunch(self, a1, a2):
 		return a1.kind == "glider" and a2.launcher or a2.kind == "glider" and a1.launcher
-		
+
 	def extend(self, res):
 		print("extend", res)
 

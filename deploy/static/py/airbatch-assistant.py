@@ -11,9 +11,9 @@ class AssistantProcessor(airbatch.Processor):
 
 	def __init__(self):
 		super().__init__(
-			aircrafts="/json/aircraft/list?orderby=reg&secret=bea6846f04709ed",
-			pilots="/json/pilot/list?orderby=lastname&secret=bea6846f04709ed",
-			locations="/json/place/list?secret=bea6846f04709ed"
+			aircrafts="/json/aircraft/list?orderby=reg&amount=99",
+			pilots="/json/user/list?orderby=lastname&amount=99",
+			locations="/json/place/list?amount=99"
 		)
 
 		self.mode = "assistant"

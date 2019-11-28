@@ -7,7 +7,7 @@ from server.render.html import default as HtmlRenderer
 
 class section(SortedList):
 	adminInfo = {
-		"name": u"Inhalte",
+		"name": u"Inhalt",
 		"handler": "list",
 		"icon": "icons/modules/pages.svg",
 		"filter": {"orderby": "sortindex"},

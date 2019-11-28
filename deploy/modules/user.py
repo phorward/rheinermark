@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from server.modules.user import User
 from server.render.html import default as htmlRender
-from server import utils, errors, exposed
+from server import utils, errors, request, exposed
 from server.tasks import callDeferred
 from bones import passwordBone
+
+from skeletons.user import userSkel
+
 import logging
 
 
@@ -15,14 +18,29 @@ class user(User):
 	editSuccessTemplate = "user_edit_success"
 
 	adminInfo = {
-		"name": "User",
+		"name": "Mitglied",
 		"handler": "list",
 		"icon": "icons/modules/users.svg",
 		"filter": {"orderby": "lastname"}
 	}
 
+	roles = {
+		"*": ["view"]
+	}
+
 	def canEdit(self, skel):
 		return super(user, self).canView(skel) #All users can edit themself!
+
+	def canView(self, skel):
+		user = self.getCurrentUser()
+		if user:
+			if skel["key"] == user["key"]:
+				return True
+
+			if "root" in user["access"]:
+				return True
+
+		return False
 
 	def addSkel(self):
 		skel = super(user, self).addSkel()
@@ -54,7 +72,7 @@ class user(User):
 			skel["status"] = 10
 
 			for name, bone in skel.items():
-				if name in ["name", "firstname", "lastname", "airbatch_daec", "interests"]:
+				if name in ["name", "firstname", "nickname", "lastname", "airbatch_daec", "interests"]:
 					bone.readOnly = False
 					bone.visible = True
 				else:
@@ -62,6 +80,29 @@ class user(User):
 					bone.readOnly = True
 
 		return skel
+
+	'''
+	def viewSkel(self):
+		cuser = utils.getCurrentUser()
+		if cuser and "root" in cuser["access"]:
+			return super(user, self).viewSkel()
+
+		return super(user, self).viewSkel().subSkel("restricted")
+	'''
+
+	@exposed
+	def list(self, *args, **kwargs):
+		cuser = utils.getCurrentUser()
+		if cuser and "root" in cuser["access"]:
+			return super(user, self).list(*args, **kwargs)
+
+		# This is a restricted access
+		query = self.listFilter(super(user, self).viewSkel().subSkel("restricted").all().mergeExternalFilter(kwargs))
+		if query is None:
+			raise errors.Unauthorized()
+
+		res = query.fetch()
+		return self.render.list(res)
 
 	def editSkel(self):
 		skel = super(user, self).editSkel()
@@ -93,7 +134,9 @@ class user(User):
 		assert skel.fromDB(key)
 
 		skel["password"] = initial
-		#logging.info("initial = %r", initial)
+
+		if request.current.get().isDevServer:
+			logging.info("initial = %r", initial)
 
 		utils.sendEMail(
 			skel["name"],
@@ -104,7 +147,7 @@ class user(User):
 	@exposed
 	def view(self, key="self", *args, **kwargs):
 		try:
-			ret =  super(user, self).view(key, *args, **kwargs)
+			ret = super(user, self).view(key, *args, **kwargs)
 		except errors.Unauthorized:
 			if isinstance(self.render, htmlRender):
 				raise errors.Redirect("/user/login")
@@ -119,3 +162,6 @@ class user(User):
 			raise errors.Redirect("/user/view")
 
 		return super(user, self).login(*args, **kwargs)
+
+
+user.json = True

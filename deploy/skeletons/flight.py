@@ -25,20 +25,18 @@ class flightSkel(Skeleton):
 		format="$(reg) $(name)"
 	)
 
-	pilot = relationalBone(
-		kind="pilot",
+	pilot = userBone(
 		descr="Pilot",
 		required=True,
 		indexed=True,
-	    refKeys=["key", "name", "firstname", "lastname"],
+	    refKeys=["key", "firstname", "lastname"],
 		format="$(dest.lastname), $(dest.firstname)"
 	)
 
-	passenger = relationalBone(
-		kind="pilot",
+	passenger = userBone(
 		descr="Begleiter",
 		indexed=True,
-		refKeys=["key", "name", "firstname", "lastname"],
+		refKeys=["key", "firstname", "lastname"],
 		format="$(dest.lastname), $(dest.firstname)"
 	)
 

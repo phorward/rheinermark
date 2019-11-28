@@ -9,7 +9,7 @@ class Aircraft(SortedList):
 	viewTemplate = "aircraft_view"
 
 	adminInfo = {
-		"name": u"Start: Flugzeug",
+		"name": u"Flugzeug",
 		"columns": ["sortindex", "aircraftkind", "reg", "name", "seats"],
 		"handler": "list.aircraft",
 		"icon": "icons/modules/list.svg",
@@ -20,9 +20,6 @@ class Aircraft(SortedList):
 	}
 
 	def listFilter(self, query):
-		if request.current.get().kwargs.get("secret") == "bea6846f04709ed":
-			return query
-
 		query = super(Aircraft, self).listFilter(query)
 		if not query:
 			return None

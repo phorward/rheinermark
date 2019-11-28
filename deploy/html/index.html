@@ -116,10 +116,10 @@
 	</div>
 </section>
 
-{% macro imagebox(images, group=None) %}
+{% macro imagebox(images, group) %}
 	<div class="content-box-img">
 		{% for image in images %}
-			<div class="content-box-img-bg js-diashow" data-group="{{ group or "" }}"
+			<div class="content-box-img-bg js-diashow" data-group="{{ group }}"
 				 style="background-image: url({{ getImageSrc(image, 1024) }}); {{ "display: none;" if not loop.first }}"></div>
 		{% endfor %}
 	</div>
