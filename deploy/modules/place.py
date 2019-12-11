@@ -14,7 +14,8 @@ class Place(List):
 	}
 
 	roles = {
-		"*": ["view"]
+		"*": ["view"],
+		"executive": ["view", "add", "edit", "delete"]
 	}
 
 Place.json = True

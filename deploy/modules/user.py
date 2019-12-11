@@ -25,7 +25,8 @@ class user(User):
 	}
 
 	roles = {
-		"*": ["view"]
+		"*": ["view"],
+		"executive": ["view", "add", "edit", "delete"]
 	}
 
 	def canEdit(self, skel):

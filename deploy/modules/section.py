@@ -6,6 +6,11 @@ from server.render.html import default as HtmlRenderer
 
 
 class section(SortedList):
+	roles = {
+		"*": ["view"],
+		"executive": ["view", "add", "edit"]
+	}
+
 	adminInfo = {
 		"name": u"Inhalt",
 		"handler": "list",

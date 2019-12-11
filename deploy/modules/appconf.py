@@ -9,6 +9,10 @@ class appconf(Singleton):
 	    "icon": "icons/modules/settings.svg"
 	}
 
+	roles = {
+		"executive": ["view", "edit"]
+	}
+
 	def canView(self):
 		return True
 

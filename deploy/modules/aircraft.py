@@ -16,7 +16,8 @@ class Aircraft(SortedList):
 	}
 
 	roles = {
-		"*": ["view"]
+		"*": ["view"],
+		"executive": ["view", "add", "edit", "delete"]
 	}
 
 	def listFilter(self, query):
