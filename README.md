@@ -1,33 +1,53 @@
-# rheinermark-viur
+![Rheinermark Logo](deploy/static/img/logo.svg)
+# segelfliegen.com (Rheinermark)
 
-Created by Max.
+This is a software project that is created in the context of the aero club *Luftsportverein Ruhr-Lenne Iserlohn e.V.* in Germany. Therefore, the rest of this README is in german, but you can ask any question in case that further assistance is needed.
 
-https://rheinermark-viur.appspot.com
+## Vision
 
-## Description
+Dieses Projekt wurde aus der Idee heraus geboren, ein Software-System für Luftsportvereine zu enwickeln, welches nicht nur als Homepage fungiert, sondern auch self-service Funktionen für Mitglieder, Informationsmanagement und auch die Erfassung von Startlisten aus einem Guß zu bieten.
 
-This is rheinermark-viur.
+Das Softwareprojekt ist derzeit noch sehr jung und wird exklusiv für die *Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.* entwickelt und an deren Belange und Interessen angepasst. Es soll jedoch ganz im Zeichen der Freien Software transparent und für jeden Einsehbar sein, und Jeder der möchte kann mitwirken.
 
-## Build the Vi
+Wir würden uns natürlich auch sehr freuen, wenn andere Luftsportvereine sich den Einsatz dieser Software vorstellen könnten und daran mitentwickeln, und wir am Ende eine freie, unabhängige und ein vom Luftsport für den Luftsport entwickeltes, maßgeschneidertes, freies System erhalten würden, das keine Wünsche mehr offen lässt.
 
-To build the Vi, run
+Das ist natürlich erstmal nur eine Vision, aber die Möglichkeiten sind da.
+
+## Todos und Ideensammlung
+
+[x] Webseite mit individuellen Inhalten (z.T. statisch)
+[x] Mitglieder-Bereich mit Login
+[x] Flugzeugdatenbank
+[x] Dokumentenverwaltung
+[x] Link-Sammlung
+[x] Mitteilungen an den Vorstand
+[ ] Newsletter
+[ ] Kalender
+[ ] Kantine
+[ ] Dienstemanagement
+[ ] Checklisten
+[ ] Fotodatenbank
+[ ] Flugzeugreservierung
+[ ] Starterfassung (basierend auf [Airbatch](https://github.com/phorward/airbatch), ist bereits als Demo integriert)
+[ ] Online-Flugbuch
+[ ] Gastflug-Gutscheine
+
+## Technische Details 
+
+Dieses Sofware-System wurde mit dem Framework [ViUR](https://viur.is) erstellt, und ist in Python geschrieben.
+
+### Building the Vi
+
+To build the administration backend Vi, run
 
 ```bash
 $ cd vi
 $ make deploy
 ```
 
-## Change Git origin URL
-
-Please set another Git repository origin. The default viur-base origin has been automatically deleted by ``clean-base.py``, for security reasons.
-
-```bash
-$ git remote add git@github.com:Max/rheinermark-viur.git
-```
-
 ## Install prerequisites
 
-To install prerequisites, once do
+To install prerequisites, once run
 
 ```bash
 $ pip2 install -t deploy/lib -r requirements.txt --upgrade
@@ -43,13 +63,6 @@ To locally run, do
 $ ./local_run.sh
 ```
 
-or manually, do
-
-```bash
-$ cd deploy
-$ dev_appserver.py -A rheinermark-viur --log_level=debug .
-```
-
 ## Deploy to GAE
 
 Deployment is performed using the gcloud SDK:
@@ -63,7 +76,3 @@ $ gcloud app deploy --no-promote -q --project=rheinermark-viur --version=$USER-d
 # Deploy to live (beware!)
 $ gcloud app deploy -q --project=rheinermark-viur --version=`date +"%Y-%m-%d"-$USER`
 ```
-
-## Contact
-
-Contact @Max for help and support.
