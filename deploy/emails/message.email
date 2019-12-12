@@ -5,7 +5,7 @@ Subject:Mitteilung von {{ skel.user.firstname }} {{ skel.user.lastname }}
 
 {{ skel.user.firstname }} {{ skel.user.lastname }} teilt folgendes mit:<br>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
-<pre>{{ skel.message }}</pre>
+{{ skel.message|replace("\r\n", "\n")|replace("\r", "\n")|replace("\n", "<br>") }}<br>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 </body>
 </html>
