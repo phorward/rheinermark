@@ -15,22 +15,22 @@ Das ist natürlich erstmal nur eine Vision, aber die Möglichkeiten sind da.
 
 ## Todos und Ideensammlung
 
-[x] Webseite mit individuellen Inhalten (z.T. statisch)
-[x] Mitglieder-Bereich mit Login
-[x] Flugzeugdatenbank
-[x] Dokumentenverwaltung
-[x] Link-Sammlung
-[x] Mitteilungen an den Vorstand
-[ ] Newsletter
-[ ] Kalender
-[ ] Kantine
-[ ] Dienstemanagement
-[ ] Checklisten
-[ ] Fotodatenbank
-[ ] Flugzeugreservierung
-[ ] Starterfassung (basierend auf [Airbatch](https://github.com/phorward/airbatch), ist bereits als Demo integriert)
-[ ] Online-Flugbuch
-[ ] Gastflug-Gutscheine
+- [x] Webseite mit individuellen Inhalten (z.T. statisch)
+- [x] Mitglieder-Bereich mit Login
+- [x] Flugzeugdatenbank
+- [x] Dokumentenverwaltung
+- [x] Link-Sammlung
+- [x] Mitteilungen an den Vorstand
+- [ ] Newsletter
+- [ ] Kalender
+- [ ] Flugdaten-Schnellerfassung ([airbatch](https://github.com/phorward/airbatch) Demo)
+- [ ] Kantine
+- [ ] Dienstemanagement
+- [ ] Checklisten
+- [ ] Fotodatenbank
+- [ ] Flugzeugreservierung
+- [ ] Online-Flugbuch
+- [ ] Gastflug-Gutscheine
 
 ## Technische Details 
 
