@@ -13,7 +13,7 @@ Wir würden uns natürlich auch sehr freuen, wenn andere Luftsportvereine sich d
 
 Das ist natürlich erstmal nur eine Vision, aber die Möglichkeiten sind da.
 
-## Todos und Ideensammlung
+## TODOs und Ideensammlung
 
 - [x] Webseite mit individuellen Inhalten (z.T. statisch)
 - [x] Mitglieder-Bereich mit Login
@@ -23,10 +23,11 @@ Das ist natürlich erstmal nur eine Vision, aber die Möglichkeiten sind da.
 - [x] Mitteilungen an den Vorstand
 - [ ] Newsletter
 - [ ] Kalender
-- [ ] Flugdaten-Schnellerfassung ([airbatch](https://github.com/phorward/airbatch) Demo)
+- [ ] Flugdaten-Schnellerfassung ([airbatch](https://github.com/phorward/airbatch) als Demo)
 - [ ] Kantine
-- [ ] Dienstemanagement
-- [ ] Checklisten
+- [ ] Dienstemanagement (mit Erinnerungsfunktion)
+- [ ] Flugbetriebs-Planung (mit "Bin dabei"-Abfrage)
+- [ ] Checklisten (Flugzeuge, Winde, Spülmaschine...)
 - [ ] Fotodatenbank
 - [ ] Flugzeugreservierung
 - [ ] Online-Flugbuch

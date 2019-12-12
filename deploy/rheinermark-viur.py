@@ -46,10 +46,11 @@ conf["viur.session.lifeTime"] = 4*24*60*60
 # ViUR admin tool specific configurations
 #
 
-conf["admin.vi.name"] = "rheinermark-viur"
-conf["admin.moduleGroups"] = [
-	{"prefix":u"Start: ", "name": u"Starterfassung", "icon": "icons/modules/tickets.svg"},
-]
+conf["admin.vi.name"] = "LSV Ruhr-Lenne e.V."
+
+#conf["admin.moduleGroups"] = [
+#	{"prefix":u"Start: ", "name": u"Starterfassung", "icon": "icons/modules/tickets.svg"},
+#]
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Request preprocessor
