@@ -1,1 +1,3 @@
-*.html linguist-language=Jinja2
+deploy/static/js/jquery.min.js linguist-vendored
+deploy/static/js/pdfjs linguist-vendored
+
