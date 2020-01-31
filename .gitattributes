@@ -1,3 +1,4 @@
-deploy/static/js/jquery.min.js linguist-vendored
-deploy/static/js/pdfjs linguist-vendored
-
+deploy/static/js/pdfjs/build/pdf.js	linguist-vendored
+deploy/static/js/pdfjs/web/debugger.js	linguist-vendored
+deploy/static/js/pdfjs/web/viewer.js	linguist-vendored
+deploy/static/py/Brython-3.7.1/brython.js	linguist-vendored
