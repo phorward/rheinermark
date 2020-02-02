@@ -7,7 +7,7 @@ from bones import passwordBone
 
 from skeletons.user import userSkel
 
-import logging
+import logging, json
 
 
 class user(User):
@@ -19,9 +19,10 @@ class user(User):
 
 	adminInfo = {
 		"name": "Mitglied",
-		"handler": "list",
+		"handler": "list.user",
 		"icon": "icons/modules/users.svg",
-		"filter": {"orderby": "lastname"}
+		"filter": {"orderby": "lastname"},
+		"actions": ["resetpassword"]
 	}
 
 	roles = {
@@ -128,6 +129,23 @@ class user(User):
 			self.sendWelcomeMail(str(skel["key"]), skel["password"])
 
 		return super(user, self).onItemAdded(skel)
+
+	@exposed
+	def resetPassword(self, key, *args, **kwargs):
+		cuser = utils.getCurrentUser()
+		if not (cuser and "root" in cuser["access"]):
+			raise errors.Unauthorized("Only 'root' can do this!")
+
+		skel = self.editSkel()
+		if not skel.fromDB(key):
+			raise errors.NotFound()
+
+		skel["password"] = utils.generateRandomString(10)
+		skel["changepassword"] = True
+		assert skel.toDB()
+
+		self.sendWelcomeMail(str(skel["key"]), skel["password"])
+		return json.dumps("OK")
 
 	@callDeferred
 	def sendWelcomeMail(self, key, initial):
