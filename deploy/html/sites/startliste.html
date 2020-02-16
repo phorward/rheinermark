@@ -13,65 +13,72 @@
 
 
 {% block content %}
-	<h2 style="color: red;">Entwicklungssystem: Zur Zeit nur für Demo-Zwecke, Daten werden nicht gespeichert!</h2>
+	<div id="container" class="airbatch is-loading">
+		<div class="loading">
+			Bitte warten, die App startet...
+		</div>
+		<div class="app">
+			<h2 style="color: red;">Entwicklungssystem: Zur Zeit nur für Demo-Zwecke, Daten werden nicht gespeichert!</h2>
 
-	<label>
-		<input id="batch-switch" type="checkbox" checked />
-		Interaktiver Modus
-	</label>
-	<label>
-		UTC
-		<button id="btn-time">00:00</button>
-	</label>
+			<label>
+				<input id="batch-switch" type="checkbox" checked />
+				Interaktiver Modus
+			</label>
+			<label>
+				UTC
+				<button id="btn-time">00:00</button>
+			</label>
 
-	<label>
-		Flugplatz
-		<select id="select-preset-location"></select>
-	</label>
+			<label>
+				Flugplatz
+				<select id="select-preset-location"></select>
+			</label>
 
-	<!--
-	<button id="btn-reset">Zurücksetzen</button>
-	<button id="btn-download">Download</button>
-	-->
+			<!--
+			<button id="btn-reset">Zurücksetzen</button>
+			<button id="btn-download">Download</button>
+			-->
 
-	<div id="batch" style="display: none;">
-		<select size="5" id="batch-aircraft" class="info aircraft"></select>
-		<select size="5" id="batch-pilot" class="info pilot"></select>
-		<select size="5" id="batch-location" class="info location"></select>
+			<div id="batch" style="display: none;">
+				<select size="5" id="batch-aircraft" class="info aircraft"></select>
+				<select size="5" id="batch-pilot" class="info pilot"></select>
+				<select size="5" id="batch-location" class="info location"></select>
 
-		<textarea id="batch-editor"></textarea>
-		<button id="btn-parse">Parse</button>
+				<textarea id="batch-editor"></textarea>
+				<button id="btn-parse">Parse</button>
+			</div>
+
+			<table id="result">
+				<thead>
+					<tr>
+						<td>Luftfahrzeug</td>
+						<td>Pilot</td>
+						<td>Begleiter</td>
+						<td>Start</td>
+						<td>in</td>
+						<td>Landung</td>
+						<td>in</td>
+						<td>Flugzeit</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody id="final">
+				</tbody>
+				<tbody id="construction">
+					<tr id="construction-row">
+						<td colspan="9">
+							<ul id="editor-row">
+								<li id="editor-col">
+									<input id="editor" type="text" placeholder="Flugzeug, Pilot, Uhrzeit ..."/>
+									<ul id="editor-proposal"></ul>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-
-	<table id="result">
-		<thead>
-			<tr>
-				<td>Luftfahrzeug</td>
-				<td>Pilot</td>
-				<td>Begleiter</td>
-				<td>Start</td>
-				<td>in</td>
-				<td>Landung</td>
-				<td>in</td>
-				<td>Flugzeit</td>
-				<td></td>
-			</tr>
-		</thead>
-		<tbody id="final">
-		</tbody>
-		<tbody id="construction">
-			<tr id="construction-row">
-				<td colspan="9">
-					<ul id="editor-row">
-						<li id="editor-col">
-							<input id="editor" type="text" placeholder="Flugzeug, Pilot, Uhrzeit ..."/>
-							<ul id="editor-proposal"></ul>
-						</li>
-					</ul>
-				</td>
-			</tr>
-		</tbody>
-	</table>
 
 	<script type="text/python" src="/static/py/airbatch-assistant.py"></script>
 {% endblock %}

@@ -1,147 +1,134 @@
 #batch-editor {
-    font-family: consolas, courier;
-    font-size: 15pt;
-    font-weight: bold;
-    color: #111144;
+  font-family: consolas, courier;
+  font-size: 15pt;
+  font-weight: bold;
+  color: #111144;
 
-    width: 100%;
-    min-height: 300px;
+  width: 100%;
+  min-height: 300px;
 }
 
 button#btn-parse {
-    width: 100%;
+  width: 100%;
 }
 
 select.info {
-    float: left;
-    width: 33.3%;
-    height: 120px;
+  float: left;
+  width: 33.3%;
+  height: 120px;
 }
 
 #result {
-    width: 100%;
+  width: 100%;
 }
 
 #result thead {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #result tbody {
-    color: #111144;
+  color: #111144;
 }
 
 #result tbody tr:nth-child(even) {
-    background-color: #ededed;
+  background-color: #ededed;
 }
 
-#result tbody tr.error
-{
-    background-color: indianred;
+#result tbody tr.error {
+  background-color: indianred;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
-#final
-{
-    border-bottom: 1px dashed black;
-    background-color: #aaaadd;
+#final {
+  border-bottom: 1px dashed black;
+  background-color: #aaaadd;
 }
 
 #final tr:nth-child(even) {
   background-color: #D0D0EC;
 }
 
-#construction
-{
-    background-color: #b3ffb3;
-    opacity: 0.55;
+#construction {
+  background-color: #b3ffb3;
+  opacity: 0.55;
 }
 
 #construction tr:nth-child(even) {
   background-color: #ccffcc;
 }
 
-#construction-row
-{
-    background-color: #ffffb3;
+#construction-row {
+  background-color: #ffffb3;
 }
 
-#construction-row td
-{
-    padding: 10px;
-    margin: 0;
+#construction-row td {
+  padding: 10px;
+  margin: 0;
 }
 
-#editor-row > li
-{
-    float: left;
-    margin: 0px 10px;
-    background-color: snow;
-    border-radius: 3px;
-    padding: 10px;
+#editor-row > li {
+  float: left;
+  margin: 0px 10px;
+  background-color: snow;
+  border-radius: 3px;
+  padding: 10px;
 }
 
-#editor-col
-{
-    background-color: transparent !important;
-    padding: 0 !important;
-    margin: 0 !important;
+#editor-col {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-#editor-proposal
-{
-    display: none;
+#editor-proposal {
+  display: none;
 
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 3px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
-#editor-proposal li
-{
-    cursor: pointer;
-    padding: 10px;
+#editor-proposal li {
+  cursor: pointer;
+  padding: 10px;
 }
 
 #editor-proposal li:nth-child(even) {
-    background-color: #ededed;
+  background-color: #ededed;
 }
 
-#editor
-{
-    border-radius: 3px;
-    border: 1px solid blue;
-    padding: 10px;
+#editor {
+  border-radius: 3px;
+  border: 1px solid blue;
+  padding: 10px;
 }
 
-#editor.unknown
-{
-    border: 1px solid red;
+#editor.unknown {
+  border: 1px solid red;
 }
 
-.token
-{
-    font-style:italic;
-    color: gray;
-    margin-right: 10px;
+.token {
+  font-style: italic;
+  color: gray;
+  margin-right: 10px;
 }
 
-.close, .commit
-{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    color: red;
-    border-radius: 3px;
-    background-color: lightgray;
+.close, .commit {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: red;
+  border-radius: 3px;
+  background-color: lightgray;
 
-    margin: 0px 2px;
+  margin: 0px 2px;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* Tabs */
@@ -185,4 +172,25 @@ ul {
   box-sizing: border-box;
   overflow: auto;
 
+}
+
+.airbatch .loading {
+  display: none;
+}
+
+.airbatch.is-loading .loading {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  position: absolute;
+  background-color: rgba(246, 246, 246, 0.9);
+  background-image: url("/static/img/is_loading32.gif");
+  background-repeat: no-repeat;
+  background-position: center 46%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
 }

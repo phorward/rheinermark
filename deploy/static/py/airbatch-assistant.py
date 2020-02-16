@@ -363,7 +363,7 @@ class AssistantProcessor(airbatch.Processor):
 				for c in self.editorRow.children:
 					if c is self.editorRow.children[-1]:
 						break
-	
+
 					if c.result.obj is res.obj:
 						matches.remove(res)
 		'''
@@ -415,6 +415,7 @@ class AssistantProcessor(airbatch.Processor):
 
 	def updateTime(self):
 		document["btn-time"].innerHTML = datetime.datetime.utcnow().strftime("%H:%M")
+		document["container"].classList.remove("is-loading")
 
 	def insertTime(self, e):
 		self.insertCode(datetime.datetime.utcnow().strftime("%H%M"))
