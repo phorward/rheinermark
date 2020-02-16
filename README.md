@@ -21,6 +21,7 @@ Das ist natürlich erstmal nur eine Vision, aber die Möglichkeiten sind da.
 - [x] Dokumentenverwaltung
 - [x] Link-Sammlung
 - [x] Mitteilungen an den Vorstand
+- [ ] Erinnerung bei neuen Dateien
 - [ ] Newsletter
 - [ ] Kalender
 - [ ] Flugdaten-Schnellerfassung ([airbatch](https://github.com/phorward/airbatch) als Demo)

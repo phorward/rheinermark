@@ -19,7 +19,7 @@
 #
 # Project:      rheinermark-viur
 # Initiated:    2019-11-14 17:16:31
-# Copyright:    Max @ Mausbrand Informationssysteme GmbH
+# Copyright:    Jan Max Meyer, Phorward Software Technologies
 # Author:       Max
 #
 # ------------------------------------------------------------------------------
@@ -36,17 +36,25 @@ from server import conf, securityheaders, request
 conf["viur.session.lifeTime"] = 4*24*60*60
 
 # ------------------------------------------------------------------------------
-# Language-specific configuration
+# Project-specific configuration
 #
 
-#conf["viur.languageMethod"] = "url"
-#conf["viur.availableLanguages"] = ["en", "de"]
+conf["project.user.interests"] = {
+	"microlight": u"Ultraleichtflug",
+	"soaring": u"Segelflug",
+	"motorglider": u"Motorsegelflug",
+	"newsletter": u"Newsletter (WICHTIG!)",
+	"trainee": u"Flugschüler",
+	"youth": u"Jugendgruppe",
+	"website": u"Webseite - Information über Aktualisierungen erhalten",
+	"beta": u"Webseite - Neue Funktionen ausprobieren (Betatest)"
+}
 
 # ------------------------------------------------------------------------------
 # ViUR admin tool specific configurations
 #
 
-conf["admin.vi.name"] = "LSV Ruhr-Lenne e.V."
+conf["admin.vi.name"] = "LSV Ruhr-Lenne Iserlohn e.V."
 
 #conf["admin.moduleGroups"] = [
 #	{"prefix":u"Start: ", "name": u"Starterfassung", "icon": "icons/modules/tickets.svg"},

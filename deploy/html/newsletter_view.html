@@ -1,0 +1,34 @@
+{% extends "viur_mail_default.html" %}
+
+{% set user = getEntry(getCurrentUser()["key"]) %}
+{% set login = serverurl|replace("http:", "https:") + "/user/login" %}
+
+{% block title %}
+	{{skel.name}}
+{% endblock %}
+
+{% block content %}
+	<h1>{{ skel.name }}</h1>
+
+	<p>Hallo {{ skel.firstname }}!</p>
+	{{ skel.content }}
+
+{% endblock %}
+
+{% block unsubscribe %}
+	Du erhälst diesen Newsletter weil Du in deinen Einstellungen als Interesse
+	{% for interest in skel.recipients %}
+		{%- if skel.recipients|length > 1 %}
+			{{- " oder" if loop.last else "," if not loop.first }}
+		{% endif %}
+		<strong>{{ interest.descr }}</strong>
+	{%- endfor %}
+	angegeben hast.
+
+	<br>
+
+	Möchtest Du in Zukunft keine E-Mail mehr bzgl. dieses Themas mehr erhalten,
+	melde Dich bitte <a href="{{ login }}">auf der Homepage an</a>
+	und entferne den Haken bei dem entsprechendem Thema. Vielen Dank!
+	<br><br>
+{% endblock %}

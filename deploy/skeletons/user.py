@@ -112,16 +112,7 @@ class userSkel(skeleton.Skeleton):
 		multiple=True,
 		defaultValue=["newsletter", "website"],
 		sortBy="values",
-		values={
-			"microlight": u"Ultraleichtflug",
-			"soaring": u"Segelflug",
-			"motorglider": u"Motorsegelflug",
-			"newsletter": u"Newsletter (WICHTIG!)",
-			"trainee": u"Flugschüler",
-			"youth": u"Jugendgruppe",
-			"website": u"Webseite - Information über Aktualisierungen erhalten",
-			"beta": u"Webseite - Neue Funktionen ausprobieren (Betatest)"
-		},
+		values=conf["project.user.interests"],
 		params={
 			"tooltip": u"Hier kannst Du einstellen, welche Informationen und Funktionen für Dich relevant sind."
 		}
