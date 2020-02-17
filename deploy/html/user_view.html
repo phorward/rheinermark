@@ -14,12 +14,13 @@
 		{{ redirect("/user/edit?style=firstlogin") }}
 	{% endif %}
 
+	{#
 	<p>
 		In diesem Bereich findest Du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den
 		Flugbetrieb und das Vereinsleben besser organisieren zu können. Wenn Du eine Frage oder Mitteilung an uns hast,
 		zögere nicht, und <a href="/message/add">schicke uns hier direkt eine Nachricht</a>.
 	</p>
-
+ 	#}
 	{#
 	<div class="wrapper">
 		<div>Calendar</div>
@@ -29,14 +30,20 @@
 
 	<ul class="menu">
 		<!-- <li><a href="#">Termine</a></li> -->
-		<li><a href="/aircraft/list">Flugzeuge</a></li>
+		<li><a href="/aircraft/list">
+			<img class="icon" src="/static/img/generic-glider.svg"> Flugzeuge</a>
+		</li>
 
 		{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
-			<li><a href="/s/startliste">Starterfassung (DEMO)</a></li>
+			<li><a href="/s/startliste">
+				<img class="icon" src="/static/img/icons/list.svg"> Starterfassung (DEMO)</a>
+			</li>
 		{% endif %}
 
 		{% for folder in (appconf["intern_document_folders"] or []) %}
-			<li><a href="/file/view/node/{{folder.key|shortKey}}">{{folder.name}}</a></li>
+			<li><a href="/file/view/node/{{folder.key|shortKey}}">
+				<img class="icon" src="/static/img/icons/hierarchy.svg"> {{folder.name}}
+			</a></li>
 		{% endfor %}
 		<!--
 		<li><a href="#">Windendienst</a></li>
@@ -45,17 +52,27 @@
 		<li><a href="#">Starterfassung</a></li>
 		-->
 
-		<li><a href="/user/edit">Einstellungen</a></li>
-		<li><a href="/message/add">Mitteilung schicken</a></li>
+		<li><a href="/user/edit">
+			<img class="icon" src="/static/img/icons/settings.svg"> Einstellungen</a>
+		</li>
+		<li><a href="/message/add">
+			<img class="icon" src="/static/img/icons/message.svg"> Mitteilung schicken</a>
+		</li>
 
 		{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}
-			<li><a href="/user/add">Mitglied anlegen</a></li>
+			<li><a href="/user/add">
+				<img class="icon" src="/static/img/icons/user.svg"> Mitglied anlegen
+			</a></li>
 		{% endif %}
 		{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
-			<li><a href="/vi" target="_blank">System-Administration</a></li>
+			<li><a href="/vi" target="_blank">
+				<img class="icon" src="/static/img/icons/database.svg"> System-Administration</a>
+			</li>
 		{% endif %}
 
-		<li><a href="/user/logout?skey={{ getSecurityKey() }}">Logout</a></li>
+		<li><a href="/user/logout?skey={{ getSecurityKey() }}">
+			<img class="icon" src="/static/img/icons/logout.svg"> Logout</a>
+		</li>
 	</ul>
 
 {% endblock %}
