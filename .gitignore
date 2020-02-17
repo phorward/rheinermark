@@ -2,25 +2,9 @@
 *.log
 *.bak
 *.bat
-
 .idea
 
 deploy/vi
+sources/node_modules
+sources/package-lock.json
 
-node_modules
-
-/login
-/acc
-/acc.txt
-
-/appengine-db
-/database
-/storage
-
-Thumbs.db
-[Dd]esktop.ini
-$RECYCLE.BIN/
-.DS_Store
-._*
-.Trashes
-.Trash-*

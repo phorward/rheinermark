@@ -7,44 +7,27 @@ Subject:Deine Zugangsdaten für segelfliegen.com
 
 {% block content %}
 	{% set login = serverurl|replace("http:", "https:") + "/user/login" %}
+	{% set login = "https://intern.segelfliegen.com/" %}
 
 	<h1>Hallo {{ skel.firstname }}!</h1>
 
 	<p>
 		Hiermit erhälst du Deine persönlichen Zugangsdaten für den neuen
-		<strong>Mitgliederbereich der Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.</strong>
-		auf <a href="https://www.segelfliegen.com">segelfliegen.com</a>.
+		<strong>Mitgliederbereich der Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.</strong>.
 	</p>
-	<p>
-		Dort findest Du allerhand nützliche Informationen und Werkzeuge, um die Flugvorbereitung sowie den Flugbetrieb
-		und das Vereinsleben besser organisieren zu können.
-	</p>
-	<p>
-		Für den Anfang bietet der Mitgliederbereich <strong>eine Flugzeug-Datenbank</strong>,
-		<strong>Downloads</strong> von Dokumenten rund um den Verein, Flugzeuge und die Streckenfliegerei,
-		sowie eine Sammlung von nützlichen <strong>Weblinks</strong> zu Themen wie Streckenflug oder Wetter.<br><br>
 
-		Für die Zukunft sind weitere Module für diesen Bereich geplant, u.A. eine Terminplanung und eine Diensteverwaltung,
-		und vielleicht auch noch Einiges mehr, das hängt ganz davon ab ob und wie es genutzt wird.
-	</p>
 	<p>
-		Das neue System ist ein Open Source Projekt und wird ständig weiterentwickelt und um neue Funktionen erweitert.<br><br>
-
-		Natürlich hoffen wir dabei auch auf eure Mithilfe und Feedbacks! Fehlen z.B. Links oder Dokumente, dann schickt uns
-		eine Nachricht, am besten direkt über das System, oder per E-Mail an <a href="mailto:info@segelfliegen.com">info@segelfliegen.com</a>.
-	</p>
-	<p>
-		Für Deine Anmeldung im System, besuche bitte die URL <a href="{{ login }}">{{login}}</a> und verwende folgende
-		Anmeldedaten:
+		Für Deine Anmeldung im System nutze bitte folgende Daten:
 	</p>
 	<p style="padding-left: 25px;">
+		URL: <strong><a href="{{ login }}">{{login}}</a></strong><br>
 		Login: <strong>{{ skel["name"] }}</strong><br>
 		Passwort: <strong>{{ skel["password"] }}</strong>
 	</p>
 
 	<p>
 		Du wirst anschließend die Möglichkeit haben, Dein persönliches Passwort einzustellen, sowie Themen
-		zu definieren, die Dich interessieren.
+		zu definieren, die Dich interessieren. Deine E-Mail Adresse ist jederzeit änderbar.
 	</p>
 
 	<p>

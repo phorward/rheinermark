@@ -10,7 +10,15 @@
 	<h1>Login</h1>
 
 	{% if loginFailed %}
-		<p><strong>Login fehlgeschlagen!</strong></p>
+		<p style="color: red;">
+			<strong>Login fehlgeschlagen!</strong><br>
+			Bitte überprüfe ob du die richtige E-Mail Adresse und das richtige Passwort eingegeben hast!
+		</p>
+	{% else %}
+		<p>
+			Du hast noch kein Login?<br>
+			Kein Problem, einfach Max fragen oder <a href="/#kontakt">eine kurze Mitteilung schicken</a>!
+		</p>
 	{% endif %}
 
 	<form method="POST" action="/user/auth_userpassword/login">
@@ -18,7 +26,7 @@
 
 		<div class="input-group">
 			<label class="label js-focus">
-				E-Mail / Benutzername
+				E-Mail
 				<input class="input" name="name" type="text" placeholder="E-Mail">
 			</label>
 		</div>
@@ -34,8 +42,8 @@
 	</form>
 
 	{% if not req.get("disableGoogle") %}
-		<div style="text-align: center">
-			<a class="btn btn--google" href="/user/auth_googleaccount/login">Oder mit Google einloggen…</a>
+		<div style="text-align: center; font-size: 0.8em;">
+			<a class="btn btn--google" href="/user/auth_googleaccount/login">(Oder hier mit Google einloggen…)</a>
 		</div>
 	{% endif %}
 {% endblock %}

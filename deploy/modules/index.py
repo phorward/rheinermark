@@ -11,6 +11,11 @@ class index(default):
 
 	@exposed
 	def index(self, *args, **kwargs):
+		#if request.current.get().request.url.lower().startswith("https://intern.segelfliegen.com"):
+		#	return conf["viur.mainApp"].user.view("self")
+		if request.current.get().request.url.startswith("https://intern."):
+			raise errors.Redirect("https://www.segelfliegen.com/user/login")
+
 		template = self.getEnv().get_template("index.html")
 		return template.render(start=True)
 
