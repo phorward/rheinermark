@@ -1,5 +1,5 @@
 {% extends "intern.html" %}
-{% set name = skel.name + (" (" + skel.compreg + ")" if skel.compreg else "") + " - " + skel.reg  %}
+{% set name = skel.reg + (" (" + skel.compreg + ")" if skel.compreg else "") + " - " + skel.name  %}
 {% set title = name %}
 {% set path = [{"name": "Flugzeuge", "url": "/aircraft/list"}] %}
 
