@@ -681,7 +681,6 @@ form .option-group {
 		list-style-type: none;
 
 		& li {
-
 			& img {
 				vertical-align: middle;
 				border-radius: 5px;
@@ -700,6 +699,10 @@ form .option-group {
 				margin: 5px;
 				border: 1px solid $accent-color;
 				border-radius: 5px;
+
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
 
 			& a:hover {
@@ -814,5 +817,9 @@ form .option-group {
 
 	.intern .wrapper {
 		flex-direction: column;
+	}
+
+  	.intern ul.menu {
+	  font-size: 1.3em;
 	}
 }
