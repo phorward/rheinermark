@@ -135,14 +135,6 @@ header {
     transition: 0.5s;
 }
 
-.logo-big {
-	background-image: url(/static/img/logo.svg);
-    background-repeat: no-repeat;
-	background-position: center center;
-	min-height: 250px;
-	margin-bottom: 75px;
-}
-
 // MOBILE MENU //
 
 .mobilemenu-wrapper {
@@ -631,6 +623,13 @@ form .option-group {
 // Intern
 
 .intern {
+  	& .input-group {
+	  margin: 15px;
+	}
+
+	& .btn--primary {
+	  margin: 30px;
+	}
 
 	& .image {
 		height: 750px;

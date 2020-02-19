@@ -22,9 +22,9 @@ var gulp = require('gulp'),                         //GULP  -- Gulp selbst
     minifyCSS = require('gulp-minify-css'),       //CSS   -- Minifizierung
     cleanCSS = require('gulp-clean-css'),           //CSS   -- Säubern mit clean-css
     sass = require('gulp-sass'),                    //CSS   -- Konvertierung der Sass-Datei in eine CSS-Datei
-    concat = require('gulp-concat'),               //JS    -- Zusammenfassen
-    uglify = require('gulp-uglify'),               //JS    -- Minifizierung
-    imagemin = require('gulp-imagemin');          //IMG   -- Verlustlose Kompression aller Bilder und Vektoren
+    //concat = require('gulp-concat'),               //JS    -- Zusammenfassen
+    //uglify = require('gulp-uglify'),               //JS    -- Minifizierung
+    //imagemin = require('gulp-imagemin');          //IMG   -- Verlustlose Kompression aller Bilder und Vektoren
 
 
 //Uhrzeit

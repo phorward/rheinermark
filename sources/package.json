@@ -13,11 +13,11 @@
     "gulp-autoprefixer": "*",
     "gulp-clean-css": "*",
     "gulp-color": "*",
-    "gulp-concat": "*",
     "gulp-plumber": "*",
     "gulp-rename": "*",
     "gulp-sass": "*",
-    "gulp-uglify": "*"
+    "gulp-minify-css": "*",
+    "gulp-util": "*"
   },
   "dependencies": {
     "gulp": "*"
