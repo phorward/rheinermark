@@ -558,15 +558,15 @@ form {
 form label {
 	display: block;
 	margin: 5px auto;
-	padding-left: 15px;
 }
 
 form input, form select, form textarea  {
-	width: 95%;
-	font-size: 1.2em;
+	width: 100%;
 	display: block;
 	padding: 5px;
 	box-sizing: border-box;
+  	//border-radius: 5px;
+  	font-size: 1.2em;
 }
 
 form textarea {
@@ -579,7 +579,7 @@ form input[type=checkbox] {
 }
 
 form input[type=submit] {
-	margin: 10px auto;
+	margin: 25px auto;
 	padding: 12px;
 	color: #fff;
 	background-color: $accent-color;
@@ -623,14 +623,6 @@ form .option-group {
 // Intern
 
 .intern {
-  	& .input-group {
-	  margin: 15px;
-	}
-
-	& .btn--primary {
-	  margin: 30px;
-	}
-
 	& .image {
 		height: 750px;
 		background-position: center;
@@ -652,10 +644,6 @@ form .option-group {
 		padding: 5px;
 	}
 
-	& p, & label {
-		font-size: 1.3em;
-	}
-
 	& h1 {
 		font-size: 1.6em;
 		border-bottom: 1px solid $fgcolor;
@@ -675,7 +663,6 @@ form .option-group {
 	& ul.menu {
 		width: 100%;
 		padding: 0;
-		margin: 5px;
 		font-size: 2em;
 		list-style-type: none;
 
@@ -695,7 +682,7 @@ form .option-group {
 				display: block;
 				transition: 1s;
 				padding: 10px 20px;
-				margin: 5px;
+				margin: 5px 0;
 				border: 1px solid $accent-color;
 				border-radius: 5px;
 
@@ -795,6 +782,10 @@ form .option-group {
 }
 
 @media only screen and (max-width: 720px) {
+  	form input, form select, form textarea {
+	  width: 98%;
+	}
+
     .menu-bar {
         display: none;
     }

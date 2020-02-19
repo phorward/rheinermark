@@ -8,14 +8,13 @@
 	<h1>Login</h1>
 
 	{% if loginFailed %}
-		<p style="color: red;">
+		<p style="color: #aa1111;">
 			<strong>Login fehlgeschlagen!</strong><br>
 			Bitte überprüfe ob du die richtige E-Mail Adresse und das richtige Passwort eingegeben hast!
 		</p>
 	{% else %}
 		<p>
-			Du hast noch kein Login?<br>
-			Kein Problem, einfach Max fragen oder <a href="/#kontakt">eine kurze Mitteilung schicken</a>!
+			Du hast noch kein Login? Kein Problem, einfach Max fragen oder <a href="/#kontakt">eine kurze Mitteilung schicken</a>!
 		</p>
 	{% endif %}
 
@@ -23,9 +22,9 @@
 		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
 		<div class="input-group">
-			<label class="label js-focus">
+			<label class="label">
 				E-Mail
-				<input class="input" name="name" type="text" placeholder="E-Mail">
+				<input class="input js-focus" name="name" type="text" placeholder="E-Mail">
 			</label>
 		</div>
 

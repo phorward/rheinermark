@@ -135,5 +135,8 @@ $(window).ready(function() {
 			$("#cookieConsent").fadeOut(200);
 		});
 	}
+
+	// Focus a js-focus
+	$(".js-focus").focus();
 });
 
