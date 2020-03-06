@@ -25,6 +25,7 @@
 # ------------------------------------------------------------------------------
 
 from server import conf, securityheaders, request
+from collections import OrderedDict
 
 # ------------------------------------------------------------------------------
 # General configuration
@@ -49,6 +50,14 @@ conf["project.user.interests"] = {
 	"website": u"Webseite - Information über Aktualisierungen erhalten",
 	"beta": u"Webseite - Neue Funktionen ausprobieren (Betatest)"
 }
+
+conf["project.appointment.duties"] = OrderedDict([
+	("trainer", u"Fluglehrer"),
+	("controller", u"Flugleiter"),
+	("canteen", u"Kantine"),
+	#("towlaunch", u"Schlepppilot"),
+	("winch", u"Windenfahrer")
+])
 
 # ------------------------------------------------------------------------------
 # ViUR admin tool specific configurations

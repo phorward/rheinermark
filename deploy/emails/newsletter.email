@@ -1,7 +1,7 @@
+Subject:{{ skel.name }}
 {% extends "viur_mail_default.html" %}
 
-{% set user = getEntry("user", getCurrentUser()["key"]) %}
-{% set login = serverurl|replace("http:", "https:") + "/user/login" %}
+{% set user = getEntry("user", skel.user["key"]) %}
 
 {% block title %}
 	{{skel.name}}

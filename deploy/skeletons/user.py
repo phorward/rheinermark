@@ -118,6 +118,16 @@ class userSkel(skeleton.Skeleton):
 		}
 	)
 
+	duties = selectBone(
+		descr=u"Dienste",
+		indexed=True,
+		multiple=True,
+		defaultValue=["canteen"],
+		params={
+			"tooltip": u"Hier können Dienste definiert werden, für welche das Mitglied eingeplant werden kann."
+		}
+	)
+
 	access = selectAccessBone(
 		descr="Access rights",
 		values={"root": "Superuser"},

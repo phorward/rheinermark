@@ -640,8 +640,15 @@ form .option-group {
 	}
 
 	& .wrapper > * {
-		flex: 0 0 50%;
 		padding: 5px;
+	}
+
+	& .wrapper > :nth-child(1) {
+		flex: 0 0 70%;
+	}
+
+  	& .wrapper > :nth-child(2) {
+		flex: 0 0 30%;
 	}
 
 	& h1 {
@@ -806,7 +813,7 @@ form .option-group {
 	}
 
 	.intern .wrapper {
-		flex-direction: column;
+		flex-direction: column-reverse;
 	}
 
   	.intern ul.menu {

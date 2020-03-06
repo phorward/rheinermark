@@ -6,6 +6,21 @@ from server import conf
 
 class newsletter(Skeleton):
 
+	triggered = booleanBone(
+		descr=u"Versand angestoßen",
+		defaultValue=False,
+		indexed=True,
+		readOnly=True,
+		visible=False
+	)
+
+	triggereddate = dateBone(
+		descr=u"Versand angestoßen am",
+		indexed=True,
+		readOnly=True,
+		visible=False
+	)
+
 	sent = booleanBone(
 		descr=u"Verschickt",
 		defaultValue=False,
@@ -33,6 +48,13 @@ class newsletter(Skeleton):
 		params={
 			"tooltip": u"Bitte keine Ansprache verwenden, diese wird automatisch generiert!"
 		}
+	)
+
+	appointment = relationalBone(
+		kind="appointment",
+		module="appointment",
+		descr=u"Termin",
+		indexed=True
 	)
 
 	recipients = selectBone(

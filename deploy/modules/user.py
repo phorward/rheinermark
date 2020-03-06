@@ -74,9 +74,10 @@ class user(User):
 			skel["status"] = 10
 
 			for name, bone in skel.items():
-				if name in ["name", "firstname", "nickname", "lastname", "airbatch_daec", "interests"]:
+				if name in ["name", "firstname", "nickname", "lastname", "airbatch_daec", "interests", "duties"]:
 					bone.readOnly = False
 					bone.visible = True
+
 				else:
 					bone.visible = False
 					bone.readOnly = True

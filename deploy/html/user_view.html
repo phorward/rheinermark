@@ -20,52 +20,59 @@
 		Falls du Fragen oder Anregungen hast <a href="/message/add">schicke uns hier direkt eine Nachricht</a>!
 	</p>
 
-	{#
 	<div class="wrapper">
-		<div>Calendar</div>
-		<div>Menu</div>
+		<div>
+			<ul class="menu">
+				<!-- <li><a href="#">Termine</a></li> -->
+				<li><a href="/aircraft/list">
+					<img class="icon" src="/static/img/generic-glider.svg"> Flugzeuge</a>
+				</li>
+
+				{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
+					<li><a href="/s/startliste">
+						<img class="icon" src="/static/img/icons/list.svg"> Starterfassung (DEMO)</a>
+					</li>
+				{% endif %}
+
+				{% for folder in (appconf["intern_document_folders"] or []) %}
+					<li><a href="/file/view/node/{{folder.key|shortKey}}">
+						<img class="icon" src="/static/img/icons/hierarchy.svg"> {{folder.name}}
+					</a></li>
+				{% endfor %}
+
+				<li><a href="/user/edit">
+					<img class="icon" src="/static/img/icons/settings.svg"> Einstellungen</a>
+				</li>
+				<li><a href="/message/add">
+					<img class="icon" src="/static/img/icons/message.svg"> Mitteilung schicken</a>
+				</li>
+
+				{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}
+					<li><a href="/user/add">
+						<img class="icon" src="/static/img/icons/user.svg"> Mitglied anlegen
+					</a></li>
+				{% endif %}
+				{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
+					<li><a href="/vi" target="_blank">
+						<img class="icon" src="/static/img/icons/database.svg"> System-Administration</a>
+					</li>
+				{% endif %}
+
+				<li><a href="/user/logout?skey={{ getSecurityKey() }}">
+					<img class="icon" src="/static/img/icons/logout.svg"> Logout</a>
+				</li>
+			</ul>
+		</div>
+		<div>
+			{% set appointments = [] %}
+			{% do appointments.extend(getList("appointment")) %}
+
+			<ul class="appointments">
+				{% for appointment in appointments %}
+					<li>{{ appointment.date.strftime("%d.%m.%Y") }} {{ appointment.name }}</li>
+				{% endfor %}
+			</ul>
+		</div>
 	</div>
-	#}
-
-	<ul class="menu">
-		<!-- <li><a href="#">Termine</a></li> -->
-		<li><a href="/aircraft/list">
-			<img class="icon" src="/static/img/generic-glider.svg"> Flugzeuge</a>
-		</li>
-
-		{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
-			<li><a href="/s/startliste">
-				<img class="icon" src="/static/img/icons/list.svg"> Starterfassung (DEMO)</a>
-			</li>
-		{% endif %}
-
-		{% for folder in (appconf["intern_document_folders"] or []) %}
-			<li><a href="/file/view/node/{{folder.key|shortKey}}">
-				<img class="icon" src="/static/img/icons/hierarchy.svg"> {{folder.name}}
-			</a></li>
-		{% endfor %}
-
-		<li><a href="/user/edit">
-			<img class="icon" src="/static/img/icons/settings.svg"> Einstellungen</a>
-		</li>
-		<li><a href="/message/add">
-			<img class="icon" src="/static/img/icons/message.svg"> Mitteilung schicken</a>
-		</li>
-
-		{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}
-			<li><a href="/user/add">
-				<img class="icon" src="/static/img/icons/user.svg"> Mitglied anlegen
-			</a></li>
-		{% endif %}
-		{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
-			<li><a href="/vi" target="_blank">
-				<img class="icon" src="/static/img/icons/database.svg"> System-Administration</a>
-			</li>
-		{% endif %}
-
-		<li><a href="/user/logout?skey={{ getSecurityKey() }}">
-			<img class="icon" src="/static/img/icons/logout.svg"> Logout</a>
-		</li>
-	</ul>
 
 {% endblock %}
