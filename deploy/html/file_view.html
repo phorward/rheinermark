@@ -14,7 +14,7 @@
 
 	<ul class="menu left">
 		{% for folder in getList("file", "viewNodeSkel", parentdir=skel.key, orderby="name") %}
-			<li>
+			<li class="item">
 				<a href="/file/view/node/{{folder.key}}">
 					<img class="icon" src="/static/icons/folder.svg">
 					{{folder.name}}

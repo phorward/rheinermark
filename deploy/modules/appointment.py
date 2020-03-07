@@ -2,6 +2,7 @@
 from server.prototypes.list import List
 from server import request, conf, utils
 from server.render.html import default as htmlRender
+import logging
 
 
 class Appointment(List):
@@ -36,7 +37,7 @@ class Appointment(List):
 			user = conf["viur.mainApp"].user.viewSkel()
 
 			if user.fromDB(cuser["key"]):
-				query.filter("recipients IN", user["interests"])
+				query.filter("recipients", user["interests"])
 
 		return query
 
@@ -48,7 +49,8 @@ class Appointment(List):
 
 	viewSkel = editSkel = addSkel
 
-class Duty(Appointment):
+
+class Duty(List):
 	kindName = "appointment"
 	viewTemplate = "duty_view"
 	_columns = ["date", "user"]
@@ -101,7 +103,9 @@ class Duty(Appointment):
 
 		cuser = utils.getCurrentUser()
 		if cuser and isinstance(self.render, htmlRender):
-			query.filter("user.dest.key", cuser["key"])
+			query.mergeExternalFilter({"user.dest.key": cuser["key"]})
+
+		print(query.getFilter())
 
 		return query
 

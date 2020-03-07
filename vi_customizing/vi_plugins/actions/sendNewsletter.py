@@ -9,6 +9,7 @@ from i18n import translate
 class SendNewsletterAction(html5.ext.Button):
 	def __init__(self, *args, **kwargs):
 		super(SendNewsletterAction, self).__init__(translate(u"Newsletter senden"), *args, **kwargs)
+		self.disable()
 
 	@staticmethod
 	def isSuitableFor(module, handler, actionName):

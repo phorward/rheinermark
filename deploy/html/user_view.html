@@ -21,55 +21,82 @@
 	</p>
 
 	<div class="wrapper">
-		<div>
-			<ul class="menu">
-				<!-- <li><a href="#">Termine</a></li> -->
-				<li><a href="/aircraft/list">
-					<img class="icon" src="/static/img/generic-glider.svg"> Flugzeuge</a>
+		<ul class="menu">
+			<!-- <li><a href="#">Termine</a></li> -->
+			<li class="item"><a href="/aircraft/list">
+				<img class="icon" src="/static/img/generic-glider.svg"> Flugzeuge</a>
+			</li>
+
+			{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
+				<li class="item"><a href="/s/startliste">
+					<img class="icon" src="/static/img/icons/list.svg"> Starterfassung (DEMO)</a>
 				</li>
+			{% endif %}
 
-				{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
-					<li><a href="/s/startliste">
-						<img class="icon" src="/static/img/icons/list.svg"> Starterfassung (DEMO)</a>
-					</li>
-				{% endif %}
+			{% for folder in (appconf["intern_document_folders"] or []) %}
+				<li class="item"><a href="/file/view/node/{{folder.key|shortKey}}">
+					<img class="icon" src="/static/img/icons/hierarchy.svg"> {{folder.name}}
+				</a></li>
+			{% endfor %}
 
-				{% for folder in (appconf["intern_document_folders"] or []) %}
-					<li><a href="/file/view/node/{{folder.key|shortKey}}">
-						<img class="icon" src="/static/img/icons/hierarchy.svg"> {{folder.name}}
-					</a></li>
-				{% endfor %}
+			<li class="item"><a href="/user/edit">
+				<img class="icon" src="/static/img/icons/settings.svg"> Einstellungen</a>
+			</li>
+			<li class="item"><a href="/message/add">
+				<img class="icon" src="/static/img/icons/message.svg"> Mitteilung schicken</a>
+			</li>
 
-				<li><a href="/user/edit">
-					<img class="icon" src="/static/img/icons/settings.svg"> Einstellungen</a>
+			{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}
+				<li class="item"><a href="/user/add">
+					<img class="icon" src="/static/img/icons/user.svg"> Mitglied anlegen
+				</a></li>
+			{% endif %}
+			{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
+				<li class="item"><a href="/vi" target="_blank">
+					<img class="icon" src="/static/img/icons/database.svg"> System-Administration</a>
 				</li>
-				<li><a href="/message/add">
-					<img class="icon" src="/static/img/icons/message.svg"> Mitteilung schicken</a>
-				</li>
+			{% endif %}
 
-				{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}
-					<li><a href="/user/add">
-						<img class="icon" src="/static/img/icons/user.svg"> Mitglied anlegen
-					</a></li>
-				{% endif %}
-				{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
-					<li><a href="/vi" target="_blank">
-						<img class="icon" src="/static/img/icons/database.svg"> System-Administration</a>
-					</li>
-				{% endif %}
-
-				<li><a href="/user/logout?skey={{ getSecurityKey() }}">
-					<img class="icon" src="/static/img/icons/logout.svg"> Logout</a>
-				</li>
-			</ul>
-		</div>
-		<div>
+			<li class="item"><a href="/user/logout?skey={{ getSecurityKey() }}">
+				<img class="icon" src="/static/img/icons/logout.svg"> Logout</a>
+			</li>
+		</ul>
+		<div class="appointment">
 			{% set appointments = [] %}
 			{% do appointments.extend(getList("appointment")) %}
+			{% do appointments.extend(getList("duty")) %}
 
-			<ul class="appointments">
-				{% for appointment in appointments %}
-					<li>{{ appointment.date.strftime("%d.%m.%Y") }} {{ appointment.name }}</li>
+			<h2 class="item">
+				<img class="icon" src="/static/img/icons/calendar.svg"> Termine
+			</h2>
+
+			<ul>
+				{% for appointment in appointments|sort(attribute="date") %}
+					<li>
+						<span class="appointment-date">
+							{{ appointment.date.strftime("%d.%m.%Y") }}
+							{% if appointment.allday == False %} {# explicitly check for False, it can also be None! #}
+								um {{ appointment.date.strftime("%H:%M") }} Uhr
+							{% endif %}
+						</span>
+						<span class="appointment-title">
+							{% if appointment.kind == "meeting" %}
+								{{ appointment.name }}
+							{% else %}
+								{{ appointment.duty.descr }}
+
+								{% if appointment.user|length > 1 %}
+									zusammen mit
+									{% for attendee in appointment.user %}
+										{% if attendee["key"] != skel["key"] %}
+											{{ attendee.firstname }} {{ attendee.lastname }}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+
+							{% endif %}
+						</span>
+					</li>
 				{% endfor %}
 			</ul>
 		</div>

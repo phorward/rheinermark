@@ -9,7 +9,7 @@ from server import conf
 class appointment(Skeleton):
 	subSkels = {
 		"*": ["kind", "date", "name"],
-		"meeting": ["descr", "attachments", "recipients"],
+		"meeting": ["allday", "attachments", "recipients"],
 		"duty": ["duty", "user"]
 	}
 
@@ -31,6 +31,15 @@ class appointment(Skeleton):
 		values=conf["project.appointment.duties"]
 	)
 
+	allday = booleanBone(
+		descr=u"Ganztägig",
+		indexed=True,
+		defaultValue=True,
+		params={
+			"tooltip": "Wenn nicht gesetzt wird die Uhrzeit mit ausgegeben!"
+		}
+	)
+
 	date = dateBone(
 		descr=u"Termin",
 		required=True,
@@ -44,11 +53,6 @@ class appointment(Skeleton):
 		indexed=True
 	)
 
-	descr = textBone(
-		descr=u"Beschreibung",
-		searchable=True
-	)
-
 	attachments = fileBone(
 		descr=u"Anhang",
 		multiple=True
@@ -56,6 +60,7 @@ class appointment(Skeleton):
 
 	user = userBone(
 		descr=u"Benutzer",
+		parentKeys=["key", "kind"],
 		indexed=True,
 		multiple=True,
 		required=True
