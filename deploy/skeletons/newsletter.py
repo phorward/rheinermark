@@ -25,13 +25,20 @@ class newsletter(Skeleton):
 		descr=u"Verschickt",
 		defaultValue=False,
 		indexed=True,
-		readOnly=True
+		readOnly=True,
+		visible=False,
 	)
 
 	sentdate = dateBone(
 		descr=u"Verschickt am",
 		indexed=True,
 		readOnly=True
+	)
+
+	sentto = numericBone(
+		descr=u"Verschickt an",
+		readOnly=True,
+		visible=False
 	)
 
 	name = stringBone(

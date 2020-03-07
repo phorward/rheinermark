@@ -37,7 +37,7 @@ class Appointment(List):
 			user = conf["viur.mainApp"].user.viewSkel()
 
 			if user.fromDB(cuser["key"]):
-				query.filter("recipients", user["interests"])
+				query.filter("recipients IN", user["interests"])
 
 		return query
 

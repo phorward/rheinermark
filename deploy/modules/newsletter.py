@@ -59,7 +59,7 @@ class Newsletter(List):
 		return json.dumps("OKAY")
 
 	@tasks.callDeferred
-	def fetchNewsletterRecipients(self, key, cursor=None, *args, **kwargs):
+	def fetchNewsletterRecipients(self, key, cursor=None, total=0, *args, **kwargs):
 		skel = self.viewSkel()
 		if not skel.fromDB(key):
 			logging.error("Newsletter does not exist")
@@ -71,22 +71,23 @@ class Newsletter(List):
 		q.filter("interests", skel["recipients"])
 		q.cursor(cursor)
 
-		fetched = False
+		count = 0
 		for user in q.run(keysOnly=True):
 			self.sendNewsletter(key, str(user))
-			fetched = True
+			count += 1
 
-		if fetched:
-			self.fetchNewsletterRecipients(key, q.getCursor().urlsafe())
+		if count:
+			self.fetchNewsletterRecipients(key, q.getCursor().urlsafe(), total=total + count)
 			return
 
-		logging.info("All recipients fetched")
+		logging.info("All %d recipients fetched", total)
 
 		setStatus(
 			skel["key"],
 			values={
 				"sent": True,
 				"sentdate": datetime.datetime.now(),
+				"sentto": total
 			}
 		)
 
