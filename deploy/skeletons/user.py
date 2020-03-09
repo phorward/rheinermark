@@ -123,6 +123,7 @@ class userSkel(skeleton.Skeleton):
 		indexed=True,
 		multiple=True,
 		defaultValue=["canteen"],
+		values=conf["project.appointment.duties"],
 		params={
 			"tooltip": u"Hier können Dienste definiert werden, für welche das Mitglied eingeplant werden kann."
 		}

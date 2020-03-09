@@ -1,6 +1,6 @@
 {% extends "intern.html" %}
 {% set title = skel.name %}
-{% from "macros/utils.html" import renderFileEntry %}
+{% from "macros/utils.html" import renderFileEntry, Icon %}
 
 {% block headline %}
 	{% for part in getPathToKey(skel.key)[1:-1] %}
@@ -16,7 +16,7 @@
 		{% for folder in getList("file", "viewNodeSkel", parentdir=skel.key, orderby="name") %}
 			<li class="item">
 				<a href="/file/view/node/{{folder.key}}">
-					<img class="icon" src="/static/icons/folder.svg">
+					{{ Icon("/static/icons/folder.svg") }}
 					{{folder.name}}
 				</a>
 			</li>

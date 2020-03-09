@@ -17,6 +17,10 @@
 	{{ "%.2f" |format(value|float)|replace(".", ",") + " " + currency }}
 {%- endmacro -%}
 
+{% macro Icon(img, classes="") %}
+	<span class="icon {{ classes }}" style="background-image: url({{ img }})"></span>
+{% endmacro %}
+
 {%- macro renderFileEntry(document) %}
 	<li class="item">
 		{% set target = "_self" %}
@@ -39,7 +43,7 @@
 		{% endif %}
 
 		<a href="{{ url }}" target="{{ target }}">
-			<img class="icon" src="/static/icons/{{ icon }}.svg">
+			{{ Icon("/static/icons/" + icon + ".svg", "new" if document["creationdate"] > dateTime().now() - timedelta()(days=30)) }}
 			{{ document.name }}
 		</a>
 	</li>
