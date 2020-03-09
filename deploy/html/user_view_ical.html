@@ -1,0 +1,18 @@
+{%- set appointments = [] -%}
+{%- do appointments.extend(getList("appointment")) -%}
+{%- do appointments.extend(getList("duty")) -%}
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:segelfliegen.com
+METHOD:PUBLISH
+{% for appointment in appointments|sort(attribute="date") -%}
+BEGIN:VEVENT
+UID:{{ appointment.key }}
+SUMMARY:{{ appointment.name or appointment.duty.descr }}
+DESCRIPTION:{{ appointment.name or appointment.duty.descr }}
+CLASS:PRIVATE
+DTSTART:{{ appointment.date.strftime("%Y%m%d") }}{{ appointment.date.strftime("T%H%M%S") if not appointment.allday }}
+DTSTAMP:{{ dateTime().now().strftime("%Y%m%dT%H%M%S") }}
+END:VEVENT
+{% endfor -%}
+END:VCALENDAR

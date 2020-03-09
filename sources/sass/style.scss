@@ -729,12 +729,20 @@ form .option-group {
 		border-radius: 5px;
 
 	  	& ul {
-		  font-size: 1.5em;
+		  font-size: 1.2em;
 		  width: 100%;
-		  list-style-type: circle;
-		  padding-left: 1em;
+		  padding: 0;
+		  list-style: none;
 
-		  & span {
+		  & li {
+			border: 1px solid grey;
+			background-color: white;
+			border-radius: 5px;
+			padding: 10px;
+			margin: 5px 0;
+		  }
+
+		  & li span {
 			display: block;
 		  }
 		}

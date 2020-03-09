@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from server.prototypes.list import List
-from server import request, conf, utils
+from server import request, conf, utils, errors, exposed
 from server.render.html import default as htmlRender
 import logging
 
@@ -104,8 +104,6 @@ class Duty(List):
 		cuser = utils.getCurrentUser()
 		if cuser and isinstance(self.render, htmlRender):
 			query.mergeExternalFilter({"user.dest.key": cuser["key"]})
-
-		print(query.getFilter())
 
 		return query
 

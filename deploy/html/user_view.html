@@ -96,35 +96,44 @@
 				Termine
 			</h2>
 
-			<ul>
-				{% for appointment in appointments|sort(attribute="date") %}
-					<li>
-						<span class="appointment-date">
-							{{ appointment.date.strftime("%d.%m.%Y") }}
-							{% if appointment.allday == False %} {# explicitly check for False, it can also be None! #}
-								um {{ appointment.date.strftime("%H:%M") }} Uhr
-							{% endif %}
-						</span>
-						<span class="appointment-title">
-							{% if appointment.kind == "meeting" %}
-								{{ appointment.name }}
-							{% else %}
-								{{ appointment.duty.descr }}
-
-								{% if appointment.user|length > 1 %}
-									zusammen mit
-									{% for attendee in appointment.user %}
-										{% if attendee["key"] != skel["key"] %}
-											{{ attendee.firstname }} {{ attendee.lastname }}
-										{% endif %}
-									{% endfor %}
+			{% if appointments %}
+				<ul>
+					{% for appointment in appointments|sort(attribute="date") %}
+						<li class="appointment">
+							<span class="appointment-date">
+								{{ appointment.date.strftime("%d.%m.%Y") }}
+								{% if appointment.allday == False %} {# explicitly check for False, it can also be None! #}
+									um {{ appointment.date.strftime("%H:%M") }} Uhr
 								{% endif %}
+							</span>
+							<span class="appointment-title">
+								{% if appointment.kind == "meeting" %}
+									{{ appointment.name }}
+								{% else %}
+									Dienst {{ appointment.duty.descr }}
 
-							{% endif %}
-						</span>
-					</li>
-				{% endfor %}
-			</ul>
+									{% if appointment.user|length > 1 %}
+										zusammen mit
+										{% for attendee in appointment.user %}
+											{% if attendee["key"] != skel["key"] %}
+												{{ attendee.firstname }} {{ attendee.lastname }}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+								{% endif %}
+							</span>
+						</li>
+					{% endfor %}
+				</ul>
+
+				<a href="/user/view/self/lsv-termine.ics?style=ical" download="LSV-termine.ics" type="text/calendar">
+					{{ Icon("/static/img/icons/download.svg") }}
+					Termine als iCal herunterladen
+				</a>
+
+			{% else %}
+				<p>Im Moment keine Termine!</p>
+			{% endif %}
 		</div>
 	</div>
 
