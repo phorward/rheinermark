@@ -23,9 +23,58 @@
 
 	<div class="wrapper">
 		<ul class="menu">
-			<!-- <li><a href="#">Termine</a></li> -->
+			{% set appointments = [] %}
+			{# fixme: Temporarily disabled.
+			{% do appointments.extend(getList("appointment")) %}
+			{% do appointments.extend(getList("duty")) %}
+		 	#}
+
+			{% if appointments %}
+				<li class="item">
+					<div class="action js-toggler">
+						{{ Icon("/static/img/icons/calendar.svg", "new") }}
+						Termine
+					</div>
+					<div class="appointments js-toggle">
+						<ul>
+							{% for appointment in appointments|sort(attribute="date") %}
+								<li class="appointment">
+									<span class="appointment-date">
+										{{ appointment.date.strftime("%d.%m.%Y") }}
+										{% if appointment.allday == False %} {# explicitly check for False, it can also be None! #}
+											um {{ appointment.date.strftime("%H:%M") }} Uhr
+										{% endif %}
+									</span>
+									<span class="appointment-title">
+										{% if appointment.kind == "meeting" %}
+											{{ appointment.name }}
+										{% else %}
+											Dienst {{ appointment.duty.descr }}
+
+											{% if appointment.user|length > 1 %}
+												zusammen mit
+												{% for attendee in appointment.user %}
+													{% if attendee["key"] != skel["key"] %}
+														{{ attendee.firstname }} {{ attendee.lastname }}
+													{% endif %}
+												{% endfor %}
+											{% endif %}
+										{% endif %}
+									</span>
+								</li>
+							{% endfor %}
+						</ul>
+
+						<a href="/user/view/self?style=ical" download="{{ dateTime().now().year }}.ics" type="text/calendar">
+							{{ Icon("/static/img/icons/download.svg") }}
+							Als iCal herunterladen
+						</a>
+					</div>
+				</li>
+			{% endif %}
+
 			<li class="item">
-				<a href="/aircraft/list">
+				<a class="action" href="/aircraft/list">
 					{{ Icon("/static/img/generic-glider.svg") }}
 					Flugzeuge
 				</a>
@@ -33,7 +82,7 @@
 
 			{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
 				<li class="item">
-					<a href="/s/startliste">
+					<a class="action" href="/s/startliste">
 						{{ Icon("/static/img/icons/list.svg") }}
 						Starterfassung (DEMO)
 					</a>
@@ -42,7 +91,7 @@
 
 			{% for folder in (appconf["intern_document_folders"] or []) %}
 				<li class="item">
-					<a href="/file/view/node/{{folder.key|shortKey}}">
+					<a class="action" href="/file/view/node/{{folder.key|shortKey}}">
 						{{ Icon("/static/img/icons/hierarchy.svg") }}
 						{{folder.name}}
 					</a>
@@ -50,13 +99,13 @@
 			{% endfor %}
 
 			<li class="item">
-				<a href="/user/edit">
+				<a class="action" href="/user/edit">
 					{{ Icon("/static/img/icons/settings.svg") }}
 					Einstellungen
 				</a>
 			</li>
 			<li class="item">
-				<a href="/message/add">
+				<a class="action" href="/message/add">
 					{{ Icon("/static/img/icons/message.svg") }}
 					Mitteilung schicken
 				</a>
@@ -64,7 +113,7 @@
 
 			{% if "user-add" in cuser["access"] or "root" in cuser["access"] %}
 				<li class="item">
-					<a href="/user/add">
+					<a class="action" href="/user/add">
 						{{ Icon("/static/img/icons/user.svg") }}
 						Mitglied anlegen
 					</a>
@@ -72,7 +121,7 @@
 			{% endif %}
 			{% if "admin" in cuser["access"] or "root" in cuser["access"] %}
 				<li class="item">
-					<a href="/vi" target="_blank">
+					<a class="action" href="/vi" target="_blank">
 						{{ Icon("/static/img/icons/database.svg") }}
 						System-Administration
 					</a>
@@ -80,61 +129,12 @@
 			{% endif %}
 
 			<li class="item">
-				<a href="/user/logout?skey={{ getSecurityKey() }}">
+				<a class="action" href="/user/logout?skey={{ getSecurityKey() }}">
 					{{ Icon("/static/img/icons/logout.svg") }}
 					Logout
 				</a>
 			</li>
 		</ul>
-		<div class="appointment">
-			{% set appointments = [] %}
-			{% do appointments.extend(getList("appointment")) %}
-			{% do appointments.extend(getList("duty")) %}
-
-			<h2 class="item">
-				{{ Icon("/static/img/icons/calendar.svg", "new") }}
-				Termine
-			</h2>
-
-			{% if appointments %}
-				<ul>
-					{% for appointment in appointments|sort(attribute="date") %}
-						<li class="appointment">
-							<span class="appointment-date">
-								{{ appointment.date.strftime("%d.%m.%Y") }}
-								{% if appointment.allday == False %} {# explicitly check for False, it can also be None! #}
-									um {{ appointment.date.strftime("%H:%M") }} Uhr
-								{% endif %}
-							</span>
-							<span class="appointment-title">
-								{% if appointment.kind == "meeting" %}
-									{{ appointment.name }}
-								{% else %}
-									Dienst {{ appointment.duty.descr }}
-
-									{% if appointment.user|length > 1 %}
-										zusammen mit
-										{% for attendee in appointment.user %}
-											{% if attendee["key"] != skel["key"] %}
-												{{ attendee.firstname }} {{ attendee.lastname }}
-											{% endif %}
-										{% endfor %}
-									{% endif %}
-								{% endif %}
-							</span>
-						</li>
-					{% endfor %}
-				</ul>
-
-				<a href="/user/view/self/lsv-termine.ics?style=ical" download="LSV-termine.ics" type="text/calendar">
-					{{ Icon("/static/img/icons/download.svg") }}
-					Termine als iCal herunterladen
-				</a>
-
-			{% else %}
-				<p>Im Moment keine Termine!</p>
-			{% endif %}
-		</div>
 	</div>
 
 {% endblock %}

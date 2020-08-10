@@ -1,15 +1,17 @@
 {% extends "intern.html" %}
 {% set title = "Flugzeuge" %}
 
+{% from "macros/utils.html" import Icon %}
+
 {% block content %}
 	<ul class="menu left">
 		{% for skel in skellist %}
 			<li class="item">
-				<a href="/aircraft/view/{{skel.key | shortKey}}">
+				<a class="action" href="/aircraft/view/{{skel.key | shortKey}}">
 					{% if skel.photo %}
-						<img class="icon" src="{{ getImageSrc(skel.photo, 150, True) }}">
+						{{ Icon(getImageSrc(skel.photo, 150, True)) }}
 					{% else %}
-						<img class="icon" src="/static/img/generic-glider.svg">
+						{{ Icon("/static/img/generic-glider.svg") }}
 					{% endif %}
 					<span>
 						{{skel.reg}}

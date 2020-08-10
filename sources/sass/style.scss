@@ -24,6 +24,7 @@ body {
 }
 
 a {
+  	cursor: pointer;
     text-decoration: none;
 	color: $accent-color;
     font-weight: bold;
@@ -634,23 +635,6 @@ form .option-group {
 		}
 	}
 
-	& .wrapper {
-		display: flex;
-		flex-direction: row;
-	}
-
-	& .wrapper > * {
-		padding: 5px;
-	}
-
-	& .wrapper > :nth-child(1) {
-		flex: 0 0 70%;
-	}
-
-  	& .wrapper > :nth-child(2) {
-		flex: 0 0 30%;
-	}
-
 	& h1 {
 		font-size: 1.6em;
 		border-bottom: 1px solid $fgcolor;
@@ -691,6 +675,33 @@ form .option-group {
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	  white-space: nowrap;
+
+	  display: block;
+	  transition: 1s;
+	  margin: 5px 0;
+	  border: 1px solid $accent-color;
+	  border-radius: 5px;
+
+	  & .action {
+		cursor: pointer;
+		display: block;
+		transition: 1s;
+		padding: 10px 20px;
+
+		color: $accent-color;
+    	font-weight: bold;
+	  }
+	}
+
+	& .item:hover, & .item.is-hover {
+		border-color: black;
+		background-color: $accent-color;
+		color: white;
+
+	  	& .action {
+		  padding: 15px 20px;
+		  color: white;
+		}
 	}
 
 	& ul.menu {
@@ -703,30 +714,20 @@ form .option-group {
 				vertical-align: middle;
 				border-radius: 5px;
 			}
-
-			& a {
-				display: block;
-				transition: 1s;
-				padding: 10px 20px;
-				margin: 5px 0;
-				border: 1px solid $accent-color;
-				border-radius: 5px;
-			}
-
-			& a:hover {
-				border-color: black;
-				background-color: $accent-color;
-				color: white;
-				padding: 15px 20px;
-			}
 		}
 	}
 
-  	& div.appointment {
+  	& div.appointments {
+	  	margin: 5px;
 		padding: 10px 20px;
-		margin: 20px 0 20px 10px;
-		border: 1px solid $accent-color;
-		border-radius: 5px;
+	  	font-size: 0.6em;
+	  	border-radius: 0px 0px 5px 5px;
+	  	background-color: white;
+	  	display: none;
+
+	  	&.is-open {
+		  display:block;
+		}
 
 	  	& ul {
 		  font-size: 1.2em;
@@ -817,6 +818,10 @@ form .option-group {
     .content-box {
 		width: 100%;
 	}
+
+	.functional.text {
+		padding: 0 2%;
+	}
 }
 
 @media only screen and (max-width: 800px) {
@@ -824,8 +829,20 @@ form .option-group {
         transform: scale(0.7) translateX(50px) translateY(-11px);
     }
 
-	.functional.text {
-		padding: 0 5%;
+	.intern {
+	  & div.appointment {
+		margin: 0;
+
+		& ul {
+		  & span {
+			display: unset;
+		  }
+		}
+	  }
+
+	  & .image {
+		height: 300px;
+	  }
 	}
 }
 
@@ -850,28 +867,12 @@ form .option-group {
     .content-box {flex-direction: column;}
 
 	.functional.text {
-		padding: 0 2%;
+		padding: 0 1%;
 	}
 
 	.intern {
-	  & .wrapper {
-		flex-direction: column-reverse;
-	  }
-
-	  & div.appointment {
-		margin: 0;
-
-		& ul {
-		  font-size: 1em;
-
-		  & span {
-			display: unset;
-		  }
-		}
-	  }
-
 	  & .item {
-		font-size: 1.3em;
-	  }
+		  font-size: 1.3em;
+		}
 	}
 }

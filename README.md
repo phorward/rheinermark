@@ -72,8 +72,8 @@ Deployment is performed using the gcloud SDK:
 ```bash
 $ cd deploy
 
-# Deploy to dev
-$ gcloud app deploy --no-promote -q --project=rheinermark-viur --version=$USER-dev
+# Deploy to beta
+$ gcloud app deploy --no-promote -q --project=rheinermark-viur --version=beta
 
 # Deploy to live (beware!)
 $ gcloud app deploy -q --project=rheinermark-viur --version=`date +"%Y-%m-%d"-$USER`

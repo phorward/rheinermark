@@ -6,10 +6,10 @@ from bones import *
 from server import conf
 
 
-class appointment(Skeleton):
+class appointmentSkel(Skeleton):
 	subSkels = {
 		"*": ["kind", "date", "name"],
-		"meeting": ["allday", "attachments", "recipients"],
+		"meeting": ["until", "allday", "attachments", "recipients"],
 		"duty": ["duty", "user"]
 	}
 
@@ -31,6 +31,12 @@ class appointment(Skeleton):
 		values=conf["project.appointment.duties"]
 	)
 
+	date = dateBone(
+		descr=u"Termin um",
+		required=True,
+		indexed=True
+	)
+
 	allday = booleanBone(
 		descr=u"Ganztägig",
 		indexed=True,
@@ -40,10 +46,8 @@ class appointment(Skeleton):
 		}
 	)
 
-	date = dateBone(
-		descr=u"Termin",
-		required=True,
-		indexed=True
+	until = dateBone(
+		descr=u"Termin bis"
 	)
 
 	name = stringBone(
@@ -78,3 +82,9 @@ class appointment(Skeleton):
 			"tooltip": u"Auswahl von Zielgruppen."
 		}
 	)
+
+	def toDB(self, *args, **kwargs):
+		if "until" in self and self["until"] and self["until"] < self["date"]:
+			self["until"] = None
+
+		return super(appointmentSkel, self).toDB(*args, **kwargs)

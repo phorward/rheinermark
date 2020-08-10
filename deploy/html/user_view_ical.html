@@ -4,15 +4,35 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:segelfliegen.com
+CALSCALE:GREGORIAN
 METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+BEGIN:STANDARD
+DTSTART:16011028T030000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:16010325T020000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+END:DAYLIGHT
+END:VTIMEZONE
 {% for appointment in appointments|sort(attribute="date") -%}
 BEGIN:VEVENT
-UID:{{ appointment.key }}
-SUMMARY:{{ appointment.name or appointment.duty.descr }}
-DESCRIPTION:{{ appointment.name or appointment.duty.descr }}
 CLASS:PRIVATE
-DTSTART:{{ appointment.date.strftime("%Y%m%d") }}{{ appointment.date.strftime("T%H%M%S") if not appointment.allday }}
-DTSTAMP:{{ dateTime().now().strftime("%Y%m%dT%H%M%S") }}
+UID:lsv-{{ appointment.key|shortKey }}
+SUMMARY:{{ appointment.name or appointment.duty.descr }}
+DESCRIPTION:Termin {{ appointment.name or appointment.duty.descr }}
+DTSTART;TZID=Europe/Berlin:{{ appointment.date.strftime("%Y%m%d") }}{{ appointment.date.strftime("T%H%M%S") if not appointment.allday }}
+{% if appointment.until -%}
+DTEND;TZID=Europe/Berlin:{{ appointment.until.strftime("%Y%m%d") }}{{ appointment.until.strftime("T%H%M%S") if not appointment.allday }}
+{% endif -%}
+DTSTAMP;TZID=Europe/Berlin:{{ dateTime().now().strftime("%Y%m%dT%H%M%S") }}
 END:VEVENT
 {% endfor -%}
 END:VCALENDAR
+{%- do setMimeType("text/calendar") -%}

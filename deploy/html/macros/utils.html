@@ -42,8 +42,8 @@
 			{% set icon = "file" %}
 		{% endif %}
 
-		<a href="{{ url }}" target="{{ target }}">
-			{{ Icon("/static/icons/" + icon + ".svg", "new" if document["creationdate"] > dateTime().now() - timedelta()(days=30)) }}
+		<a class="action" href="{{ url }}" target="{{ target }}">
+			{{ Icon("/static/icons/" + icon + ".svg", "new" if document["creationdate"] and document["creationdate"] > dateTime().now() - timedelta()(days=30)) }}
 			{{ document.name }}
 		</a>
 	</li>

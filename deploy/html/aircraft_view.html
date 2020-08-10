@@ -1,4 +1,6 @@
 {% extends "intern.html" %}
+{% from "macros/utils.html" import Icon %}
+
 {% set name = skel.reg + (" (" + skel.compreg + ")" if skel.compreg else "") + " - " + skel.name  %}
 {% set title = name %}
 {% set path = [{"name": "Flugzeuge", "url": "/aircraft/list"}] %}
@@ -27,9 +29,9 @@
 	{% if skel.documents or skel.wikipedia %}
 		<ul class="menu">
 			{% if skel.wikipedia %}
-				<li>
-					<a href="{{ skel.wikipedia }}" target="_blank">
-						<img class="icon" src="/static/icons/wikipedia.svg">
+				<li class="item">
+					<a class="action" href="{{ skel.wikipedia }}" target="_blank">
+						{{ Icon("/static/icons/wikipedia.svg") }}
 						{{ skel.name }} auf Wikipedia
 					</a>
 				</li>

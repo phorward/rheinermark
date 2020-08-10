@@ -138,5 +138,12 @@ $(window).ready(function() {
 
 	// Focus a js-focus
 	$(".js-focus").focus();
+
+	// Toggler
+	$(".js-toggler").on("click", function() {
+		$(this).parent().toggleClass("is-hover");
+		$(this).parent().blur();
+		$(this).parent().find(".js-toggle").slideToggle();
+	});
 });
 
