@@ -15,7 +15,7 @@
     "gulp-color": "*",
     "gulp-plumber": "*",
     "gulp-rename": "*",
-    "gulp-sass": "*",
+    "gulp-sass": "4.0.0",
     "gulp-minify-css": "*",
     "gulp-util": "*"
   },

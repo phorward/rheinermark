@@ -135,6 +135,8 @@ conf["viur.errorHandler"] = errorHandler
 
 securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
 securityheaders.addCspRule("script-src", "unsafe-eval", "enforce")
+securityheaders.addCspRule("script-src", "www.google.com", "enforce")
+securityheaders.addCspRule("script-src", "www.gstatic.com", "enforce")
 securityheaders.addCspRule("font-src", "fonts.gstatic.com", "enforce")
 
 # ------------------------------------------------------------------------------
