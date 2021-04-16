@@ -13,6 +13,14 @@
 
 {%- set cuser = getCurrentUser() -%}
 
+{% macro menuEntry(page, class="") %}
+	{% if page["static"]|string != "" %}
+		<a href="/s/{{ page["static"]|replace(".html", "") }}" class="{{ class }}">{{ page["name"] }}</a>
+	{% else %}
+		<a href="/{{ page["alias"] if page["alias"] != "index" }}" class="{{ class }}">{{ page["name"] }}</a>
+	{% endif %}
+{% endmacro %}
+
 <!DOCTYPE html>
 <html xml:lang="de" lang="de">
 <head>
@@ -69,28 +77,54 @@
 
 </head>
 
-<body id="top" {{ ONLOAD }}>
+<body {{ ONLOAD }}>
 <header class="header">
 	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo">
 		<img src="/static/img/logo.svg" class="logo-img">
 	</a>
 
 	<a class="burger burgertox js_burger">
-		<span>Main Menu TODO</span>
+		<span>Main Menu</span>
 	</a>
 
 	<div class="main-menu">
 		{% for page in getList("page", menu="main") %}
-			<a href="/{{ page["alias"] if page["alias"] != "index" }}" class="mM-item">{{ page["name"] }}</a>
+			{{ menuEntry(page, "mM-item") }}
 		{% endfor %}
 	</div>
 </header>
 
 <main class="main">
 	{% block body %}
-		{% for section in getList("section", **{"@page": skel["key"]}) %}
-
-
+		{% for section in getList("section", **{"page.dest.key": skel["key"]}) %}
+			{% if section["mode"] == "teaser" %}
+				<div class="wrap wrap--image wrap--fullHeight"
+					 style="background-image: url({{ getImageSrc(section["image"], 1600) }})">
+					<span>
+						<h1 class="wrap--image-headline">{{ section["title"] }}</h1>
+					</span>
+				</div>
+			{% elif section["mode"] == "text" %}
+				<div class="wrap">
+					<div class="content">
+						{% if section["image"] %}
+							<div class="v-card">
+								<div class="v-card-img"
+									 style="background-image: url({{ getImageSrc(section["image"], 600) }})"></div>
+								<div class="v-card-txt">
+									<h2>{{ section["title"] }}</h2>
+									{{ section["content"] }}
+								</div>
+							</div>
+						{% else %}
+							<h2>{{ section["title"] }}</h2>
+							{{ section["content"] }}
+						{% endif %}
+					</div>
+				</div>
+			{% else %}
+				<strong>Type {{ section["mode"]|string }} is not supported</strong>
+			{% endif %}
 		{% endfor %}
 		<!--
 		<a id="kontakt" name="kontakt"></a>
@@ -108,12 +142,12 @@
 			<div class="grid grid--3">
 				<div class="footer-column">
 					{% for page in getList("page", menu="main") %}
-						<span><a href="/{{ page["alias"] if page["alias"] != "index" }}">{{ page["name"] }}</a></span>
+						<span>{{ menuEntry(page) }}</span>
 					{% endfor %}
 				</div>
 				<div class="footer-column">
 					{% for page in getList("page", menu="foot") %}
-						<span><a href="/{{ page["alias"] }}">{{ page["name"] }}</a></span>
+						<span>{{ menuEntry(page) }}</span>
 					{% endfor %}
 				</div>
 				<div class="footer-column">
@@ -130,7 +164,7 @@
 	Diese Webseite verwendet Cookies zum Zwecke der Datensicherheit.
 	Eine weitere Auswertung dieser Daten findet nicht statt!
 
-	<a href="/s/privacy" target="_blank">Weitere Informationen</a>
+	<a href="/privacy" target="_blank">Weitere Informationen</a>
 	<a id="cookieConsentOK">Verstanden!</a>
 </div>
 <!-- /CookieConsent Popup -->
