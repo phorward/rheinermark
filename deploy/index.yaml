@@ -76,4 +76,15 @@ indexes:
 - kind: section
   properties:
   - name: online
+  - name: page.dest.key
+  - name: sortindex
+
+- kind: section
+  properties:
+  - name: online
+  - name: sortindex
+
+- kind: section
+  properties:
+  - name: page.dest.key
   - name: sortindex

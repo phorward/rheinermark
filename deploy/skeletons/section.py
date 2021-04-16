@@ -5,21 +5,14 @@ from server import conf, skeleton
 from time import time
 
 
-class sectionContentSkel(skeleton.RefSkel):
-	title = stringBone(
-		descr=u"Titel"
-	)
-
-	content = textBone(
-		descr=u"Inhalt"
-	)
-
-	images = fileBone(
-		descr=u"Bilder",
-		multiple=True
-	)
-
 class sectionSkel(skeleton.Skeleton):
+	page = relationalBone(
+		kind="page",
+		descr=u"Seite",
+		readOnly=True,
+		indexed=True,
+		visible=False
+	)
 
 	sortindex = numericBone(
 		descr="SortIndex",
@@ -36,35 +29,34 @@ class sectionSkel(skeleton.Skeleton):
 		indexed=True
 	)
 
-	# Seite
-	alias = stringBone(
-		descr=u"Alias",
-		unique=u"Dieser Alias ist bereits vergeben!",
-		required=True,
-		indexed=True,
-		params={
-			"tooltip": u"Geben Sie bitte eine SEO-freundliche Bezeichnung OHNE Leerzeichen ein!"
+	mode = selectBone(
+		descr=u"Typ",
+		values={
+			"teaser": u"Teaser",
+			"text": u"Text"
 		}
 	)
 
-	name = stringBone(
-		descr=u"Name im Menü",
-		indexed=True,
-		required=True
+	image = fileBone(
+		descr=u"Bild"
 	)
 
-	parallax = fileBone(
-		descr=u"Parallaxbild"
+	title = stringBone(
+		descr=u"Titel"
 	)
 
-	content = recordBone(
-		descr=u"Inhalte",
-		using=sectionContentSkel,
-		format="$(title)"
+	content = textBone(
+		descr=u"Inhalt",
+		params={
+			"logic.visibleIf": "mode == 'text'"
+		}
 	)
 
 	def toDB(self, *args, **kwargs):
 		if not self["sortindex"]:
 			self["sortindex"] = time()
+
+		if self["content"] == "<p><br></p>":
+			self["content"] = None
 
 		return super(sectionSkel, self).toDB(*args, **kwargs)
