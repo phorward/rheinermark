@@ -63,7 +63,7 @@ conf["project.appointment.duties"] = OrderedDict([
 # ViUR admin tool specific configurations
 #
 
-conf["admin.vi.name"] = "LSV Ruhr-Lenne Iserlohn e.V."
+conf["admin.vi.name"] = "LSG Ravensburg e.V."
 
 #conf["admin.moduleGroups"] = [
 #	{"prefix":u"Start: ", "name": u"Starterfassung", "icon": "icons/modules/tickets.svg"},

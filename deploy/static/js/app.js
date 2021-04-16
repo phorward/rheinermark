@@ -144,5 +144,29 @@ $(window).ready(function () {
 		$(this).parent().blur();
 		$(this).parent().find(".js-toggle").slideToggle();
 	});
+
+	// Burger Toggle
+	$(".burger").click(function() {
+		$('.burger').toggleClass("is-active");
+	});
+
+	// Burger Menu Mobile
+	$('.js_burger').click(function() {
+		$('.main-menu').toggleClass("is-open");
+	});
+
+	/////// Smooth Scroll
+
+	$('a[href*="#"]').on('click', function (e) {
+	  e.preventDefault()
+
+	  $('html, body').animate(
+	    {
+	      scrollTop: $($(this).attr('href')).offset().top - 150,
+	    },
+	    500,
+	    'linear'
+	  )
+	});
 });
 

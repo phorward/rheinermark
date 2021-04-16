@@ -1,22 +1,400 @@
-@charset "UTF-8";
-/* rheinermark-viur 2019 */
+@mainColor: #276784;
+@linkColor: #e36209;
+@textColor: #363636;
 
-// This is the master file.
-// It imports all less files in their intended order for easy mass-inclusion.
-// Should you need specific files, you can easily customize the imports.
+@breakLarge: 1400px;
+@breakMedium: 960px;
+@breakSmall: 620px;
 
-// ViUR Ignite
-@import "ignite/ignite"; // reset, boiler plate and generic objects like buttons and forms.
+@import "burger";
+@import "intern";
+@import "cookieconsent";
 
-// Customize Ignite configuration:
-@import "foundation/appconf"; // Here you can configure the styling with global variables.
-@import "foundation/basic"; // classic basic styling.
+@font-face {
+    font-family: 'Oswald';
+    src: url('../webfonts/Oswald-Light.ttf');
+    src: url('../webfonts/Oswald-Light.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
 
-// Initialize generic Ignite objects:
-@import "generic/bar"; // bar.
-@import "generic/button"; // some classic buttons.
-@import "generic/message"; // hints, errors, warnings etc.
+@font-face {
+    font-family: 'Oswald';
+    src: url('../webfonts/Oswald-Regular.ttf');
+    src: url('../webfonts/Oswald-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
-// Import your project specific objects here:
-@import "objects/thumbnail"; // picture thumbnails.
-@import "objects/feature"; // feature boxes.
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('../webfonts/Oswald-Medium.ttf');
+    src: url('../webfonts/Oswald-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+*{
+  box-sizing: border-box;
+  font-family: 'Oswald', 'Helvetica', 'Arial', sans-serif ;
+  font-weight: 200;
+}
+
+html, body{
+  background-color: #fff;
+  width: 100%;
+  height: 100vw;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+
+  @media only screen and (max-width: @breakMedium) {
+     font-size: 14px;
+  }
+}
+
+h1, h2, h3 ,h4 ,h5{
+  font-weight: 600;
+  font-family: 'Oswald', 'Helvetica', 'Arial', sans-serif ;
+  color: @mainColor;
+  text-transform: uppercase;
+  margin: 0 0 .35em 0;
+}
+
+h1{
+  font-size: 3em;
+}
+
+h2{
+  font-size: 2.5em;
+}
+
+h3{
+  font-size: 2em;
+}
+
+h4{
+  font-size: 1.6em;
+}
+
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+
+a:hover {
+  color: @linkColor;
+}
+
+p{
+  display: flex;
+  line-height: 180%;
+  letter-spacing: .03em;
+  font-size: 1em;
+  margin: 10px 0;
+  color: @textColor;
+  max-width: 780px;
+}
+
+em{
+  font-style: normal;
+  font-weight: 600;
+}
+
+.header{
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .25);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  height: 100px;
+  z-index: 10;
+
+   @media only screen and (max-width: @breakMedium) {
+      height: 60px;
+     padding: 10px;
+  }
+}
+
+.logo{
+  height: 100%;
+  width: auto;
+
+  img{
+    height: 100%;
+  }
+}
+
+.main-menu{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+
+  @media only screen and (max-width: @breakMedium) {
+    position: fixed;
+    background-color: @mainColor;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    height: 0;
+    overflow: hidden;
+    transition: all ease .3s;
+
+    &.is-open{
+      height: ~"calc(100vh - 60px)";
+    }
+  }
+}
+
+.mM-item{
+  color: @mainColor;
+  font-weight: bold;
+  font-size: 1.4em;
+  padding: 0 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  @media only screen and (max-width: @breakMedium) {
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.7em;
+
+    &:first-child{
+      margin-top: 10px;
+    }
+  }
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+
+  @media only screen and (max-width: @breakMedium) {
+    margin-top: 60px;
+  }
+}
+
+.wrap{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 30px;
+  position: relative;
+
+  &.wrap--image{
+    height: 40vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+
+    span{
+      text-align: center;
+    }
+  }
+
+  &.wrap--dark{
+    background-color: @mainColor;
+    color: #fff;
+
+    *{
+      color: #fff;
+    }
+  }
+
+  &.wrap--fullHeight{
+    height: ~"calc(100vh - 100px)";
+
+    @media only screen and (max-width: @breakMedium) {
+      height: ~"calc(100vh - 60px)";
+    }
+  }
+}
+
+
+.wrap--image-headline{
+  font-size: 5em;
+  background-color: @mainColor;
+  color: #fff !important;
+  padding: 7px 0;
+  display: inline;
+  line-height: 170%;
+  box-shadow: 25px 0 0 @mainColor, -25px 0 0 @mainColor;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: center;
+
+  h2&{
+    font-size: 2.5em;
+  }
+
+  @media only screen and (max-width: @breakMedium) {
+    font-size: 4em;
+  }
+
+  @media only screen and (max-width: @breakSmall) {
+    font-size: 3.5em;
+  }
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 60px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+//////////////////////// Grid
+
+.grid{
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+  grid-gap: 30px;
+
+  &.grid--3{
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+
+    @media only screen and (max-width: @breakMedium) {
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    }
+
+    @media only screen and (max-width: @breakSmall) {
+      grid-template-columns: minmax(0,1fr);
+    }
+  }
+
+  &.grid--5{
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+
+    @media only screen and (max-width: @breakMedium) {
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+    }
+
+    @media only screen and (max-width: @breakSmall) {
+      grid-template-columns: minmax(0,1fr)  minmax(0,1fr);
+    }
+  }
+}
+
+//////////////////////// Card
+
+.card{
+  display: flex;
+  flex-direction: column;
+  text-decoration: none !important;
+
+  a&{
+    &:hover{
+      .card-txt{
+        border-bottom: 5px solid @mainColor;
+      }
+    }
+  }
+}
+
+.card-img{
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-bottom: 15px;
+
+  &:after{
+    content: '';
+    display: table;
+    padding-bottom: 100%;
+  }
+}
+
+.card-txt{
+  display: flex;
+  flex-direction: column;
+  color: @textColor !important;
+  border-bottom: 5px solid transparent;
+  transition: all ease .3s;
+}
+
+.v-card{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  @media only screen and (max-width: @breakMedium) {
+    flex-direction: column;
+  }
+}
+
+.v-card-img{
+  display: flex;
+  background-color: @mainColor;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: 33%;
+  width: 33%;
+  margin-right: 40px;
+
+  &:after{
+    content: '';
+    display: table;
+    padding-bottom: 100%;
+  }
+
+
+  @media only screen and (max-width: @breakMedium) {
+    width: 100%;
+
+    &:after{
+      padding-bottom: 40%;
+    }
+  }
+
+  @media only screen and (max-width: @breakSmall) {
+    &:after{
+      padding-bottom: 60%;
+    }
+  }
+}
+
+.card-txt{
+  display: flex;
+  flex-direction: column;
+}
+
+.footer{
+  margin-top: 40px;
+  background-color: @mainColor;
+  color: #fff;
+
+  a, a:visited, a:link {
+    color: #fff;
+  }
+
+  a:hover {
+    color: @linkColor;
+  }
+}
+
+.footer-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

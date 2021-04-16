@@ -73,8 +73,8 @@ Deployment is performed using the gcloud SDK:
 $ cd deploy
 
 # Deploy to beta
-$ gcloud app deploy --no-promote -q --project=rheinermark-viur --version=beta
+$ gcloud app deploy --no-promote -q --project=lsgravensburg --version=beta
 
 # Deploy to live (beware!)
-$ gcloud app deploy -q --project=rheinermark-viur --version=`date +"%Y-%m-%d"-$USER`
+$ gcloud app deploy -q --project=lsgravensburg --version=`date +"%Y-%m-%d"-$USER`
 ```

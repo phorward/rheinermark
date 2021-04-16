@@ -73,6 +73,12 @@ indexes:
   - name: parentdir
   - name: name
 
+- kind: page
+  properties:
+  - name: menu
+  - name: online
+  - name: sortindex
+
 - kind: section
   properties:
   - name: online

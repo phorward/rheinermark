@@ -1,0 +1,129 @@
+// Intern
+
+.intern {
+	& .image {
+		height: 750px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+
+		&.cover {
+			background-size: cover;
+		}
+	}
+
+	& h1 {
+		font-size: 1.6em;
+		border-bottom: 1px solid @mainColor;
+		padding: 5px 0;
+		margin: 5px 0;
+		width: 100%;
+
+		& img {
+			width: 1.3em;
+			height: 1.3em;
+			padding: 0;
+			margin: 0 5px 0 0;
+			vertical-align: bottom;
+		}
+	}
+
+  	& span.icon {
+	  	display: inline-block;
+		vertical-align: middle;
+		border-radius: 5px;
+		width: 2em;
+		height: 2em;
+		background-color: @mainColor;
+	  	background-size: cover;
+	}
+
+  	& span.icon.new::before {
+	  font-size: 0.4em;
+	  background: red;
+	  color: white;
+	  content: "Neu!";
+	  position: absolute;
+	}
+
+  	& .item {
+	  font-size: 2em;
+	  width: 100%;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+
+	  display: block;
+	  transition: 1s;
+	  margin: 5px 0;
+	  border: 1px solid @mainColor;
+	  border-radius: 5px;
+
+	  & .action {
+		cursor: pointer;
+		display: block;
+		transition: 1s;
+		padding: 10px 20px;
+
+		color: @mainColor;
+    	font-weight: bold;
+	  }
+	}
+
+	& .item:hover, & .item.is-hover {
+		border-color: black;
+		background-color: @mainColor;
+		color: white;
+		color: white;
+
+	  	& .action {
+		  padding: 15px 20px;
+		  color: white;
+		}
+	}
+
+	& ul.menu {
+		width: 100%;
+		padding: 0;
+		list-style-type: none;
+
+		& li {
+			& img {
+				vertical-align: middle;
+				border-radius: 5px;
+			}
+		}
+	}
+
+  	& div.appointments {
+	  	margin: 5px;
+		padding: 10px 20px;
+	  	font-size: 0.6em;
+	  	border-radius: 0px 0px 5px 5px;
+	  	background-color: white;
+	  	display: none;
+
+	  	&.is-open {
+		  display:block;
+		}
+
+	  	& ul {
+		  font-size: 1.2em;
+		  width: 100%;
+		  padding: 0;
+		  list-style: none;
+
+		  & li {
+			border: 1px solid grey;
+			background-color: white;
+			border-radius: 5px;
+			padding: 10px;
+			margin: 5px 0;
+		  }
+
+		  & li span {
+			display: block;
+		  }
+		}
+	  }
+}

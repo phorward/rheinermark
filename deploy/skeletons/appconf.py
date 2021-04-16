@@ -5,6 +5,12 @@ from server.skeleton import Skeleton
 class appconfSkel(Skeleton):
 
 	# Startseite
+	site_name = stringBone(
+		descr=u"Vollständiger Name des Vereins",
+		defaultValue=u"LSV Ruhr-Lenne Iserlohn e.V."
+	)
+
+	# Startseite
 	site_title = stringBone(
 		descr=u"Seitentitel",
 		defaultValue=u"LSV Ruhr-Lenne Iserlohn e.V."
@@ -13,13 +19,6 @@ class appconfSkel(Skeleton):
 	site_slogan = stringBone(
 		descr=u"Seiten-Slogan",
 		defaultValue=u"Komm, fliegen!"
-	)
-
-	# Start
-	start_teaser = fileBone(
-		descr=u"Teaser-Bilder",
-		required=True,
-		multiple=True
 	)
 
 	# Formmailer
@@ -56,11 +55,6 @@ class appconfSkel(Skeleton):
 	intern_document_folders = treeDirBone(
 		descr=u"Folder für Mitglieder",
 		kind="file",
-		multiple=True
-	)
-
-	contact_pilots_images = fileBone(
-		descr=u"Kontakt - Piloten",
 		multiple=True
 	)
 

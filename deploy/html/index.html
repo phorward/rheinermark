@@ -6,22 +6,22 @@
 {%- endif -%}
 
 {%- if not title -%}
-    {%- set TITLE = appconf["site_title"] + " - " + appconf["site_slogan"] -%}
+	{%- set TITLE = appconf["site_title"] + " - " + appconf["site_slogan"] -%}
 {%- else -%}
-    {%- set TITLE = title + " - " + appconf["site_title"] -%}
+	{%- set TITLE = title + " - " + appconf["site_title"] -%}
 {%- endif -%}
 
 {%- set cuser = getCurrentUser() -%}
 
 <!DOCTYPE html>
-<html>
+<html xml:lang="de" lang="de">
 <head>
-    <title>{{ TITLE }}</title>
+	<title>{{ TITLE }}</title>
 
 	<!-- meta -->
 	<meta charset="UTF-8">
 
-	<meta name="author" content="Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.">
+	<meta name="author" content="{{ appconf["site_name"] }}">
 	<meta name="generator" content="www.viur.dev">
 	<meta name="description" content="{{ skel["seo_description"] or appconf["seo_description"] }}"/>
 	<meta name="keywords" content="{{ skel["seo_keywords"] or appconf["seo_keywords"] }}"/>
@@ -30,15 +30,17 @@
 	<meta name="language" content="de-DE">
 
 	{% if goto %}
-		<meta http-equiv="refresh" content="3; URL={{goto}}">
+		<meta http-equiv="refresh" content="3; URL={{ goto }}">
 	{% endif %}
 
-	<meta property="og:title" content="{{ skel["seo_title"] or appconf["seo_title"] or skel["title"] or skel["name"] or title }}" />
-	<meta property="og:description" content="{{ skel["seo_description"] or appconf["seo_description"] }}" />
-    <meta property="og:image" content="{{ getImageSrc(skel["seo_image"] or appconf["seo_image"] or (getHostUrl() + "/static/img/logo.svg")) }}" />
-	<meta property="og:url" content="{{ getHostUrl() }}" />
-	<meta property="og:type" content="website" />
-	<meta property="og:locale" content="de_DE" />
+	<meta property="og:title"
+		  content="{{ skel["seo_title"] or appconf["seo_title"] or skel["title"] or skel["name"] or title }}"/>
+	<meta property="og:description" content="{{ skel["seo_description"] or appconf["seo_description"] }}"/>
+	<meta property="og:image"
+		  content="{{ getImageSrc(skel["seo_image"] or appconf["seo_image"] or (getHostUrl() + "/static/img/logo.svg")) }}"/>
+	<meta property="og:url" content="{{ getHostUrl() }}"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:locale" content="de_DE"/>
 
 	<meta http-equiv="x-ua-compatible" content="IE=edge">
 
@@ -51,10 +53,14 @@
 	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.png">
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/static/css/style.min.css">
+	<link rel="stylesheet" href="/static/css/style.css">
+
+	<!-- Fonts -->
+	<link rel="preload" href="/static/webfonts/Oswald-Light.ttf" as="font" crossorigin="anonymous"/>
+	<link rel="preload" href="/static/webfonts/Oswald-Regular.ttf" as="font" crossorigin="anonymous"/>
+	<link rel="preload" href="/static/webfonts/Oswald-Medium.ttf" as="font" crossorigin="anonymous"/>
 
 	<!-- JS -->
-	<script src="//www.google.com/recaptcha/api.js?render=6LddWloaAAAAACtlGRkPC4PvsZm-M8DLHYz8gGNh"></script>
 	<script src="/static/js/jquery.min.js"></script>
 	<script src="/static/js/app.js"></script>
 
@@ -62,254 +68,66 @@
 	{% endblock %}
 
 </head>
+
 <body id="top" {{ ONLOAD }}>
+<header class="header">
+	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo">
+		<img src="/static/img/logo.svg" class="logo-img">
+	</a>
 
-<div class="menu-wrapper {{ mode }}">
-	<div class="menu-bar">
-		<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
-		{% set sections = getList("section") %}
-		{% for section in sections %}
-			<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
+	<a class="burger burgertox js_burger">
+		<span>Main Menu TODO</span>
+	</a>
+
+	<div class="main-menu">
+		{% for page in getList("page", menu="main") %}
+			<a href="/{{ page["alias"] if page["alias"] != "index" }}" class="mM-item">{{ page["name"] }}</a>
 		{% endfor %}
-		<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
 	</div>
+</header>
 
-	<button class="hamburger hamburger--spin" type="button">
-		<span class="hamburger-box">
-			<span class="hamburger-inner"></span>
-		</span>
-	</button>
+<main class="main">
+	{% block body %}
+		{% for section in getList("section", **{"@page": skel["key"]}) %}
 
-	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo"></a>
-</div>
 
-<div class="mobilemenu-wrapper {{mode}}">
-	<div class="mobilemenu">
-		<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
-		<hr>
-		{% for section in sections %}
-			<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
-			<hr>
 		{% endfor %}
-		<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
-
-		<hr>
-		<a class="menu-button" href="/s/imprint">Impressum</a>
-
 		<!--
-		<hr>
-		<a class="menu-button" href="/s/disclaimer">Haftungsausschluss</a>
+		<a id="kontakt" name="kontakt"></a>
 
-		<hr>
-		<a class="menu-button" href="/s/privacy">Datenschutz</a>
+		<div class="sv-image">
+			<iframe src="//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4183.531275042748!2d7.639928952913273!3d51.42982878202839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93fe3748c9391%3A0x78d346720835b383!2sFlugplatz%20Rheinermark!5e0!3m2!1sde!2sde!4v1573836286552!5m2!1sde!2sde" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen=""></iframe>
+		</div>
 		-->
+	{% endblock %}
+</main>
 
-		<hr>
-		<a class="menu-button" href="/user/view/self">Mitglieder-Bereich</a>
-
-	</div>
-</div>
-
-{% block body %}
-
-<!-- Startseite -->
-<section id="fv" class="fv">
-	{% for bg in appconf["start_teaser"] %}
-		<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1600) }}'); {{ "display: none" if not loop.first }}"></div>
-	{% endfor %}
-
-	<div class="grey-transparency">
-		<div class="content-title wo-border">
-			<h1 class="content-headline">Willkommen auf der Rheinermark!</h1>
-			<h3 class="content-subline">Lass dich von der Faszination des Fliegens packen und heb mit uns ab...</h3>
-			<a class="rd-button js-scroll" href="#kontakt">
-				<div class="btn-icn mitfliegen"></div>
-				Ja, ich will fliegen!
-			</a>
-		</div>
-		<div class="arrow bounce"></div>
-	</div>
-</section>
-
-{% macro imagebox(images, group) %}
-	<div class="content-box-img">
-		{% for image in images %}
-			<div class="content-box-img-bg js-diashow" data-group="{{ group }}"
-				 style="background-image: url({{ getImageSrc(image, 1024) }}); {{ "display: none;" if not loop.first }}"></div>
-		{% endfor %}
-	</div>
-{% endmacro %}
-
-{% for section in sections %}
-
-	{% if not loop.first %}
-		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1600) }});"></div>
-	{% endif %}
-
-	<!-- Kategorie -->
-	<a id="{{ section.alias }}" name="{{ section.alias }}"></a>
-	<section class="sv">
-		<div class="sv-content-wrapper">
-			<div class="content-title-line">{{ section.name }}</div>
-				{% for content in section.content %}
-					{% set group = section.key|shortKey|string + "_" + loop.index0|string %}
-					<!-- Content-Box- -->
-					<div class="content-box {{ "full" if not content.images }}">
-						{% if content.images and loop.index0 % 2 == 1 %}
-							{{ imagebox(content.images, group) }}
-						{% endif %}
-
-						<div class="content-box-text">
-							<h4 class="content-box-headline">{{content.title}}</h4>
-
-							<div class="content-box-content">
-								{{ content.content }}
-							</div>
-						</div>
-
-						{% if content.images and loop.index0 % 2 == 0 %}
-							{{ imagebox(content.images, group) }}
-						{% endif %}
-					</div>
-					<!-- /Content-Box -->
-				{% endfor %}
-			</div>
-		</div>
-	</section>
-	<!-- /Kategorie-->
-{% endfor %}
-
-<a id="kontakt" name="kontakt"></a>
-
-<div class="sv-image">
-	<iframe src="//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4183.531275042748!2d7.639928952913273!3d51.42982878202839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93fe3748c9391%3A0x78d346720835b383!2sFlugplatz%20Rheinermark!5e0!3m2!1sde!2sde!4v1573836286552!5m2!1sde!2sde" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen=""></iframe>
-</div>
-
-<!-- Kategorie -->
-<section class="sv">
-	<div class="sv-content-wrapper">
-		<div class="content-title-line">Kontakt</div>
-
-		<!-- /Content-Box -->
-		<div class="content-box">
-			<div class="content-box-text full">
-				<h4 class="content-box-headline">Haben wir Dein Interesse geweckt?</h4>
-				<div class="content-box-content">
-					<p>
-						Falls ja, würden wir uns natürlich sehr freuen, wenn Du uns kontaktierst,
-						oder vielleicht auch direkt vorbeischaust?
-					</p>
-
-					<p class="content-box-info bold">
-						Flugplatz Rheinermark<br>
-						Nordhauser Str. 14<br>
-						58640 Iserlohn
-					</p>
-
-					<p class="content-box-info bold">
-						<a href="tel:+4923045663">+49 (0)2304 5663</a>
-					</p>
-
-					<p>
-						Wenn es nicht gerade in strömen regnet, stürmt oder schlechte Sicht ist,
-						findet der Flugbetrieb bei uns zwischen April und Oktober größtenteils an
-						Wochenenden und Feiertagen statt.
-					</p>
-
-					<form class="js-form" method="post" action="/contact/add" class="content-box-info">
-						<div class="js-form-form">
-							<p>
-								Du kannst uns auch hier direkt eine Nachricht schicken.
-								Wir melden uns so schnell wie möglich bei dir.
-							</p>
-
-							<label>
-								Dein Name
-								<input type="text" name="name" required="required">
-							</label>
-							<label>
-								Deine E-Mail Adresse
-								<input type="email" name="email" required="required">
-							</label>
-							<label>
-								Deine Nachricht
-								<textarea name="message" required="required"></textarea>
-							</label>
-							<label>
-								<input type="checkbox" name="privacy_confirm" required="required">
-								Ich bin damit einverstanden, dass meine angegebenen Daten zum Zwecke der
-								Bearbeitung meiner Anfrage gespeichert und weiterverarbeitet werden dürfen.
-								Eine Übermittlung meiner Daten an Dritte findet nicht statt.
-							</label>
-
-							<input type="submit" value="Absenden">
-
-							<label>
-								Dieses Formular verwendet reCAPTCHA unter Verwenendung der Google
-								<a href="https://policies.google.com/privacy">Datenschutzerklärung</a> und
-								<a href="https://policies.google.com/terms">Nutzungsbedingungen</a>.
-							</label>
-						</div>
-						<div class="form-status form-loading js-form-loading">
-							Bitte warten, Deine Anfrage wird bearbeitet.
-						</div>
-						<div class="form-status form-success js-form-success">
-							Vielen Dank!<br>
-							Wir haben Deine Anfrage erhalten und melden uns so schnell wie möglich zurück.
-						</div>
-					</form>
+<footer class="footer">
+	<div class="wrap">
+		<div class="content">
+			<div class="grid grid--3">
+				<div class="footer-column">
+					{% for page in getList("page", menu="main") %}
+						<span><a href="/{{ page["alias"] if page["alias"] != "index" }}">{{ page["name"] }}</a></span>
+					{% endfor %}
+				</div>
+				<div class="footer-column">
+					{% for page in getList("page", menu="foot") %}
+						<span><a href="/{{ page["alias"] }}">{{ page["name"] }}</a></span>
+					{% endfor %}
+				</div>
+				<div class="footer-column">
+					<em>&copy; {{ dateTime().now().strftime("%Y") }}
+						{{ appconf["site_name"] }}</em>
 				</div>
 			</div>
 		</div>
-		<!-- /Content-Box -->
-
-		<!-- /Content-Box -->
-		<div class="content-box">
-			{{ imagebox(appconf.contact_pilots_images, "for-pilots") }}
-
-			<div class="content-box-text">
-				<h4 class="content-box-headline">Infos für Piloten</h4>
-				<div class="content-box-content">
-					<p class="content-box-info">
-						Segelfluggelände<br>
-						Iserlohn-Rheinermark<br><br>
-
-						PPR UL/TMG<br>
-						INFO 124.465 Mhz<br><br>
-
-						ELEV 190m, 620ft<br>
-						RWY 07/25, 480m Gras<br>
-						Südplatzrunde
-					</p>
-					<p>
-						Sonn- und Feiertags besteht Mittagsruhe, d.h. keine Motorstarts zwischen 13-15 Uhr (lokal).<br>
-						Winde und F-Schlepp nach Absprache möglich. Mogas verfügbar.
-					</p>
-				</div>
-			</div>
-		</div>
-		<!-- /Content-Box -->
 	</div>
-</section>
-<!-- /Kategorie-->
-
-{% endblock %}
-
-<div class="footer">
-	<div class="menu-button law no-link">
-		&copy; {{ dateTime().now().strftime("%Y") }}
-		Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.
-	</div>
-
-	<a class="menu-button law" href="/s/imprint">Impressum</a>
-	<a class="menu-button law" href="/s/disclaimer">Haftungsausschluss</a>
-	<a class="menu-button law" href="/s/privacy">Datenschutz</a>
-	<a class="menu-button law" href="/user/view/self">Mitglieder-Bereich</a>
-</div>
+</footer>
 
 <!-- CookieConsent Popup -->
 <div id="cookieConsent">
-    Diese Webseite verwendet Cookies zum Zwecke der Datensicherheit.
+	Diese Webseite verwendet Cookies zum Zwecke der Datensicherheit.
 	Eine weitere Auswertung dieser Daten findet nicht statt!
 
 	<a href="/s/privacy" target="_blank">Weitere Informationen</a>
