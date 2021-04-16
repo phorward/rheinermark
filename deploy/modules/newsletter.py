@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from server.prototypes.list import List
 from server import bones, conf, utils, errors, securitykey, tasks, exposed
-from project_utils import setStatus
+from helpers import setStatus
 import datetime, json, logging
 
 
