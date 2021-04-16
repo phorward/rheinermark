@@ -99,7 +99,7 @@ class userSkel(skeleton.Skeleton):
 		values=OrderedDict([
 			("member", u"Mitglied"),
 			("executive", u"Vorstand"),
-		    ("user", u"Benutzerdefiniert / Manuell")
+			("user", u"Benutzerdefiniert / Manuell")
 		]),
 		params={"category": u"Zugriffsrechte"}
 	)

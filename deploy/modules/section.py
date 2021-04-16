@@ -21,8 +21,9 @@ class section(SortedList):
 	}
 
 	def listFilter(self, query):
-		if not query.getOrders():
-			query.order("sortindex")
+		query = super(section, self).listFilter(query)
+		if not query:
+			return query
 
 		if isinstance(self.render, HtmlRenderer):
 			query.filter("online", True)
