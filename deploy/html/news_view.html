@@ -1,0 +1,39 @@
+{% set title = skel["title"] %}
+
+{% extends "index.html" %}
+
+{% block body %}
+	{% if skel["images"] %}
+		<div class="wrap wrap--image wrap--fullHeight"
+			 style="background-image: url({{ getImageSrc(skel["images"][0], 1600) }})">
+		</div>
+	{% endif %}
+	<div class="wrap wrap--dark">
+		<div class="content">
+			<h2>{{ skel["title"] }}</h2>
+		</div>
+	</div>
+
+	<div class="wrap">
+		<div class="content">
+			<p>Gepostet am {{ skel["date"].strftime("%d.%m.%Y") }}</p>
+			{{ skel["content"] }}
+		</div>
+	</div>
+
+	{% set moreImages = skel["images"][1:] %}
+	{% if moreImages %}
+		<div class="wrap">
+			<div class="content">
+				<div class="v-card">
+					{% for img in moreImages %}
+						<a class="v-card-img" href="{{ getImageSrc(img, 1600) }}" data-lightbox="{{ skel["key"] }}"
+						   style="background-image: url({{ getImageSrc(img, 600) }})">
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+{% endblock %}

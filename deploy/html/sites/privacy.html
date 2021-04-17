@@ -44,16 +44,16 @@
 					möglich.</p>
 				<h4>Hinweis zur verantwortlichen Stelle</h4>
 				<p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-				<p>LSV Ruhr-Lenne Iserlohn e. V.<br>
-					Nordhauser Str. 14<br>
-					58640 Iserlohn</p>
+				<p>
+					{{ appconf["legal_name"] }}<br>
+					{{ appconf["legal_address"] }}<br>
+					{{ appconf["legal_city"] }}
+				</p>
 				<p><strong>Kontakt per E-Mail</strong><br>
-					<a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x69;&#x6E;&#x66;&#x6F;&#x40;&#x73;&#x65;&#x67;&#x65;&#x6C;&#x66;&#x6C;&#x69;&#x65;&#x67;&#x65;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;">
-						&#x69;&#x6E;&#x66;&#x6F;&#x40;&#x73;&#x65;&#x67;&#x65;&#x6C;&#x66;&#x6C;&#x69;&#x65;&#x67;&#x65;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;
-					</a>
+					{{ appconf["legal_email"] }}
 				</p>
 				<p><strong>Kontakt per Telefon</strong><br>
-					<a href="tel:+4923045663">+49 (0)2304 5663</a>
+					{{ appconf["legal_phone"] }}
 				</p>
 				<p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über
 					die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.)

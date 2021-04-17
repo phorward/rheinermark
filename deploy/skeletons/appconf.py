@@ -5,12 +5,6 @@ from server.skeleton import Skeleton
 class appconfSkel(Skeleton):
 
 	# Startseite
-	site_name = stringBone(
-		descr=u"Vollständiger Name des Vereins",
-		defaultValue=u"LSV Ruhr-Lenne Iserlohn e.V."
-	)
-
-	# Startseite
 	site_title = stringBone(
 		descr=u"Seitentitel",
 		defaultValue=u"LSV Ruhr-Lenne Iserlohn e.V."
@@ -19,6 +13,65 @@ class appconfSkel(Skeleton):
 	site_slogan = stringBone(
 		descr=u"Seiten-Slogan",
 		defaultValue=u"Komm, fliegen!"
+	)
+
+	# Impressum
+	legal_name = stringBone(
+		descr=u"Vollständiger Name des Vereins",
+		params={
+			"category": u"Impressum"
+		}
+	)
+
+	legal_address = stringBone(
+		descr=u"Anschrift / Postfach",
+		params={
+			"category": u"Impressum"
+		}
+	)
+
+	legal_city = stringBone(
+		descr=u"PLZ und Ort",
+		params={
+			"category": u"Impressum"
+		}
+	)
+
+	legal_phone = stringBone(
+		descr=u"Telefon",
+		params={
+			"category": u"Impressum"
+		}
+	)
+
+	legal_email = emailBone(
+		descr=u"E-Mail",
+		params={
+			"category": u"Impressum"
+		}
+	)
+
+	legal_institutions = stringBone(
+		descr=u"Organe",
+		multiple=True,
+		params={
+			"category": u"Impressum"
+		}
+	)
+
+	legal_register = stringBone(
+		descr=u"Vereinsregister",
+		multiple=True,
+		params={
+			"category": u"Impressum"
+		}
+	)
+
+	legal_ustid = stringBone(
+		descr=u"Umsatzsteuer-Identifikationsnummer",
+		params={
+			"category": u"Impressum"
+		}
 	)
 
 	# Formmailer

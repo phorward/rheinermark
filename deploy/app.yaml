@@ -1,4 +1,4 @@
-#application: rheinermark-viur
+#application: main
 #version: 1
 runtime: python27
 api_version: 1
@@ -13,13 +13,13 @@ handlers:
 - url: /resources
   static_dir: server/resources
 - url: /_tasks
-  script: rheinermark-viur.application
+  script: main.application
 - url: /admin/user/getAuthMethod
-  script: rheinermark-viur.application
+  script: main.application
 - url: /admin/.*
-  script: rheinermark-viur.application
+  script: main.application
 - url: /vi.*
-  script: rheinermark-viur.application
+  script: main.application
 - url: /favicon.ico
   static_files: static/meta/favicon.ico
   upload: favicon.ico
@@ -27,7 +27,7 @@ handlers:
   static_files: static/meta/robots.txt
   upload: robots.txt
 - url: /.*
-  script: rheinermark-viur.application
+  script: main.application
 
 libraries:
 - name: jinja2

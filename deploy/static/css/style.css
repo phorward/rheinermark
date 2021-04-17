@@ -307,7 +307,8 @@ h3 {
   font-size: 2em;
 }
 h4 {
-  font-size: 1.6em;
+  font-size: 1.2em;
+  padding: 15px 0 5px 0;
 }
 a,
 a:link,
@@ -318,13 +319,11 @@ a:hover {
   color: #e36209;
 }
 p {
-  display: flex;
   line-height: 180%;
   letter-spacing: 0.03em;
   font-size: 1em;
   margin: 10px 0;
   color: #363636;
-  max-width: 780px;
 }
 em {
   font-style: normal;
@@ -403,6 +402,11 @@ em {
   flex-direction: column;
   margin-top: 100px;
 }
+.main a,
+.main a:link,
+.main a:visited {
+  color: #363636;
+}
 @media only screen and (max-width: 960px) {
   .main {
     margin-top: 60px;
@@ -420,7 +424,7 @@ em {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 .wrap.wrap--image span {
@@ -592,4 +596,31 @@ a.card:hover .card-txt {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+iframe {
+  width: 100%;
+  min-height: 400px;
+  border: 0;
+}
+.imprint {
+  margin: 20px 10px;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+.imprint.bold {
+  font-weight: bold;
+}
+.imprint.center {
+  text-align: center;
+}
+.imprint.small {
+  font-size: 1em;
+}
+.imprint .solution {
+  display: inline-block;
+  width: 175px;
+  height: 50px;
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
 }

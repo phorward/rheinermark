@@ -77,6 +77,12 @@ indexes:
   properties:
   - name: online
   - name: date
+    direction: desc
+
+- kind: news
+  properties:
+  - name: online
+  - name: date
 
 - kind: page
   properties:

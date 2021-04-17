@@ -79,26 +79,26 @@ h3{
 }
 
 h4{
-  font-size: 1.6em;
+  font-size: 1.2em;
+  padding: 15px 0 5px 0;
 }
 
 a, a:link, a:visited {
   text-decoration: none;
 }
 
-
 a:hover {
   color: @linkColor;
 }
 
 p{
-  display: flex;
+  //display: flex;
   line-height: 180%;
   letter-spacing: .03em;
   font-size: 1em;
   margin: 10px 0;
   color: @textColor;
-  max-width: 780px;
+  //max-width: 780px;
 }
 
 em{
@@ -183,6 +183,10 @@ em{
   flex-direction: column;
   margin-top: 100px;
 
+  a, a:link, a:visited {
+    color: @textColor;
+  }
+
   @media only screen and (max-width: @breakMedium) {
     margin-top: 60px;
   }
@@ -200,7 +204,7 @@ em{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 
     span{
@@ -397,4 +401,38 @@ em{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+iframe {
+  width:100%;
+  min-height: 400px;
+  border:0
+}
+
+.imprint {
+	margin: 20px 10px;
+	font-size: 1.2em;
+	line-height: 1.2em;
+
+	&.bold {
+		font-weight: bold;
+	}
+
+	&.center {
+		text-align: center;
+	}
+
+	&.small {
+		font-size: 1em;
+	}
+
+	& .solution {
+		display: inline-block;
+		width: 175px;
+		height: 50px;
+
+		background-position: center bottom;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
 }

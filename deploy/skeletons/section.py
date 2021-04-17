@@ -36,7 +36,7 @@ class sectionSkel(skeleton.Skeleton):
 			"teaser": u"Teaser",
 			"text": u"Text",
 			"news": u"News",
-			"maps": u"Maps"
+			"iframe": u"IFrame"
 		},
 		defaultValue="text"
 	)
@@ -69,6 +69,13 @@ class sectionSkel(skeleton.Skeleton):
 		descr=u"Inhalt",
 		params={
 			"logic.visibleIf": "mode == 'text'"
+		}
+	)
+
+	url = stringBone(
+		descr=u"Link / URL",
+		params={
+			"logic.visibleIf": "mode == 'iframe'"
 		}
 	)
 

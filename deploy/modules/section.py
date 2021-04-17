@@ -39,10 +39,6 @@ class section(SortedList):
 		return None
 
 	def listFilter(self, query):
-		query = super(section, self).listFilter(query)
-		if not query:
-			return None
-
 		page = helpers.getSkelForRequest("page", attr="key")
 		if page:
 			query.filter("page.dest.key", page)

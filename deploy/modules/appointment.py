@@ -76,6 +76,8 @@ class Duty(List):
 		]
 	}
 
+	adminInfo = None  # tmp
+
 	def addSkel(self):
 		skel = super(Duty, self).addSkel().subSkel("duty").ensureIsCloned()
 

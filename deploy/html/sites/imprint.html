@@ -8,50 +8,55 @@
 
 		<h4>Angaben gemäß § 5 TMG</h4>
 
-		<div class="content-box-info">
-			LSV Ruhr-Lenne Iserlohn e.V.<br>
-			Nordhauser Str. 14<br>
-			58640 Iserlohn<br>
+		<div class="imprint">
+			{{ appconf["legal_name"] }}<br>
+			{{ appconf["legal_address"] }}<br>
+			{{ appconf["legal_city"] }}
 		</div>
 
-		<h4>Vertreten durch</h4>
-		<div class="content-box-info">
-			Thomas Mohn (1. Vorsitzender)<br>
-			Birgit Hunold (Geschäftsführerin)
-		</div>
+		{% if appconf["legal_institutions"] %}
+			<h4>Vertreten durch</h4>
+			<div class="imprint">
+				{% for entry in appconf["legal_institutions"] %}
+					{{ entry }}<br>
+				{% endfor %}
+			</div>
+		{% endif %}
 
 		<h4>Kontakt</h4>
 
-		<div class="content-box-info">
-			+49 (0) 2304 5663<br>
-			&#x69;&#x6E;&#x66;&#x6F;&#x40;&#x73;&#x65;&#x67;&#x65;&#x6C;&#x66;&#x6C;&#x69;&#x65;&#x67;&#x65;&#x6E;&#x2E;&#x63;&#x6F;&#x6D;
+		<div class="imprint">
+			{{ appconf["legal_phone"] }}<br>
+			{{ appconf["legal_email"] }}
 		</div>
 
-		<h4>Registereintrag</h4>
+		{% if appconf["legal_register"] %}
+			<h4>Vereinsregister</h4>
+			<div class="imprint">
+				{% for entry in appconf["legal_register"] %}
+					{{ entry }}<br>
+				{% endfor %}
+			</div>
+		{% endif %}
 
-		<div class="content-box-info">
-			Vereinsregister Amtsgericht Iserlohn<br>
-			Registernummer VR490
-		</div>
+		{% if appconf["legal_ustid"] %}
+			<h4>Umsatzsteuer-ID</h4>
 
-		<h4>Umsatzsteuer-ID</h4>
-
-		<div class="content-box-info">
-			DE125585606
-		</div>
+			<div class="imprint">
+                {{ appconf["legal_ustid"] }}
+			</div>
+		{% endif %}
 
 		<h4>Copyright</h4>
 
-		<div class="content-box-info">
-			&copy; {{ dateTime().now().strftime("%Y") }} {{ appconf["site_name"] }}
+		<div class="imprint">
+			Copyright &copy; {{ dateTime().now().strftime("%Y") }} {{ appconf["legal_name"] }}
 		</div>
 
-		<div class="content-box-info small">
-			Fotos, Inhalte, Farbgebung sowie das Logo sind geistiges Eigentum des Vereins und
-			seiner Mitglieder.<br><br>
+		<div class="imprint">
+			Fotos, Inhalte, Farbgebung sowie das Logo sind geistiges Eigentum des Vereins und seiner Mitglieder.<br><br>
 
-			Umsetzung des Designs durch <a href="https://designhub.io/">DesignHub</a>,
-			Programmierung durch <a href="https://phorward.info/">Phorward Software Technologies</a>.
+			Erstellung der Webseite durch <a href="https://phorward.info/">Jan Max Meyer, Phorward Software Technologies</a>.
 			<br><br>
 
 			Die hinter dieser Webseite liegende Software zur Verwaltung von Inhalten, Mitgliedern und weiteren
@@ -59,7 +64,7 @@
 			Auch Du <a href="https://github.com/phorward/rheinermark">kannst mitmachen</a> und ein Teil davon werden!
 		</div>
 
-		<div class="content-box-info small center">
+		<div class="imprint small center">
 			<a class="solution" href="https://www.viur.is" target="_blank"
 				title="Dies ist ein ViUR Informationssystem"
 				style="background-image: url(/static/img/ViUR.svg);">

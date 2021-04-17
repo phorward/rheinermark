@@ -61,6 +61,7 @@
 	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.png">
 
 	<!-- CSS -->
+	<link rel="stylesheet" href="/static/css/lightbox.css">
 	<link rel="stylesheet" href="/static/css/style.css">
 
 	<!-- Fonts -->
@@ -70,6 +71,7 @@
 
 	<!-- JS -->
 	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/lightbox.js"></script>
 	<script src="/static/js/app.js"></script>
 
 	{% block additionalHeader %}
@@ -79,7 +81,7 @@
 
 <body {{ ONLOAD }}>
 <header class="header">
-	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo">
+	<a href="{{ "/" if not cuser or True else "/user/view" }}" class="logo">
 		<img src="/static/img/logo.svg" class="logo-img">
 	</a>
 
@@ -96,6 +98,16 @@
 
 <main class="main">
 	{% block body %}
+		{% macro titleIfAvailable(title) %}
+			{% if title %}
+				<div class="wrap wrap--dark">
+					<div class="content">
+						<h2>{{ title }}</h2>
+					</div>
+				</div>
+			{% endif %}
+		{% endmacro %}
+
 		{% for section in getList("section", **{"page.dest.key": skel["key"]}) %}
 			{% if section["mode"] == "teaser" %}
 				<div class="wrap wrap--image wrap--fullHeight"
@@ -129,14 +141,14 @@
 					</div>
 				</div>
 			{% elif section["mode"] == "news" %}
+				{{ titleIfAvailable(section["title"]) }}
+
 				<div class="wrap">
 					<div class="content">
 						<div class="grid grid--3">
 							{% for entry in getList("news", amount=3) %}
 								<a class="card" href="/news/view/{{ entry["key"]|shortKey }}">
-									{% if entry["images"] %}
-										<div class="card-img" style="background-image: url({{ getImageSrc(entry["images"][0], 600) }})"></div>
-									{% endif %}
+									<div class="card-img" style="background-image: url({{ getImageSrc(entry["teaser"], 600) }})"></div>
 									<div class="card-txt">
 										<h3>{{ entry["title"] }}</h3>
 										<p>Gepostet am {{ entry["date"].strftime("%d.%m.%Y") }}</p>
@@ -147,10 +159,14 @@
 						</div>
 					</div>
 				</div>
-			{% elif section["mode"] == "maps" %}
-				<div class="wrap">
-					<iframe src="//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4183.531275042748!2d7.639928952913273!3d51.42982878202839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93fe3748c9391%3A0x78d346720835b383!2sFlugplatz%20Rheinermark!5e0!3m2!1sde!2sde!4v1573836286552!5m2!1sde!2sde" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen=""></iframe>
-				</div>
+			{% elif section["mode"] == "iframe" %}
+				{{ titleIfAvailable(section["title"]) }}
+
+				{% if section["url"] %}
+					<div class="wrap">
+						<iframe src="{{ section["url"] }}" frameborder="0" allowfullscreen=""></iframe>
+					</div>
+				{% endif %}
 			{% else %}
 				<strong>Type {{ section["mode"]|string }} is not supported</strong>
 			{% endif %}
@@ -174,7 +190,7 @@
 				</div>
 				<div class="footer-column">
 					<em>&copy; {{ dateTime().now().strftime("%Y") }}
-						{{ appconf["site_name"] }}</em>
+						{{ appconf["legal_name"] }}</em>
 				</div>
 			</div>
 		</div>
