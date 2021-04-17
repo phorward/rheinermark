@@ -10,6 +10,8 @@ class Flight(List):
 		"columns": ["name", "icao"],
 	}
 
+	adminInfo = None  # tmp
+
 	roles = {
 		"*": ["view", "add"]
 	}

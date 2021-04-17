@@ -3,9 +3,11 @@
 {% set prefix = "/" %}
 
 {% block body %}
-	<div class="functional {{ functional_classes }}">
+	<div class="wrap">
+		<div class="content functional {{ functional_classes }}">
 		{% block content %}
 
 		{% endblock %}
+		</div>
 	</div>
 {% endblock %}

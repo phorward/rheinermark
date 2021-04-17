@@ -1,1 +1,5 @@
+{% if skel["alias"] != "index" %}
+	{% set title = skel["name"] %}
+{% endif %}
+
 {% extends "index.html" %}

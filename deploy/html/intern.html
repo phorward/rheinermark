@@ -7,24 +7,26 @@
 {% endif %}
 
 {% block body %}
-	<div class="functional {{functional_classes}}">
-		{% block title %}
-			<h1>
-				<a href="/user/view" title="Startseite des Mitgliederbereichs"><img src="/static/img/favicon.svg"></a>
+	<div class="wrap">
+		<div class="content functional {{ functional_classes }}">
+			{% block title %}
+				<h1>
+					<a href="/user/view" title="Startseite des Mitgliederbereichs"><img src="/static/img/favicon.svg"></a>
 
-				{% block headline %}
-						{%- for part in (path or []) -%}
-							<a href="{{ part.url }}">{{ part.name }}</a> /
-	                    {%- endfor -%}
-						{% if title %}
-							{{ title -}}
-						{% endif %}
-				{% endblock %}
-			</h1>
-		{% endblock %}
+					{% block headline %}
+							{%- for part in (path or []) -%}
+								<a href="{{ part.url }}">{{ part.name }}</a> /
+							{%- endfor -%}
+							{% if title %}
+								{{ title -}}
+							{% endif %}
+					{% endblock %}
+				</h1>
+			{% endblock %}
 
-		{% block content %}
+			{% block content %}
 
-		{% endblock %}
+			{% endblock %}
+		</div>
 	</div>
 {% endblock %}

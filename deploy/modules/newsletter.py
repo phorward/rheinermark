@@ -18,6 +18,8 @@ class Newsletter(List):
 		"actions": ["newsletter.send"]
 	}
 
+	adminInfo = None  # tmp
+
 	roles = {
 		"*": ["view"],
 		"executive": ["view", "add", "edit", "delete"]

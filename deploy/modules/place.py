@@ -13,6 +13,8 @@ class Place(List):
 		"columns": ["name","icao"]
 	}
 
+	adminInfo = None  # tmp
+
 	roles = {
 		"*": ["view"],
 		"executive": ["view", "add", "edit", "delete"]

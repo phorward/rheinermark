@@ -18,6 +18,7 @@ class Appointment(List):
 		"preview": "/{{module}}/view/{{key}}",
 		#"disabledFunctions": ["add", "edit"],
 	}
+	adminInfo = None  # tmp
 
 	roles = {
 		"*": ["view"],

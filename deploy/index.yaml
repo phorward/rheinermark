@@ -73,6 +73,11 @@ indexes:
   - name: parentdir
   - name: name
 
+- kind: news
+  properties:
+  - name: online
+  - name: date
+
 - kind: page
   properties:
   - name: menu

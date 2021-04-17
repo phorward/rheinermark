@@ -107,14 +107,20 @@
 			{% elif section["mode"] == "text" %}
 				<div class="wrap">
 					<div class="content">
-						{% if section["image"] %}
+						{% if section["image"] and section["image_position"]|string %}
 							<div class="v-card">
-								<div class="v-card-img"
-									 style="background-image: url({{ getImageSrc(section["image"], 600) }})"></div>
+								{% if section["image_position"]|string == "left" %}
+									<div class="v-card-img"
+										 style="background-image: url({{ getImageSrc(section["image"], 600) }})"></div>
+								{% endif %}
 								<div class="v-card-txt">
 									<h2>{{ section["title"] }}</h2>
 									{{ section["content"] }}
 								</div>
+								{% if section["image_position"]|string == "right" %}
+									<div class="v-card-img"
+										 style="background-image: url({{ getImageSrc(section["image"], 600) }})"></div>
+								{% endif %}
 							</div>
 						{% else %}
 							<h2>{{ section["title"] }}</h2>
@@ -122,17 +128,33 @@
 						{% endif %}
 					</div>
 				</div>
+			{% elif section["mode"] == "news" %}
+				<div class="wrap">
+					<div class="content">
+						<div class="grid grid--3">
+							{% for entry in getList("news", amount=3) %}
+								<a class="card" href="/news/view/{{ entry["key"]|shortKey }}">
+									{% if entry["images"] %}
+										<div class="card-img" style="background-image: url({{ getImageSrc(entry["images"][0], 600) }})"></div>
+									{% endif %}
+									<div class="card-txt">
+										<h3>{{ entry["title"] }}</h3>
+										<p>Gepostet am {{ entry["date"].strftime("%d.%m.%Y") }}</p>
+										{{ entry["content"] }}
+									</div>
+								</a>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			{% elif section["mode"] == "maps" %}
+				<div class="wrap">
+					<iframe src="//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4183.531275042748!2d7.639928952913273!3d51.42982878202839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93fe3748c9391%3A0x78d346720835b383!2sFlugplatz%20Rheinermark!5e0!3m2!1sde!2sde!4v1573836286552!5m2!1sde!2sde" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen=""></iframe>
+				</div>
 			{% else %}
 				<strong>Type {{ section["mode"]|string }} is not supported</strong>
 			{% endif %}
 		{% endfor %}
-		<!--
-		<a id="kontakt" name="kontakt"></a>
-
-		<div class="sv-image">
-			<iframe src="//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4183.531275042748!2d7.639928952913273!3d51.42982878202839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93fe3748c9391%3A0x78d346720835b383!2sFlugplatz%20Rheinermark!5e0!3m2!1sde!2sde!4v1573836286552!5m2!1sde!2sde" frameborder="0" style="width:100%;height:100%;border:0" allowfullscreen=""></iframe>
-		</div>
-		-->
 	{% endblock %}
 </main>
 

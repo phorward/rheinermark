@@ -14,6 +14,7 @@ class Aircraft(SortedList):
 		"handler": "list.aircraft",
 		"icon": "icons/modules/list.svg",
 	}
+	adminInfo = None #tmp
 
 	roles = {
 		"*": ["view"],

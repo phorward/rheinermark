@@ -3,6 +3,7 @@ import sys
 from server.bones import *
 from server import conf, skeleton
 from time import time
+from collections import OrderedDict
 
 
 class sectionSkel(skeleton.Skeleton):
@@ -33,12 +34,31 @@ class sectionSkel(skeleton.Skeleton):
 		descr=u"Typ",
 		values={
 			"teaser": u"Teaser",
-			"text": u"Text"
+			"text": u"Text",
+			"news": u"News",
+			"maps": u"Maps"
+		},
+		defaultValue="text"
+	)
+
+	image_position = selectBone(
+		descr=u"Bildposition",
+		values=OrderedDict([
+			("", u"kein Bild"),
+			("left", u"links"),
+			("right", u"rechts"),
+		]),
+		defaultValue="",
+		params={
+			"logic.visibleIf": """ mode == "text" """
 		}
 	)
 
 	image = fileBone(
-		descr=u"Bild"
+		descr=u"Bild",
+		params={
+			"logic.visibleIf": """ mode == "teaser" or mode == "text" and image_position """
+		}
 	)
 
 	title = stringBone(
