@@ -235,7 +235,7 @@ em{
   font-size: 5em;
   background-color: @mainColor;
   color: #fff !important;
-  padding: 7px 0;
+  padding: 0;
   display: inline;
   line-height: 170%;
   box-shadow: 25px 0 0 @mainColor, -25px 0 0 @mainColor;
@@ -263,6 +263,13 @@ em{
   padding: 60px 0;
   max-width: 1400px;
   margin: 0 auto;
+
+  & iframe {
+    width:60%;
+    min-height: 60vh;
+    border:0;
+    margin: auto;
+  }
 }
 
 //////////////////////// Grid
@@ -405,7 +412,7 @@ em{
 
 iframe {
   width:100%;
-  min-height: 400px;
+  min-height: 60vh;
   border:0
 }
 

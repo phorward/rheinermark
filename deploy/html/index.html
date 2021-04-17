@@ -167,6 +167,15 @@
 						<iframe src="{{ section["url"] }}" frameborder="0" allowfullscreen=""></iframe>
 					</div>
 				{% endif %}
+    		{% elif section["mode"] == "youtube" %}
+				{{ titleIfAvailable(section["title"]) }}
+
+				<div class="wrap">
+					<div class="content">
+						<iframe src="https://www.youtube.com/embed/{{ section["youtube"] }}" title="{{ section["title"] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+
 			{% else %}
 				<strong>Type {{ section["mode"]|string }} is not supported</strong>
 			{% endif %}

@@ -142,6 +142,7 @@ securityheaders.addCspRule("font-src", "self", "enforce")
 securityheaders.addCspRule("font-src", "fonts.gstatic.com", "enforce")
 
 securityheaders.addCspRule("frame-src", "weglide.org", "enforce")
+securityheaders.addCspRule("frame-src", "www.youtube.com", "enforce")
 
 # ------------------------------------------------------------------------------
 # Server startup

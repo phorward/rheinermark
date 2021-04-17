@@ -79,11 +79,6 @@ indexes:
   - name: date
     direction: desc
 
-- kind: news
-  properties:
-  - name: online
-  - name: date
-
 - kind: page
   properties:
   - name: menu

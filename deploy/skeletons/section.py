@@ -36,7 +36,8 @@ class sectionSkel(skeleton.Skeleton):
 			"teaser": u"Teaser",
 			"text": u"Text",
 			"news": u"News",
-			"iframe": u"IFrame"
+			"iframe": u"IFrame",
+			"youtube": u"YouTube Video",
 		},
 		defaultValue="text"
 	)
@@ -76,6 +77,13 @@ class sectionSkel(skeleton.Skeleton):
 		descr=u"Link / URL",
 		params={
 			"logic.visibleIf": "mode == 'iframe'"
+		}
+	)
+
+	youtube = stringBone(
+		descr=u"YouTube Video Key",
+		params={
+			"logic.visibleIf": "mode == 'youtube'"
 		}
 	)
 

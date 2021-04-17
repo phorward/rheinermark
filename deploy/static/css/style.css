@@ -449,7 +449,7 @@ em {
   font-size: 5em;
   background-color: #276784;
   color: #fff !important;
-  padding: 7px 0;
+  padding: 0;
   display: inline;
   line-height: 170%;
   box-shadow: 25px 0 0 #276784, -25px 0 0 #276784;
@@ -477,6 +477,12 @@ h2.wrap--image-headline {
   padding: 60px 0;
   max-width: 1400px;
   margin: 0 auto;
+}
+.content iframe {
+  width: 60%;
+  min-height: 60vh;
+  border: 0;
+  margin: auto;
 }
 .grid {
   display: grid;
@@ -599,7 +605,7 @@ a.card:hover .card-txt {
 }
 iframe {
   width: 100%;
-  min-height: 400px;
+  min-height: 60vh;
   border: 0;
 }
 .imprint {

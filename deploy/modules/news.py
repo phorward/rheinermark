@@ -12,7 +12,6 @@ class news(List):
 		"name": u"Neuigkeiten",
 		"handler": "list",
 		"icon": "icons/modules/news.svg",
-		"filter": {"orderby": "creationdate", "orderdir": "1"},
 		"columns": ["date", "title"]
 	}
 
