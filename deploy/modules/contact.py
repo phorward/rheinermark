@@ -5,6 +5,8 @@ from skeletons.contact import contactSkel
 
 class Contact(Formmailer):
 	mailTemplate = "contact"
+	addTemplate = "contact_add"
+	addSuccessTemplate = "contact_add_success"
 
 	def canUse(self):
 		return True

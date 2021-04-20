@@ -150,7 +150,7 @@ securityheaders.addCspRule("frame-src", "www.youtube.com", "enforce")
 
 import server, modules, render
 
-server.setDefaultLanguage("de") #set default language!
+server.setDefaultLanguage("de")  # set default language!
 application = server.setup(modules, render)
 
 if __name__ == "__main__":

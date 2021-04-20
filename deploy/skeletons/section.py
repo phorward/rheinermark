@@ -38,6 +38,7 @@ class sectionSkel(skeleton.Skeleton):
 			"news": u"News",
 			"iframe": u"IFrame",
 			"youtube": u"YouTube Video",
+			"formmailer": u"Kontaktformular"
 		},
 		defaultValue="text"
 	)
@@ -58,7 +59,7 @@ class sectionSkel(skeleton.Skeleton):
 	image = fileBone(
 		descr=u"Bild",
 		params={
-			"logic.visibleIf": """ mode == "teaser" or mode == "text" and image_position """
+			"logic.visibleIf": """ mode in ["teaser"] or mode == "text" and image_position """
 		}
 	)
 
@@ -69,7 +70,7 @@ class sectionSkel(skeleton.Skeleton):
 	content = textBone(
 		descr=u"Inhalt",
 		params={
-			"logic.visibleIf": "mode == 'text'"
+			"logic.visibleIf": """ mode in ["text", "formmailer"] """
 		}
 	)
 

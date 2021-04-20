@@ -484,6 +484,16 @@ h2.wrap--image-headline {
   border: 0;
   margin: auto;
 }
+.content label {
+  display: block;
+}
+.content input,
+.content textarea {
+  width: 100%;
+}
+.content .error {
+  color: red;
+}
 .grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
