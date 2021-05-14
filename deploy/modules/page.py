@@ -3,6 +3,7 @@ from server.bones import *
 from server import exposed
 from prototypes import SortedList
 from server.render.html import default as HtmlRenderer
+import helpers
 
 
 class page(SortedList):
@@ -47,3 +48,20 @@ class page(SortedList):
 			return self.render.view(skel)
 
 		return super(page, self).view(key, *args, **kwargs)
+
+	def editSkel(self):
+		skel = super(page, self).editSkel().ensureIsCloned()
+
+		if not skel.alias.params:
+			skel.alias.params = {}
+
+		skel.alias.params = {
+			"tooltip":
+				u"Folgende Aliase sind vom System belegt und dürfen nicht vergeben werden: " + u", ".join(
+					helpers.getModuleNames())
+		}
+		skel.alias.isInvalid = lambda alias: (u"Der Alias '%s' ist bereits vom System vergeben" % alias) if alias in helpers.getModuleNames() else None
+
+		return skel
+
+	addSkel = editSkel

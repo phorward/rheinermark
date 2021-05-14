@@ -1,8 +1,13 @@
 #-*- coding: utf-8 -*-
 import logging
-from server import db, request, skeleton
+from server import db, conf, prototypes, request, skeleton
 from server.bones import baseBone
 
+def getModuleNames():
+	return [
+		mod for mod in dir(conf["viur.mainApp"])
+			if isinstance(getattr(conf["viur.mainApp"], mod), prototypes.BasicApplication)
+	]
 
 def setSkelForRequest(skelName, key):
 	request.current.get().kwargs["@%s" % skelName] = str(key)
