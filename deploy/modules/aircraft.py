@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from prototypes import SortedList
 from skeletons.equipment import equipmentSkel
-from server import request
 from server.render.html import default as htmlRender
+
 
 class Aircraft(SortedList):
 	listTemplate = "aircraft_list"
@@ -12,9 +12,8 @@ class Aircraft(SortedList):
 		"name": u"Flugzeug",
 		"columns": ["sortindex", "aircraftkind", "reg", "name", "seats"],
 		"handler": "list.aircraft",
-		"icon": "icons/modules/list.svg",
+		"icon": "/static/img/generic-glider.svg",
 	}
-	adminInfo = None #tmp
 
 	roles = {
 		"*": ["view"],
@@ -47,5 +46,6 @@ class Aircraft(SortedList):
 		skel = self.editSkel()
 		skel["kind"] = "aircraft"
 		return skel
+
 
 Aircraft.json = True

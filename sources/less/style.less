@@ -224,6 +224,10 @@ em{
   &.wrap--fullHeight{
     height: ~"calc(100vh - 100px)";
 
+    &.is-external {
+      background-size: contain;
+    }
+
     @media only screen and (max-width: @breakMedium) {
       height: ~"calc(100vh - 60px)";
     }
@@ -367,7 +371,7 @@ em{
 
 .v-card-img{
   display: flex;
-  background-color: @mainColor;
+  //background-color: @mainColor;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -381,6 +385,9 @@ em{
     padding-bottom: 100%;
   }
 
+  &.is-external {
+    background-size: contain;
+  }
 
   @media only screen and (max-width: @breakMedium) {
     width: 100%;

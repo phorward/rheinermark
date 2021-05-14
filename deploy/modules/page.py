@@ -57,6 +57,7 @@ class page(SortedList):
 
 		skel.alias.params = {
 			"tooltip":
+				u"Definiert einen sprechenden Alias, über den die Seite erreichbar ist, also www.domain.de/alias.\n"
 				u"Folgende Aliase sind vom System belegt und dürfen nicht vergeben werden: " + u", ".join(
 					helpers.getModuleNames())
 		}

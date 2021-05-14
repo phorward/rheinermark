@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- co:+1ding: utf-8 -*-
 from server.prototypes.list import List
 from server import request
 

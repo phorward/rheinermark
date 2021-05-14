@@ -81,7 +81,7 @@
 
 <body {{ ONLOAD }}>
 <header class="header">
-	<a href="{{ "/" if not cuser or True else "/user/view" }}" class="logo">
+	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo">
 		<img src="/static/img/logo.svg" class="logo-img">
 	</a>
 
@@ -110,8 +110,8 @@
 
 		{% for section in getList("section", **{"page.dest.key": skel["key"]}) %}
 			{% if section["mode"] == "teaser" %}
-				<div class="wrap wrap--image wrap--fullHeight"
-					 style="background-image: url({{ getImageSrc(section["image"], 1600) }})">
+				<div class="wrap wrap--image wrap--fullHeight {{ "is-external" if not section["image"] and section["external_image"] }}"
+					 style="background-image: url({{ getImageSrc(section["image"], 1600) if section["image"] else section["external_image"] }})">
 					<span>
 						<h1 class="wrap--image-headline">{{ section["title"] }}</h1>
 					</span>
@@ -120,19 +120,19 @@
 			{% elif section["mode"] == "text" %}
 				<div class="wrap">
 					<div class="content">
-						{% if section["image"] and section["image_position"]|string %}
+						{% if (section["image"] or section["external_image"]) and section["image_position"]|string %}
 							<div class="v-card">
 								{% if section["image_position"]|string == "left" %}
-									<div class="v-card-img"
-										 style="background-image: url({{ getImageSrc(section["image"], 600) }})"></div>
+									<div class="v-card-img {{ "is-external" if not section["image"] and section["external_image"] }}"
+										 style="background-image: url({{ getImageSrc(section["image"], 600) if section["image"] else section["external_image"] }})"></div>
 								{% endif %}
 								<div class="v-card-txt">
 									<h2>{{ section["title"] }}</h2>
 									{{ section["content"] }}
 								</div>
 								{% if section["image_position"]|string == "right" %}
-									<div class="v-card-img"
-										 style="background-image: url({{ getImageSrc(section["image"], 600) }})"></div>
+									<div class="v-card-img {{ "is-external" if not section["image"] and section["external_image"] }}"
+										 style="background-image: url({{ getImageSrc(section["image"], 600) if section["image"] else section["external_image"] }})"></div>
 								{% endif %}
 							</div>
 						{% else %}

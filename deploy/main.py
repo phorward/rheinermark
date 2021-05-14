@@ -108,7 +108,7 @@ def errorHandler(e) :
 
 	render = Render()
 
-	if isinstance(e, errors.HTTPException) :
+	if isinstance(e, errors.HTTPException):
 		code = int(e.status)
 		name = e.name
 		descr = e.descr
@@ -119,30 +119,34 @@ def errorHandler(e) :
 
 	strIO = StringIO()
 	traceback.print_exc(file=strIO)
-	tbstr = strIO.getvalue().replace( "\n", "--br--" ).replace( " ", "&nbsp;" ).replace( "--br--", "<br />" )
+	tbstr = strIO.getvalue().replace("\n", "--br--").replace(" ", "&nbsp;").replace("--br--", "<br />")
 
 	return render.view({
 		"name": name,
 		"code": code,
 		"descr": descr,
-		"traceback" : tbstr
+		"traceback": tbstr
 	}, tpl="error")
+
 
 conf["viur.errorHandler"] = errorHandler
 
 # ------------------------------------------------------------------------------
 # Content Security Policy
 
-securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
-securityheaders.addCspRule("script-src", "unsafe-eval", "enforce")
-securityheaders.addCspRule("script-src", "www.google.com", "enforce")
-securityheaders.addCspRule("script-src", "www.gstatic.com", "enforce")
+conf["viur.security.contentSecurityPolicy"] = {}  # Disable this piece of junk.
 
-securityheaders.addCspRule("font-src", "self", "enforce")
-securityheaders.addCspRule("font-src", "fonts.gstatic.com", "enforce")
-
-securityheaders.addCspRule("frame-src", "weglide.org", "enforce")
-securityheaders.addCspRule("frame-src", "www.youtube.com", "enforce")
+# securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
+# securityheaders.addCspRule("script-src", "unsafe-eval", "enforce")
+# securityheaders.addCspRule("script-src", "www.google.com", "enforce")
+# securityheaders.addCspRule("script-src", "www.gstatic.com", "enforce")
+#
+# securityheaders.addCspRule("font-src", "self", "enforce")
+# securityheaders.addCspRule("font-src", "fonts.gstatic.com", "enforce")
+#
+# securityheaders.addCspRule("frame-src", "weglide.org", "enforce")
+# securityheaders.addCspRule("frame-src", "www.regio-airport-mengen.de", "enforce")
+# securityheaders.addCspRule("frame-src", "www.youtube.com", "enforce")
 
 # ------------------------------------------------------------------------------
 # Server startup

@@ -59,7 +59,15 @@ class sectionSkel(skeleton.Skeleton):
 	image = fileBone(
 		descr=u"Bild",
 		params={
-			"logic.visibleIf": """ mode in ["teaser"] or mode == "text" and image_position """
+			"logic.visibleIf": """ mode in ["teaser"] or (mode == "text" and image_position) """
+		}
+	)
+
+	external_image = stringBone(
+		descr=u"Externes Bild (URL)",
+		params={
+			"tooltip": u"URL eines externen Bildes (z.B. Webcam).",
+			"logic.visibleIf": """ (mode in ["teaser"] or mode == "text" and image_position) """
 		}
 	)
 
