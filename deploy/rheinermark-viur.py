@@ -32,6 +32,7 @@ from collections import OrderedDict
 #
 
 #conf["viur.disableCache"] = True
+#conf["viur.debug.traceExternalCallRouting"] = True
 
 # Set cookie lifeTime to 4 months
 conf["viur.session.lifeTime"] = 4*24*60*60

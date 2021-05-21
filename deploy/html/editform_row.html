@@ -1,0 +1,24 @@
+{% if boneParams.visible %}
+	<div class="input-group ignt-bone">
+		<h3 style="padding: 10px 0px;"
+			class="label ignt-label
+				{{ "is-required" if boneParams.required }}
+				{{ "is-readonly" if boneParams.readOnly }}
+				{{ "is-invalid" if boneWasInvalid else "is-valid" }}"
+		>
+			{{ boneParams.descr }}
+		</h3>
+
+		{% if boneParams.params and boneParams.params["tooltip"] %}
+			<p class="hint">{{ boneParams.params["tooltip"]|replace("\n", "<br>") }}</p>
+		{% endif %}
+
+		{{ editWidget }}
+
+		{% if boneParams.error and boneWasInvalid %}
+			<p class="error">{{ _(boneParams.error) }}</p>
+		{% endif %}
+	</div>
+{% else %}
+	{{ editWidget }}
+{% endif %}

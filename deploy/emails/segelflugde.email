@@ -1,0 +1,12 @@
+Subject:segelflug.de - {{ skel["items"]|length }} neue Einträge in {{ skel["name"] }}
+<html>
+<body>
+	<ul>
+		{% for item in skel["items"] %}
+			<li>
+				<a href="{{ item["link"] }}">{{ item["title"] }} - {{ item["price"] }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+</body>
+</html>

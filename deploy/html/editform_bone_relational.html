@@ -1,0 +1,56 @@
+{% from "macros/utils.html" import formatString %}
+<div id="ignt-id-{{ boneName }}" class="input-group">
+	{% if not boneParams.multiple %}
+		<select name="{{ boneName }}" class="select ignt-select ign-select--relational ignt-select--{{ boneName }}"
+				{{ "is-required" if boneParams.required }} {{ "is-readonly" if boneParams.readOnly }}
+				{{ "is-invalid" if boneWasInvalid else "is-valid" }} {{ 'readonly' if boneParams.readOnly }}
+				{{ 'required' if boneParams.required }} >
+
+			{# here we are inside the <select> or <datalist> #}
+			<option value="" {{ "selected" if not boneValue }} {{ "disabled" if boneParams.required }}>
+				-
+			</option>
+			{% set cursor = {"cursor": None} %}
+			{% for i in range(0, 1000, 100) -%}
+				{% set skellist = getList(boneParams.module, limit=100, cursor=cursor["cursor"]) -%}
+				{% if not skellist|length %}
+					{% break %}
+				{% endif %}
+
+				{% do cursor.update({"cursor": skellist.cursor}) %}
+
+				{% for entry in skellist -%}
+					<option value="{{ entry["key"] }}" {{ "selected" if boneValue == entry["key"] }}>
+						{{- formatString(boneParams.format, entry, prefix="dest.") -}}
+					</option>
+				{%- endfor -%}
+			{%- endfor %}
+		</select>
+	{% else %}
+		{% set selectedKeys = [] %}
+		{% for entry in boneValue or [] %}
+			{% do selectedKeys.append(entry["key"]) %}
+		{% endfor %}
+
+		<div class="option-group">
+			{% set cursor = {"cursor": None} %}
+			{% for i in range(0, 1000, 100) -%}
+				{% set skellist = getList(boneParams.module, limit=100, cursor=cursor["cursor"]) -%}
+				{% if not skellist|length %}
+					{% break %}
+				{% endif %}
+
+				{% do cursor.update({"cursor": skellist.cursor}) %}
+
+				{% for entry in skellist -%}
+					<div class="check">
+						<label>
+							<input name="{{ boneName }}.{{ loop.index0 }}" type="checkbox" value="{{ entry["key"] }}" {{ "checked" if entry["key"] in selectedKeys }} />
+							{{- formatString(boneParams.format, entry, prefix="dest.") -}}
+						</label>
+					</div>
+				{%- endfor -%}
+			{%- endfor %}
+		</div>
+	{% endif %}
+</div>

@@ -48,3 +48,33 @@
 		</a>
 	</li>
 {%- endmacro -%}
+
+{# This macro calls itself recursively to resolve a relational- or recordBone's format-string. #}
+{% macro formatString(format, value, prefix="", vars={}) %}
+	{%- set ret = {"value": format} -%}
+	{%- for key, val in vars.items() -%}
+		{%- if val|isDict -%}
+			{%- do ret.update({"value": formatString(ret["value"], val, prefix = "%s." % key)}) -%}
+		{%- else -%}
+			{%- do ret.update({"value": ret["value"].replace("$(%s)" % (prefix + key), val|string)}) -%}
+		{% endif -%}
+	{%- endfor -%}
+	{%- for key, val in value.items() -%}
+		{# Workaround for Bug https://github.com/viur-framework/viur-core/issues/192 #}
+		{%- set val = value[key] or "" -%}
+		{%- if val|isList -%}
+			{%- set res = [] -%}
+			{%- for item in val -%}
+				{%- if item|isDict -%}
+					{%- do res.append(formatString("$(dest.name)", item, "dest.")|string) -%}
+				{%- endif -%}
+			{%- endfor -%}
+			{%- do ret.update({"value": ret["value"].replace("$(%s)" % (prefix + key), res|join("<br>"))}) -%}
+		{%- elif val|isDict -%}
+			{%- do ret.update({"value": formatString(ret["value"], val, prefix = "%s." % key)}) -%}
+		{%- else -%}
+			{%- do ret.update({"value": ret["value"].replace("$(%s)" % (prefix + key), val|string)}) -%}
+		{%- endif -%}
+	{%- endfor -%}
+	{{ ret["value"] }}
+{% endmacro %}

@@ -1,0 +1,15 @@
+{% extends "intern.html" %}
+{% set title = "segelflug.de WatchDog" %}
+
+{% block content %}
+	<img src="/static/img/arcus-vorm-arcus.jpg" style="width:100%;">
+	<p>
+		Der segelflug.de WatchDog informiert Dich per E-Mail über neueste Angebote in den segelflug.de Kleinanzeigen.
+	</p>
+
+	<form action="/{{ moduleName() }}/segelflugde" method="POST">
+		<input type="hidden" name="skey" value="{{ getSecurityKey() }}" />
+		<input type="hidden" name="key" value="{{ getSecurityKey() }}" />
+		<input class="btn btn--primary" type="submit" value="Einstellungen speichern">
+	</form>
+{% endblock %}
