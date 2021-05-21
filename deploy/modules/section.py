@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from server.bones import *
 from prototypes import SortedList
-from server import errors, securitykey, forceSSL, forcePost, exposed
+from server import utils
 from server.render.html import default as HtmlRenderer
 import helpers
 
@@ -12,31 +12,33 @@ class section(SortedList):
 		"executive": ["view", "add", "edit"]
 	}
 
-	adminInfo = {
-		"name": u"Inhalt",
-		"handler": "list",
-		"mode": "hidden",
-		"icon": "icons/modules/pages.svg",
-		"filter": {"orderby": "sortindex"},
-		"preview": "/{{module}}/view/{{key}}",
-		"columns": ["sortindex", "mode", "image", "title", "content"],
-	}
+	def adminInfo(self):
+		cuser = utils.getCurrentUser()
 
-	def canAdd(self):
-		if not super(section, self).canAdd():
-			return False
-
-		return bool(self.addSkel())
+		return {
+			"name": u"Seitenabschnitt ⚠️",
+			"handler": "list",
+			"mode": "hidden" if not cuser and "root" in cuser["access"] else "normal",
+			"icon": "icons/modules/pages.svg",
+			"filter": {"orderby": "sortindex"},
+			"preview": "/{{module}}/view/{{key}}",
+			"columns": ["page", "mode", "image", "title"],
+		}
 
 	def addSkel(self):
-		skel = super(section, self).addSkel()
+		skel = super(section, self).addSkel().ensureIsCloned()
 
 		page = helpers.getSkelForRequest("page", attr="key")
 		if page:
+			skel.page.readOnly = True
+			skel.page.visible = False
 			skel.setBoneValue("page", page)
-			return skel
+		else:
+			skel.page.required = True
 
-		return None
+		return skel
+
+	editSkel = addSkel
 
 	def listFilter(self, query):
 		page = helpers.getSkelForRequest("page", attr="key")

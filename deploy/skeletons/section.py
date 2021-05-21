@@ -10,9 +10,7 @@ class sectionSkel(skeleton.Skeleton):
 	page = relationalBone(
 		kind="page",
 		descr=u"Seite",
-		readOnly=True,
-		indexed=True,
-		visible=False
+		indexed=True
 	)
 
 	sortindex = numericBone(
