@@ -32,6 +32,24 @@ class segelflugde(List):
 		extractId = re.compile("id=(\d+)")
 
 		for skel in q.fetch(limit=99):
+			# First of all, check for recipients.
+			# If there's nobody interested, a fetch is not required.
+			q = conf["viur.mainApp"].user.viewSkel().all()
+			q.mergeExternalFilter({
+				"segelflugde.dest.key": skel["key"]
+			})
+
+			recipients = []
+			for userSkel in q.fetch(limit=99):
+				recipients.append(userSkel["name"])
+
+			if not recipients:
+				logging.debug("Nobody interested in %r", skel["name"])
+				continue
+
+			logging.debug("%d recipients for %r found", len(recipients), skel["name"])
+
+			# Ok then fetch the category from the site
 			content = requests.get("https://www.segelflug.de/osclass/index.php?page=search&sCategory=" + skel["category"]).content
 			soup = BeautifulSoup(content, "html.parser")
 
@@ -51,42 +69,75 @@ class segelflugde(List):
 				new.append({
 					"title": title,
 					"link": link,
-					"price": price})
+					"price": price
+				})
 
 			if new:
 				logging.debug("%d new items found", len(new))
 
-				q = conf["viur.mainApp"].user.viewSkel().all()
-				q.mergeExternalFilter({
-					"segelflugde.dest.key": skel["key"]
-				})
+				logging.debug("Sending E-Mail")
+				utils.sendEMail(
+					"viur@%s.appspotmail.com" % app_identity.get_application_id(),
+					"segelflugde",
+					{
+						"name": skel["name"],
+						"items": new
+					},
+					bcc=recipients
+				)
 
-				recipients = []
-				for userSkel in q.fetch(limit=99):
-					recipients.append(userSkel["name"])
+				logging.debug("Updating seen results")
+				helpers.setStatus(
+					skel["key"],
+					{"seen": result}
+				)
 
-				logging.debug("%d recipients found", len(recipients))
-				if recipients:
-					logging.debug("Sending E-Mail")
-					utils.sendEMail(
-						"viur@%s.appspotmail.com" % app_identity.get_application_id(),
-						"segelflugde",
-						{
-							"name": skel["name"],
-							"items": new
-						},
-						bcc=recipients
-					)
-
-					logging.debug("Updating seen results")
-					helpers.setStatus(
-						skel["key"],
-						{"seen": result}
-					)
-
-					logging.debug("Successfully reported %d new items in %r", len(new), skel["name"])
+				logging.debug("Successfully reported %d new items in %r", len(new), skel["name"])
 			else:
 				logging.debug("No new entries in category %r", skel["name"])
+
+	@exposed
+	def updateCategories(self):
+		cuser = utils.getCurrentUser()
+		if not (cuser and "root" in cuser["access"]):
+			raise errors.Unauthorized()
+
+		content = requests.get("https://www.segelflug.de/osclass/index.php").content
+		soup = BeautifulSoup(content, "html.parser")
+
+		extractId = re.compile("sCategory=(\d+)")
+
+		total = 0
+		headline = ""
+
+		for category in soup.find_all("a", {"class": "category"}):
+
+			if "sub-category" not in category["class"]:
+				headline = category.getText()
+				continue
+
+			name = category.getText()
+			if headline:
+				name = headline + ": " + name
+
+			id = extractId.search(category["href"])
+			if id is None:
+				continue
+
+			id = id.group(1)
+
+			logging.info("Updating category %r (%r)", name, id)
+			skel = self.editSkel().all().filter("category", id).getSkel()
+			if not skel:
+				skel = self.addSkel()
+
+			skel["name"] = name
+			skel["category"] = id
+			skel.toDB()
+
+			total += 1
+
+		logging.info("%d categories in total updated", total)
 
 	#@exposed
 	#def test(self):

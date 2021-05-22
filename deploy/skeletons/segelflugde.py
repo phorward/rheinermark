@@ -14,7 +14,8 @@ class segelflugdeSkel(skeleton.Skeleton):
 
 	category = stringBone(
 		descr=u"ID",
-		required=True
+		required=True,
+		indexed=True
 	)
 
 	seen = stringBone(

@@ -116,6 +116,12 @@
 <section id="fv" class="fv">
 	{% for bg in appconf["start_teaser"] %}
 		<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1600) }}'); {{ "display: none" if not loop.first }}"></div>
+		<!--
+		<div class="fv-bg js-diashow"
+			data-group="start"
+			style="background-image: image-set(url('{{ getImageSrc(bg, 600) }}') 1x, url('{{ getImageSrc(bg, 1000) }}') 2x, url('{{ getImageSrc(bg, 1200) }}') 3x, url('{{ getImageSrc(bg, 1600) }}') 4x); {{ "display: none" if not loop.first }}">
+		</div>
+		-->
 	{% endfor %}
 
 	<div class="grey-transparency">

@@ -136,7 +136,7 @@ class userSkel(skeleton.Skeleton):
 		indexed=True,
 		multiple=True,
 		params={
-			"tooltip": u"""Der segelflug.de WatchDog schickt dir eine E-Mail wenn's was neues in den von dir ausgewählten Kategorien gibt.
+			"tooltip": u"""Der segelflug.de WatchDog schickt Dir eine E-Mail wenn's was neues in den von Dir ausgewählten Kategorien gibt.
 			<img src="/static/img/arcus-vorm-arcus.jpg" style="width: 100%; border-radius: 15px;">"""
 		}
 	)
