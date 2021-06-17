@@ -81,13 +81,13 @@ def handleRequest(path):
 	if "X-AppEngine-TaskName" in request.current.get().request.headers:
 		return path
 
-	mainUrl = "https://www.segelfliegen.com"
+	mainUrl = "https://www.lsgravensburg.de"
 	url = request.current.get().request.url.lower()
 
 	if not url.startswith(mainUrl):
 		for proto in ["http://", "https://"]:
 			if url.startswith(proto):
-				for other in ["segelfliegen.com"]:
+				for other in ["lsgravensburg.com"]:
 					#logging.debug("url = %r startswith = %r", url[len(proto):], other)
 
 					if url[len(proto):].startswith(other):
