@@ -2,13 +2,18 @@
 from server.bones import passwordBone as passwordBone_orig
 
 class passwordBone(passwordBone_orig):
+	"""
+	We allow for weak passwords because old people can't use this standard.
+	"""
+
+	minPasswordLength = 6
 	passwordTests = [
-				lambda val: val.lower()!=val, #Do we have upper-case characters?
-				lambda val: val.upper()!=val, #Do we have lower-case characters?
-				#lambda val: any([x in val for x in "0123456789"]), #Do we have any digits?
-				#lambda val: any([x not in (string.ascii_lowercase + string.ascii_uppercase + string.digits) for x in val]), #Special characters?
-			]
-	passwordTestThreshold = 2
+		#lambda val: val.lower()!=val, #Do we have upper-case characters?
+		#lambda val: val.upper()!=val, #Do we have lower-case characters?
+		#lambda val: any([x in val for x in "0123456789"]), #Do we have any digits?
+		#lambda val: any([x not in (string.ascii_lowercase + string.ascii_uppercase + string.digits) for x in val]), #Special characters?
+	]
+	passwordTestThreshold = 0
 
 	def fromClient(self, valuesCache, name, data):
 		value = data.get(name)
