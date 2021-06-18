@@ -87,7 +87,7 @@ def handleRequest(path):
 	if not url.startswith(mainUrl):
 		for proto in ["http://", "https://"]:
 			if url.startswith(proto):
-				for other in ["lsgravensburg.com"]:
+				for other in ["lsgravensburg.de"]:
 					#logging.debug("url = %r startswith = %r", url[len(proto):], other)
 
 					if url[len(proto):].startswith(other):

@@ -361,13 +361,31 @@ em{
   transition: all ease .3s;
 }
 
-.v-card{
+.v-card {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 
   @media only screen and (max-width: @breakMedium) {
     flex-direction: column;
+
+    &.v-card--square {
+      flex-direction: row;
+
+      .v-card-img:after {
+        padding-bottom: 100%;
+      }
+    }
+  }
+
+  @media only screen and (max-width: @breakSmall) {
+    &.v-card--square {
+      flex-direction: column;
+
+      .v-card-img:after {
+        padding-bottom: 100%;
+      }
+    }
   }
 }
 

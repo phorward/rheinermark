@@ -125,7 +125,7 @@
 				<div class="wrap">
 					<div class="content">
 						{% if (section["image"] or section["external_image"]) and section["image_position"]|string %}
-							<div class="v-card">
+							<div class="v-card v-card--square">
 								{% if section["image_position"]|string == "left" %}
 									<div class="v-card-img {{ "is-external" if not section["image"] and section["external_image"] }}"
 										 style="background-image: url({{ getImageSrc(section["image"], 600) if section["image"] else section["external_image"] }})"></div>
