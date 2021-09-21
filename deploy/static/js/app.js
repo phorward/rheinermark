@@ -144,5 +144,19 @@ $(window).ready(function () {
 		$(this).parent().blur();
 		$(this).parent().find(".js-toggle").slideToggle();
 	});
-});
 
+	// Social media preview
+	var prevScrollpos = window.pageYOffset;
+
+	window.onscroll = function() {
+	  var currentScrollPos = window.pageYOffset;
+	  if (prevScrollpos < currentScrollPos && currentScrollPos > 100) {
+		$(".js-header").addClass("is-scrolled");
+		$(".js-social-media-absolute").addClass("is-scrolled");
+	  } else {
+		$(".js-header").removeClass("is-scrolled");
+		$(".js-social-media-absolute").removeClass("is-scrolled");
+	  }
+	  prevScrollpos = currentScrollPos;
+	};
+});
