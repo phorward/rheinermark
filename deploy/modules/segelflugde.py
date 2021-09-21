@@ -21,7 +21,8 @@ class segelflugde(List):
 
 	def listFilter(self, query):
 		query = super(segelflugde, self).listFilter(query)
-		if not query.getOrders():
+
+		if query and not query.getOrders():
 			query.order("name")
 
 		return query

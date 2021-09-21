@@ -5,6 +5,7 @@
 .idea
 
 deploy/vi
+deploy/lib
 sources/node_modules
 sources/package-lock.json
 
