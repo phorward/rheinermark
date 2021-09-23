@@ -64,6 +64,20 @@
 </head>
 <body id="top" {{ ONLOAD }}>
 
+{% block socialmedia %}
+<div class="social-media-wrap social-media-absolute js-social-media-absolute">
+	<a href="https://www.instagram.com/flugplatz_rheinermark/" target="_blank" class="social-media-item">
+		<img src="/static/img/instagram-icon.svg">
+	</a>
+	<a href="https://www.youtube.com/channel/UCh1ujTWw8rlJkjWOY6WuvcQ" target="_blank" class="social-media-item">
+		<img src="/static/img/youtube-icon.svg">
+	</a>
+	<a href="/#kontakt" class="social-media-item">
+		<img src="/static/icons/newsletter.svg">
+	</a>
+</div>
+{% endblock %}
+
 <div class="menu-wrapper {{ mode }}">
 	<div class="menu-bar">
 		<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
@@ -109,20 +123,6 @@
 
 	</div>
 </div>
-
-{% block socialmedia %}
-<div class="social-media-wrap social-media-absolute js-social-media-absolute">
-	<a href="https://www.instagram.com/flugplatz_rheinermark/" target="_blank" class="social-media-item">
-		<img src="/static/img/instagram-icon.svg">
-	</a>
-	<a href="https://www.youtube.com/channel/UCh1ujTWw8rlJkjWOY6WuvcQ" target="_blank" class="social-media-item">
-		<img src="/static/img/youtube-icon.svg">
-	</a>
-	<a href="/#kontakt" class="social-media-item">
-		<img src="/static/icons/newsletter.svg">
-	</a>
-</div>
-{% endblock %}
 
 {% block body %}
 

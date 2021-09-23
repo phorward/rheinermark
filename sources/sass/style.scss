@@ -198,7 +198,8 @@ header {
     flex-direction: column;
     position: fixed;
     //.zIndex("overlay",20);
-    top: 40vh;
+	z-index: 999;
+    top: 65vh;
     //left: 0;
 	right: 0;
 	border-top-left-radius: 8px;
@@ -206,26 +207,45 @@ header {
 
     .social-media-item{
       margin-bottom: 10px;
-      margin-right: 0;
+	  margin-right: 0;
+	  display: flex;
+
+	  opacity: 1;
+	  transition: all ease .3s;
+	  width: 40px;
+
+	  &:last-child{
+		margin-right: 0;
+	  }
+
+	  &:hover{
+		opacity: .8;
+	  }
+
+	  & img {
+		width: 40px;
+		height: 40px;
+	  }
     }
 
     &:before {
 	  display: none;
       content: "";
       position: absolute;
-      top: calc(50% - 20px);
+      top: calc(50% - 40px);
       bottom: 0;
       right: 100%;
 	  //left: 100%;
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 20px 15px 20px 0;
+      border-width: 40px 40px 40px 0;
       border-color: transparent $accent-color transparent transparent;
     }
 
     &.is-scrolled{
-      right: -50px;
+	  top: 40vh;
+      right: -70px;
 	  background-color: $accent-color;
 	  //left: -50px;
 
@@ -234,26 +254,11 @@ header {
 	  }
     }
 
-    &:hover{
+    //&:hover {  // safari kann das nicht
+	&.is-active {
       right: 0;
 	  //left: 0;
     }
-  }
-}
-
-.social-media-item{
-  display: flex;
-  margin-right: 10px;
-  opacity: 1;
-  transition: all ease .3s;
-  width: 30px;
-
-  &:last-child{
-    margin-right: 0;
-  }
-
-  &:hover{
-    opacity: .8;
   }
 }
 
