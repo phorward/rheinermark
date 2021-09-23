@@ -8,7 +8,22 @@
 
 @import "burger";
 @import "intern";
+@import "socialmedia";
 @import "cookieconsent";
+
+.btn {
+  background-color: @mainColor;
+  padding: 5px;
+  margin: 10px 0px;
+  text-align: center;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 400;
+
+  &:hover{
+	opacity: .8;
+  }
+}
 
 @font-face {
     font-family: 'Oswald';
@@ -182,10 +197,6 @@ em{
   display: flex;
   flex-direction: column;
   margin-top: 100px;
-
-  a, a:link, a:visited {
-    color: @textColor;
-  }
 
   @media only screen and (max-width: @breakMedium) {
     margin-top: 60px;

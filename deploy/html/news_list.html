@@ -1,0 +1,22 @@
+{% set title = "Neuigkeiten" %}
+
+{% extends "index.html" %}
+
+{% block body %}
+	<div class="wrap">
+		<div class="content">
+			<div class="grid grid--3">
+				{% for entry in skellist %}
+					<a class="card" href="/news/view/{{ entry["key"]|shortKey }}">
+						<div class="card-img" style="background-image: url({{ getImageSrc(entry["teaser"], 600) }})"></div>
+						<div class="card-txt">
+							<h3>{{ entry["title"] }}</h3>
+							<p>Gepostet am {{ entry["date"].strftime("%d.%m.%Y") }}</p>
+							{{ entry["content"] }}
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

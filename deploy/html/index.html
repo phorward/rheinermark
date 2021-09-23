@@ -80,6 +80,26 @@
 </head>
 
 <body {{ ONLOAD }}>
+
+{% block socialmedia %}
+<div class="social-media-wrap social-media-absolute js-social-media-absolute">
+	<a href="https://www.instagram.com/lsg_ravensburg/" target="_blank" class="social-media-item">
+		<img src="/static/img/instagram-icon.svg">
+	</a>
+	<a href="https://www.facebook.com/luftsportgruppe.ravensburg" class="social-media-item">
+		<img src="/static/img/facebook-icon.svg">
+	</a>
+	<!--
+	<a href="https://www.youtube.com/channel/UCh1ujTWw8rlJkjWOY6WuvcQ" target="_blank" class="social-media-item">
+		<img src="/static/img/youtube-icon.svg">
+	</a>
+	-->
+	<a href="/kontakt" class="social-media-item">
+		<img src="/static/icons/newsletter.svg">
+	</a>
+</div>
+{% endblock %}
+
 <header class="header">
 	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo">
 		<img src="/static/img/logo.svg" class="logo-img">
@@ -151,8 +171,9 @@
 
 				<div class="wrap">
 					<div class="content">
+						{% set entries = getList("news", amount=4) %}
 						<div class="grid grid--3">
-							{% for entry in getList("news", amount=3) %}
+							{% for entry in entries[:3] %}
 								<a class="card" href="/news/view/{{ entry["key"]|shortKey }}">
 									<div class="card-img" style="background-image: url({{ getImageSrc(entry["teaser"], 600) }})"></div>
 									<div class="card-txt">
@@ -163,6 +184,10 @@
 								</a>
 							{% endfor %}
 						</div>
+
+						{% if entries|length > 3 %}
+							<a class="btn btn--more" href="/news/list?amount=99">Alle anzeigen</a>
+						{% endif %}
 					</div>
 				</div>
 
@@ -230,7 +255,7 @@
 	Eine weitere Auswertung dieser Daten findet nicht statt!
 
 	<a href="/privacy" target="_blank">Weitere Informationen</a>
-	<a id="cookieConsentOK">Verstanden!</a>
+	<a id="cookieConsentOK">Einverstanden</a>
 </div>
 <!-- /CookieConsent Popup -->
 

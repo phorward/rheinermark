@@ -156,7 +156,6 @@ $(window).ready(function () {
 	});
 
 	/////// Smooth Scroll
-
 	$('a[href*="#"]').on('click', function (e) {
 	  e.preventDefault()
 
@@ -167,6 +166,25 @@ $(window).ready(function () {
 	    500,
 	    'linear'
 	  )
+	});
+
+	// Social media
+	$(".js-social-media-absolute").on("mouseover", function () {
+		$(this).addClass("is-active");
+	});
+
+	$(".js-social-media-absolute").on("mouseout", function () {
+		$(this).removeClass("is-active");
+	});
+
+	$(window).scroll(() => {
+		var height = $(window).scrollTop();
+
+		if (height > 400) {
+			$(".js-social-media-absolute").addClass("is-scrolled");
+		} else {
+			$(".js-social-media-absolute").removeClass("is-scrolled");
+		}
 	});
 });
 

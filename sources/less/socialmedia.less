@@ -1,0 +1,71 @@
+.social-media-wrap{
+  display: flex;
+  flex-direction: row;
+  transition: all ease .3s;
+
+  &.social-media-absolute{
+    background-color: @mainColor;
+	opacity: 0.9;
+    padding: 10px 10px 0 10px;
+    flex-direction: column;
+    position: fixed;
+    //.zIndex("overlay",20);
+	z-index: 999;
+    top: 40vh;
+    //left: 0;
+	right: -60px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+
+    .social-media-item{
+      margin-bottom: 10px;
+	  margin-right: 0;
+	  display: flex;
+
+	  opacity: 1;
+	  transition: all ease .3s;
+	  width: 40px;
+
+	  &:last-child{
+		margin-right: 0;
+	  }
+
+	  &:hover{
+		opacity: .8;
+	  }
+
+	  & img {
+		width: 40px;
+		height: 40px;
+	  }
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: calc(50% - 20px);
+      bottom: 0;
+      right: 100%;
+	  //left: 100%;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 20px 20px 20px 0;
+      border-color: transparent @mainColor transparent transparent;
+    }
+
+    @media only screen and (min-width: @breakSmall) {
+      &.is-scrolled{
+          top: 40vh;
+          right: 0;
+          //left: -50px;
+        }
+    }
+    
+    //&:hover {  // safari kann das nicht
+	&.is-active {
+      right: 0;
+	  //left: 0;
+    }
+  }
+}
