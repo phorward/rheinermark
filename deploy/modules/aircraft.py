@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from prototypes import SortedList
 from skeletons.equipment import equipmentSkel
-from server import request
 from server.render.html import default as htmlRender
+from server import utils, exposed
 
 class Aircraft(SortedList):
 	listTemplate = "aircraft_list"
@@ -21,13 +21,13 @@ class Aircraft(SortedList):
 	}
 
 	def listFilter(self, query):
-		query = super(Aircraft, self).listFilter(query)
-		if not query:
-			return None
-
 		query.filter("kind", "aircraft")
 
-		if isinstance(self.render, htmlRender):
+		if not query.getOrders():
+			query.order("sortindex")
+
+		# All club aircraft are exposed, as they are not considered to be "private"
+		if isinstance(self.render, htmlRender) or not utils.getCurrentUser():
 			query.filter("is_clubowned", True)
 			return query
 
@@ -46,5 +46,10 @@ class Aircraft(SortedList):
 		skel = self.editSkel()
 		skel["kind"] = "aircraft"
 		return skel
+
+	@exposed
+	def index(self, *args, **kwargs):
+		return self.list(*args, **kwargs)
+
 
 Aircraft.json = True
