@@ -129,16 +129,20 @@ def errorHandler(e) :
 		"traceback" : tbstr
 	}, tpl="error")
 
+
 conf["viur.errorHandler"] = errorHandler
 
 # ------------------------------------------------------------------------------
 # Content Security Policy
 
-securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
-securityheaders.addCspRule("script-src", "unsafe-eval", "enforce")
-securityheaders.addCspRule("script-src", "www.google.com", "enforce")
-securityheaders.addCspRule("script-src", "www.gstatic.com", "enforce")
-securityheaders.addCspRule("font-src", "fonts.gstatic.com", "enforce")
+conf["viur.security.contentSecurityPolicy"] = {}  # Disable this piece of junk.
+conf["viur.security.xFrameOptions"] = None
+
+#securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
+#securityheaders.addCspRule("script-src", "unsafe-eval", "enforce")
+#securityheaders.addCspRule("script-src", "www.google.com", "enforce")
+#securityheaders.addCspRule("script-src", "www.gstatic.com", "enforce")
+#securityheaders.addCspRule("font-src", "fonts.gstatic.com", "enforce")
 
 # ------------------------------------------------------------------------------
 # Server startup

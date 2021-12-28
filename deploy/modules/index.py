@@ -4,7 +4,7 @@ from server.render.html import default
 
 from google.appengine.api import urlfetch, app_identity
 
-import json, logging, datetime, httplib
+import json, logging, datetime, httplib, requests
 
 
 class index(default):
@@ -18,6 +18,42 @@ class index(default):
 
 		template = self.getEnv().get_template("index.html")
 		return template.render(start=True)
+
+	@exposed
+	def vereinsflieger_topbar(self, accesstoken, cid, *args, **kwargs):
+		res = requests.post(
+			"https://www.vereinsflieger.de/interface/rest/auth/getuser",
+			params={
+				"accesstoken": accesstoken
+			}
+		)
+
+		assert res.status_code == 200
+
+		member = res.json()
+		logging.debug(member)
+		# {u'status': u'aktiv', u'uid': u'1234', u'firstname': u'Eugen', u'cid': u'1356', u'lastname': u'Hänle', u'memberid': u'1337', u'roles': [u'Vereinsadministrator', u'Vorstand', u'Mitglied', u'Alle Rechte'], u'httpstatuscode': 200, u'email': u'eugen@glasfluegel.net'}
+
+		#return json.dumps(member)
+		return """<!DOCTYPE html><html><body style="color: #ffffff">Hallo %s, wie gehts?</body></html>""" % member["firstname"]
+
+	@exposed
+	def vereinsflieger_dashboard(self, accesstoken, cid, mode="dashboard", *args, **kwargs):
+		res = requests.post(
+			"https://www.vereinsflieger.de/interface/rest/auth/getuser",
+			params={
+				"accesstoken": accesstoken
+			}
+		)
+
+		assert res.status_code == 200
+
+		member = res.json()
+		logging.debug(member)
+		# {u'status': u'aktiv', u'uid': u'1234', u'firstname': u'Eugen', u'cid': u'1356', u'lastname': u'Hänle', u'memberid': u'1337', u'roles': [u'Vereinsadministrator', u'Vorstand', u'Mitglied', u'Alle Rechte'], u'httpstatuscode': 200, u'email': u'eugen@glasfluegel.net'}
+
+		#return json.dumps(member)
+		return """<!DOCTYPE html><html><body><h1>Hallo %s!</h1></html>""" % member["firstname"]
 
 	#@tasks.PeriodicTask(24 * 60)
 	def backup(self, *args, **kwargs):
