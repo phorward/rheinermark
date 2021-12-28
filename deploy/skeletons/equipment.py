@@ -12,6 +12,7 @@ class equipmentSkel(Skeleton):
 			"reg",
 			"name",
 			"photo",
+			"gallery",
 			"is_launcher",
 			"is_clubowned",
 			"description",
@@ -86,6 +87,11 @@ class equipmentSkel(Skeleton):
 		descr=u"Foto"
 	)
 
+	gallery = fileBone(
+		descr=u"Galerie",
+		multiple=True
+	)
+
 	photo3side = fileBone(
 		descr=u"3-Seiten-Ansicht"
 	)
@@ -94,6 +100,7 @@ class equipmentSkel(Skeleton):
 		descr=u"Anzahl Sitze",
 		precision=0,
 		defaultValue=1,
+		min=1,
 		required=True
 	)
 
