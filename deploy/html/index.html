@@ -78,64 +78,66 @@
 </div>
 {% endblock %}
 
-<div class="menu-wrapper {{ mode }}">
-	<div class="menu-bar">
-		<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
-		{% set sections = getList("section") %}
-		{% for section in sections %}
-			<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
-		{% endfor %}
-		<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
+{% set sections = getList("section") %}
+
+{% block menu %}
+	<div class="menu-wrapper {{ mode }}">
+		<div class="menu-bar">
+			<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
+			{% for section in sections %}
+				<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
+			{% endfor %}
+			<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
+		</div>
+
+		<button class="hamburger hamburger--spin" type="button">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</button>
+
+		<a href="{{ "/" if not cuser else "/user/view" }}" class="logo"></a>
 	</div>
 
-	<button class="hamburger hamburger--spin" type="button">
-		<span class="hamburger-box">
-			<span class="hamburger-inner"></span>
-		</span>
-	</button>
-
-	<a href="{{ "/" if not cuser else "/user/view" }}" class="logo"></a>
-</div>
-
-<div class="mobilemenu-wrapper {{mode}}">
-	<div class="mobilemenu">
-		<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
-		<hr>
-		{% for section in sections %}
-			<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
+	<div class="mobilemenu-wrapper {{mode}}">
+		<div class="mobilemenu">
+			<a class="menu-button js-scroll" href="{{ prefix }}#top">Start</a>
 			<hr>
-		{% endfor %}
-		<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
+			{% for section in sections %}
+				<a class="menu-button js-scroll" href="{{ prefix }}#{{section.alias}}">{{section.name}}</a>
+				<hr>
+			{% endfor %}
+			<a class="menu-button js-scroll" href="{{ prefix }}#kontakt">Kontakt</a>
 
-		<hr>
-		<a class="menu-button" href="/s/imprint">Impressum</a>
+			<hr>
+			<a class="menu-button" href="/s/imprint">Impressum</a>
 
-		<!--
-		<hr>
-		<a class="menu-button" href="/s/disclaimer">Haftungsausschluss</a>
+			<!--
+			<hr>
+			<a class="menu-button" href="/s/disclaimer">Haftungsausschluss</a>
 
-		<hr>
-		<a class="menu-button" href="/s/privacy">Datenschutz</a>
-		-->
+			<hr>
+			<a class="menu-button" href="/s/privacy">Datenschutz</a>
+			-->
 
-		<hr>
-		<a class="menu-button" href="/user/view/self">Mitglieder-Bereich</a>
-
+			<hr>
+			<a class="menu-button" href="/user/view/self">Mitglieder-Bereich</a>
+		</div>
 	</div>
-</div>
+{% endblock %}
 
 {% block body %}
 
 <!-- Startseite -->
 <section id="fv" class="fv">
 	{% for bg in appconf["start_teaser"] %}
-		<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1600) }}'); {{ "display: none" if not loop.first }}"></div>
-		<!--
+		<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1200) }}'); {{ "display: none" if not loop.first }}"></div>
+		{#
 		<div class="fv-bg js-diashow"
 			data-group="start"
 			style="background-image: image-set(url('{{ getImageSrc(bg, 600) }}') 1x, url('{{ getImageSrc(bg, 1000) }}') 2x, url('{{ getImageSrc(bg, 1200) }}') 3x, url('{{ getImageSrc(bg, 1600) }}') 4x); {{ "display: none" if not loop.first }}">
 		</div>
-		-->
+		#}
 	{% endfor %}
 
 	<div class="grey-transparency">
@@ -161,9 +163,8 @@
 {% endmacro %}
 
 {% for section in sections %}
-
 	{% if not loop.first %}
-		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1600) }});"></div>
+		<div class="sv-image" style="background-image: url({{ getImageSrc(section.parallax, 1200) }});"></div>
 	{% endif %}
 
 	<!-- Kategorie -->
@@ -315,27 +316,31 @@
 
 {% endblock %}
 
-<div class="footer">
-	<div class="menu-button law no-link">
-		&copy; {{ dateTime().now().strftime("%Y") }}
-		Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.
+{% block footer %}
+	<div class="footer">
+		<div class="menu-button law no-link">
+			&copy; {{ dateTime().now().strftime("%Y") }}
+			Luftsportvereinigung Ruhr-Lenne Iserlohn e.V.
+		</div>
+
+		<a class="menu-button law" href="/s/imprint">Impressum</a>
+		<a class="menu-button law" href="/s/disclaimer">Haftungsausschluss</a>
+		<a class="menu-button law" href="/s/privacy">Datenschutz</a>
+		<a class="menu-button law" href="/user/view/self">Mitglieder-Bereich</a>
 	</div>
+{% endblock %}
 
-	<a class="menu-button law" href="/s/imprint">Impressum</a>
-	<a class="menu-button law" href="/s/disclaimer">Haftungsausschluss</a>
-	<a class="menu-button law" href="/s/privacy">Datenschutz</a>
-	<a class="menu-button law" href="/user/view/self">Mitglieder-Bereich</a>
-</div>
+{% block cookieconsent %}
+	<!-- CookieConsent Popup -->
+	<div id="cookieConsent">
+		Diese Webseite verwendet Cookies zum Zwecke der Datensicherheit.
+		Eine weitere Auswertung dieser Daten findet nicht statt!
 
-<!-- CookieConsent Popup -->
-<div id="cookieConsent">
-    Diese Webseite verwendet Cookies zum Zwecke der Datensicherheit.
-	Eine weitere Auswertung dieser Daten findet nicht statt!
-
-	<a href="/s/privacy" target="_blank">Weitere Informationen</a>
-	<a id="cookieConsentOK">Verstanden!</a>
-</div>
-<!-- /CookieConsent Popup -->
+		<a href="/s/privacy" target="_blank">Weitere Informationen</a>
+		<a id="cookieConsentOK">Verstanden!</a>
+	</div>
+	<!-- /CookieConsent Popup -->
+{% endblock %}
 
 </body>
 </html>

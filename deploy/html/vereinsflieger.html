@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block menu %}
+	<div class="menu-wrapper">
+		<img src="/static/img/logo-white.svg" style="width: 250px; margin: auto; margin-right: 0;">
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block cookieconsent %}
+{% endblock %}
+
+{% block body %}
+	<section id="fv" class="fv">
+		{% for bg in appconf["start_teaser"] %}
+			<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1200) }}'); {{ "display: none" if not loop.first }}"></div>
+		{% endfor %}
+
+		<div class="grey-transparency">
+			<div class="content-title wo-border" style="background-color: rgba(20, 20, 20, 50%); border-radius: 20px;">
+				{% if member %}
+					<h1 class="content-headline">Willkommen {{ member["firstname"] }}!</h1>
+
+					<h3 class="content-subline">
+						Hier kannst Du deine Starts erfassen, Dokumente einsehen und hast alle Termine im Blick.
+					</h3>
+				{% else %}
+					<h1 class="content-headline">Willkommen auf der Rheinermark!</h1>
+
+					<h3 class="content-subline">
+						Um in den internen Bereich zu gelangen, logge Dich bitte zuerst über Vereinsflieger ein.
+					</h3>
+
+					<a class="rd-button js-scroll" href="https://www.vereinsflieger.de/member/community/home.php">
+						<div class="btn-icn mitfliegen"></div>
+						Klicke hier um zu Vereinsflieger zu kommen
+					</a>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+{% endblock %}
