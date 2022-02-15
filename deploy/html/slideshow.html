@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block menu %}
+	<div class="menu-wrapper">
+		{%- set logo = requestParams()["logo"] or "logo-white" %};
+
+		{%- set logo_top = requestParams()["logo-top"] or 45 %};
+
+		{%- set logo_width = requestParams()["logo-width"] or 350 %};
+
+		{%- set logo_pos = requestParams()["logo-pos"] or "right" %};
+		{%- if logo_pos == "right" %}
+			{%- set logo_pos = "margin: auto; margin-right: 0;" %}
+		{%- elif logo_pos == "center" %}
+			{%- set logo_pos = "margin: auto;" %}
+		{%- else %}
+			{%- set logo_pos = "" %}
+		{%- endif %}
+
+		<img src="/static/img/{{ logo }}.svg" style="width: {{ logo_width }}px; {{ logo_pos }} margin-top: {{ logo_top }}px;">
+	</div>
+{% endblock %}
+
+{% block additionalHeader %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block cookieconsent %}
+{% endblock %}
+
+{% block socialmedia %}
+{% endblock %}
+
+{% block body %}
+	<section id="fv" class="fv">
+		{% for bg in appconf["start_teaser"] %}
+			<div class="fv-bg js-diashow" data-group="start" style="background-image: url('{{ getImageSrc(bg, 1200) }}'); {{ "display: none" if not loop.first }}"></div>
+		{% endfor %}
+
+		<div class="grey-transparency"></div>
+	</section>
+{% endblock %}

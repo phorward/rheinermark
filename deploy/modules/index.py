@@ -20,6 +20,11 @@ class index(default):
 		return template.render(start=True)
 
 	@exposed
+	def slideshow(self, *args, **kwargs):
+		template = self.getEnv().get_template("slideshow.html")
+		return template.render(start=True)
+
+	@exposed
 	def vereinsflieger(self, accesstoken=None, cid=None, *args, **kwargs):
 		if accesstoken:
 			res = requests.post(
