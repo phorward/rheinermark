@@ -129,18 +129,6 @@ class userSkel(skeleton.Skeleton):
 		}
 	)
 
-	# Segelflug.de Watchkategorien
-	segelflugde = relationalBone(
-		kind="segelflugde",
-		descr=u"Abonnierte Kategorien für segelflug.de WatchDog",
-		indexed=True,
-		multiple=True,
-		params={
-			"tooltip": u"""Der segelflug.de WatchDog schickt Dir eine E-Mail wenn's was neues in den von Dir ausgewählten Kategorien gibt.
-			<img src="/static/img/arcus-vorm-arcus.jpg" style="width: 100%; border-radius: 15px;">"""
-		}
-	)
-
 	access = selectAccessBone(
 		descr="Access rights",
 		values={"root": "Superuser"},

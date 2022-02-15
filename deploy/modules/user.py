@@ -114,7 +114,7 @@ class user(User):
 		if isinstance(self.render, htmlRender):
 			for name, bone in skel.items():
 				# Editable bones
-				if name in ["name", "password", "interests", "segelflugde"]:
+				if name in ["name", "password", "interests"]:
 					bone.readOnly = False
 					bone.visible = True
 					continue
