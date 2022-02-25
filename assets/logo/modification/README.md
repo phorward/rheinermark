@@ -20,6 +20,28 @@
 ## logo-wide-white.webp
 ![logo-wide-white.webp](logo-wide-white.webp)
 
+# logo-wide-rhmk
+
+## logo-wide-rhmk.svg
+![logo-wide-rhmk.svg](logo-wide-rhmk.svg)
+
+## logo-wide-rhmk.png
+![logo-wide-rhmk.png](logo-wide-rhmk.png)
+
+## logo-wide-rhmk.webp
+![logo-wide-rhmk.webp](logo-wide-rhmk.webp)
+
+# logo-wide-rhmk-white
+
+## logo-wide-rhmk-white.svg
+![logo-wide-rhmk-white.svg](logo-wide-rhmk-white.svg)
+
+## logo-wide-rhmk-white.png
+![logo-wide-rhmk-white.png](logo-wide-rhmk-white.png)
+
+## logo-wide-rhmk-white.webp
+![logo-wide-rhmk-white.webp](logo-wide-rhmk-white.webp)
+
 # logo-wide-full
 
 ## logo-wide-full.svg
