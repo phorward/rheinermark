@@ -6,7 +6,7 @@ for svg in reversed(sorted(glob.glob("*.svg"))):
 
 	# generate png from svg
 	png = base + ".png"
-	cairosvg.svg2png(url=svg, write_to=png)
+	cairosvg.svg2png(url=svg, write_to=png, output_width=2000)
 	svg.removesuffix(".svg") + ".png"
 
 	# generate webp from png
