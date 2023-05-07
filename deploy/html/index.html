@@ -132,7 +132,7 @@
 			{% if section["mode"] == "teaser" %}
 				{% if section["image"] or section["external_image"] %}
 					<div class="wrap wrap--image wrap--fullHeight {{ "is-external" if not section["image"] and section["external_image"] }}"
-					 	style="background-image: url({{ getImageSrc(section["image"], 1600) if section["image"] else section["external_image"] }})">
+					 	style="background-image: url({{ getImageSrc(section["image"], 2500) if section["image"] else section["external_image"] }})">
 				{% else %}
 					<div class="wrap wrap--dark">
 				{% endif %}

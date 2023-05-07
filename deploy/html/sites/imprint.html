@@ -50,34 +50,9 @@
 		<h4>Copyright</h4>
 
 		<div class="imprint">
-			Copyright &copy; {{ dateTime().now().strftime("%Y") }} {{ appconf["legal_name"] }}
+			Copyright &copy; {{ dateTime().now().strftime("%Y") }} {{ appconf["legal_name"] }}<br><br>
+			Fotos, Inhalte, Farbgebung sowie das Logo sind geistiges Eigentum des Vereins und seiner Mitglieder.
 		</div>
 
-		<div class="imprint">
-			Fotos, Inhalte, Farbgebung sowie das Logo sind geistiges Eigentum des Vereins und seiner Mitglieder.<br><br>
-
-			Erstellung und Bereitstellung der Webseite durch <a href="https://phorward.info/">Jan Max Meyer, Phorward Software Technologies</a>.
-			<br><br>
-			Die hinter dieser Webseite liegende Software zur Verwaltung von Inhalten, Mitgliedern und weiteren
-			Informationen ist freie Software, welche unter der GNU AFFERO GENERAL PUBLIC LICENSE entwickelt wird.
-			Auch Du <a href="https://github.com/phorward/rheinermark">kannst mitmachen</a> und ein Teil davon werden!
-		</div>
-
-		<div class="imprint small center">
-			<a class="solution" href="https://www.viur.is" target="_blank"
-				title="Dies ist ein ViUR Informationssystem"
-				style="background-image: url(/static/img/ViUR.svg);">
-			</a>
-
-			<a class="solution" href="https://phorward.info" target="_blank"
-				title="Phorward Software Technologies"
-				style="background-image: url(/static/img/phorward.svg);">
-			</a>
-
-			<a class="solution" href="https://github.com/phorward/rheinermark" target="_blank"
-				title="GNU Affero General Public License"
-				style="background-image: url(/static/img/AGPLv3_Logo.svg);">
-			</a>
-		</div>
 	</div>
 {% endblock %}
