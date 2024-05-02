@@ -18,7 +18,6 @@ class appconfSkel(Skeleton):
 	# Start
 	start_teaser = fileBone(
 		descr=u"Teaser-Bilder",
-		required=True,
 		multiple=True
 	)
 
