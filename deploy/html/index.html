@@ -142,9 +142,11 @@
 
 	<div class="grey-transparency">
 		<div class="content-title wo-border">
-			<h1 class="content-headline">Willkommen auf dem Panorama-Flugplatz!</h1>
-			<a class="js-scroll" href="/static/files/4fuer40.pdf">
-				<img src="/static/img/4fuer40.jpg" style="max-height: 500px; max-width: 90%" title="Aktion 4 für 40" alt="Bild mit Flugzeug, Aktion 4 für 40">
+			<h1 class="content-headline">Herzlich Willkommen...</h1>
+			<h3 class="content-subline">... auf dem Panorama-Flugplatz Rheinermark!</h3>
+			<a class="rd-button js-scroll" href="#4fuer40">
+				<div class="btn-icn mitfliegen"></div>
+				Fliegen lernen!
 			</a>
 		</div>
 		<div class="arrow bounce"></div>
@@ -159,6 +161,24 @@
 		{% endfor %}
 	</div>
 {% endmacro %}
+
+<a id="4fuer40" name="4fuer40"></a>
+<section class="sv">
+	<div class="sv-content-wrapper">
+		{% set summer = false %}
+		{% if summer %}
+			<div class="content-title-line">Aktion 4-für-40</div>
+			<a class="js-scroll" href="/static/files/4fuer40.pdf" target="_blank">
+				<img src="/static/img/4fuer40.jpg" style="max-width: 1300px; width: 100%" title="Aktion 4 für 40" alt="Bild mit Flugzeug, Aktion 4 für 40">
+			</a>
+		{% else %}
+			<div class="content-title-line">Winter 2024/2025 - Flugsimulator Aktion</div>
+			<a class="js-scroll" href="/static/files/flusi.pdf" target="_blank">
+				<img src="/static/img/flusi.jpg" style="max-width: 1300px; width: 100%" title="Winteraktion Flugsimulator" alt="Bild mit Flugsimulator-Impressionen">
+			</a>
+		{% endif %}
+	</div>
+</section>
 
 {% for section in sections %}
 	{% if not loop.first %}
